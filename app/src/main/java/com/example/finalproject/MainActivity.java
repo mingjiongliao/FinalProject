@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -45,7 +46,11 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "I'm a toast", Toast.LENGTH_LONG).show();
 
 
-
+            Button currency =(Button)findViewById(R.id.currency);
+            currency.setOnClickListener(v -> {
+                Intent goToPage2 = new Intent(MainActivity.this, ForCurrency.class);
+                startActivity(goToPage2);
+            });
         });
 
 

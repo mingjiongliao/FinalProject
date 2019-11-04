@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">FinalProject</string>
+    <string name="Button">button</string>
+    <string name="currency">Foreign currency conversion</string>
+    <string name="convert">convert</string>
+    <string name="insert">insert</string>
+    <string name="enter">Enter amount</string>
+    <string name="result">Result</string>
+    <string name="country_prompt">Choose currency</string>
+    <string name="country_transfer">Choose currency you want to transfer</string>
+    <string-array name="spinner1">
+        <item>CAD</item>
+        <item>USD</item>
+        <item>CHF</item>
+        <item>GBP</item>
+        <item>SEK</item>
+        <item>EUR</item>
+    </string-array>
 </resources>
