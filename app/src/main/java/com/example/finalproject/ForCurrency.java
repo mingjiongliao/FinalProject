@@ -2,7 +2,10 @@ package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +22,7 @@ import android.widget.Toast;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ForCurrency extends AppCompatActivity {
 
@@ -40,8 +44,31 @@ public class ForCurrency extends AppCompatActivity {
         Button insert = (Button)findViewById(R.id.insert);
         ListView theList = (ListView)findViewById(R.id.the_list);
 
+        MyDatabaseOpenHelper dbOpener = new MyDatabaseOpenHelper(this);
+        SQLiteDatabase db = dbOpener.getWritableDatabase();
+
+        //query all the results from the database:
+        String [] columns = {MyDatabaseOpenHelper.COL_ID, MyDatabaseOpenHelper.COL_MESSAGE};
+        Cursor results = db.query(false, MyDatabaseOpenHelper.TABLE_NAME, columns, null, null, null, null, null, null);
+        //find the column indices:
+
+        int mesColIndex = results.getColumnIndex(MyDatabaseOpenHelper.COL_MESSAGE);
+        int idColIndex = results.getColumnIndex(MyDatabaseOpenHelper.COL_ID);
+
+        //iterate over the results, return true if there is a next item:
+        while(results.moveToNext())
+        {
+            String message = results.getString(mesColIndex);
+            long id = results.getLong(idColIndex);
+
+            //add the new Contact to the array list:
+            objects.add(message);
+        }
+
         myAdapter = new MyOwnAdapter();
         theList.setAdapter(myAdapter);
+        printCursor(results);
+
 
         convert.setOnClickListener(v -> {
             if(amount.getText().toString()==null){
@@ -66,6 +93,11 @@ public class ForCurrency extends AppCompatActivity {
         });
 
         insert.setOnClickListener(v -> {
+            ContentValues newRowValues = new ContentValues();
+            //put string name in the NAME column:
+            newRowValues.put(MyDatabaseOpenHelper.COL_MESSAGE, result.getText().toString());
+            long newId = db.insert(MyDatabaseOpenHelper.TABLE_NAME, null, newRowValues);
+
             objects.add(result.getText().toString());
             //update the listView:
             myAdapter.notifyDataSetChanged();
@@ -117,5 +149,22 @@ public class ForCurrency extends AppCompatActivity {
 
             return thisRow;
         }
+    }
+
+    public void printCursor( Cursor c){
+        c.moveToFirst();
+
+
+        int mesColIndex = c.getColumnIndex(MyDatabaseOpenHelper.COL_MESSAGE);
+        int idColIndex = c.getColumnIndex(MyDatabaseOpenHelper.COL_ID);
+
+        //iterate over the results, return true if there is a next item:
+        while(c.moveToNext())
+        {
+            String message = c.getString(mesColIndex);
+            long id = c.getLong(idColIndex);
+
+        }
+
     }
 }
