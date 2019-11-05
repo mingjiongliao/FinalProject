@@ -10,12 +10,9 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/algonquin-1"
-        android:adjustViewBounds="true"
-        android:maxWidth="42dp"
-        android:maxHeight="42dp"
-        ></ImageView>
+        android:layout_height="220dp"
+
+        android:src="@drawable/algonquin"></ImageView>
     <EditText
         android:id="@+id/editText"
         android:layout_width="match_parent"
