@@ -31,7 +31,10 @@ public class MainActivity extends AppCompatActivity {
             //This is the builder pattern, just call many functions on the same object:
             AlertDialog dialog = builder.setTitle("I’m ready for milestone 1")
                     .setMessage("Please give bonus marks")
-                    .setPositiveButton("Yes", (d,w) -> {  /* nothing */}
+                    .setPositiveButton("Yes", (d,w) -> {
+                                Intent student = new Intent(MainActivity.this, StudentInfo.class);
+                                startActivity(student);
+                    }
 
                     )
                     //If you click the "Cancel" button:

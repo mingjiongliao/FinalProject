@@ -13,7 +13,7 @@ public class ViewMessage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_message);
 
-         
+
         Intent previousPage = getIntent();
         String message = previousPage.getStringExtra("Message");
         String id = previousPage.getStringExtra("Id");

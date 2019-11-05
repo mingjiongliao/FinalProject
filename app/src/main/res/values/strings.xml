@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">FinalProject</string>
-    <string name="Button">button</string>
+    <string name="Button">Student information</string>
     <string name="currency">Foreign currency conversion</string>
     <string name="convert">convert</string>
     <string name="insert">insert</string>
@@ -10,6 +10,10 @@
     <string name="country_transfer">Choose currency you want to transfer</string>
     <string name="update">update</string>
     <string name="delete">delete</string>
+    <string name="liao">Mingjiong Liao  liao0019@algonquinlive.com</string>
+    <string name="wang">Qing Wang       wang0582@algonquinlive.com</string>
+    <string name="ye">Rongzhong Ye    ye000038@algonquinlive.com</string>
+    <string name="luo">Chunyuan Luo    luo00047@algonquinlive.com</string>
     <string-array name="spinner1">
         <item>CAD</item>
         <item>USD</item>
