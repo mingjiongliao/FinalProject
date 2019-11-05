@@ -51,9 +51,17 @@ public class ForCurrency extends AppCompatActivity {
                 //how to use api to get the rate
                 String currency =spinner1.getSelectedItem().toString();
                 String transfer= spinner2.getSelectedItem().toString();
-                int value=Integer.parseInt(amount.getText().toString());
-                result.setText(value+" "+currency+" equal to "+value*3+" "+transfer);
-                Toast.makeText(this, "Convert seccessfully!", Toast.LENGTH_LONG).show();
+
+                try{
+                    int value=Integer.parseInt(amount.getText().toString());
+                    result.setText(value+" "+currency+" equal to "+value*3+" "+transfer);
+                    Toast.makeText(this, "Convert seccessfully!", Toast.LENGTH_LONG).show();
+                }catch(Exception e){
+                    Toast.makeText(this, "Please enter number!", Toast.LENGTH_LONG).show();
+                }
+
+
+
             }
         });
 
