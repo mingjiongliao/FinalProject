@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/input"
-        android:hint="@string/enter"/>
+        android:hint="@string/amount"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/emailInput"
+        android:id="@+id/result"
         android:hint="@string/result"/>
     <Button
         android:layout_width="match_parent"

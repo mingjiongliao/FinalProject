@@ -4,10 +4,12 @@
     <string name="currency">Foreign currency conversion</string>
     <string name="convert">convert</string>
     <string name="insert">insert</string>
-    <string name="enter">Enter amount</string>
+    <string name="amount">Enter amount</string>
     <string name="result">Result</string>
     <string name="country_prompt">Choose currency</string>
     <string name="country_transfer">Choose currency you want to transfer</string>
+    <string name="update">update</string>
+    <string name="delete">delete</string>
     <string-array name="spinner1">
         <item>CAD</item>
         <item>USD</item>
