@@ -114,8 +114,8 @@ public class ForCurrency extends AppCompatActivity {
             Intent nextPage = new Intent(ForCurrency.this, ViewMessage.class);
             nextPage.putExtra("Message", chosenOne.toString());
             nextPage.putExtra("Id", position);
-            //startActivity(nextPage);
-            startActivityForResult(nextPage, ACTIVITY_VIEW_CONTACT);
+            startActivity(nextPage);
+//            startActivityForResult(nextPage, ACTIVITY_VIEW_CONTACT);
         });
     }
     private class MyOwnAdapter extends BaseAdapter {

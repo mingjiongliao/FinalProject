@@ -13,9 +13,9 @@ public class ViewMessage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_message);
 
-        //todo could not get data from previous page
+         
         Intent previousPage = getIntent();
-        String message = previousPage.getStringExtra("message");
+        String message = previousPage.getStringExtra("Message");
         String id = previousPage.getStringExtra("Id");
 
         EditText result = (EditText)findViewById(R.id.result);
