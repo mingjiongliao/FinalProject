@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
             //This is the builder pattern, just call many functions on the same object:
-            AlertDialog dialog = builder.setTitle("I’m ready for milestone 1")
-                    .setMessage("Please give bonus marks")
+            AlertDialog dialog = builder.setTitle("This is information about our team member")
+                    .setMessage("Do you want to go there?")
                     .setPositiveButton("Yes", (d,w) -> {
                                 Intent student = new Intent(MainActivity.this, StudentInfo.class);
                                 startActivity(student);

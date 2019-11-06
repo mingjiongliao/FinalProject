@@ -17,9 +17,9 @@
     <string-array name="spinner1">
         <item>CAD</item>
         <item>USD</item>
-        <item>CHF</item>
-        <item>GBP</item>
-        <item>SEK</item>
+        <item>CNY</item>
+        <item>HKD</item>
+        <item>JPY</item>
         <item>EUR</item>
     </string-array>
 </resources>

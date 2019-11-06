@@ -21,6 +21,16 @@ import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -31,6 +41,10 @@ public class ForCurrency extends AppCompatActivity {
     int positionClicked = 0;
     MyOwnAdapter myAdapter;
     private EditText result=null;
+    private String base=null;
+    private String symbols=null;
+//    private String response = "https://api.exchangeratesapi.io/latest?base="+base+"&symbols="+symbols;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,12 +90,29 @@ public class ForCurrency extends AppCompatActivity {
                 Toast.makeText(this, "Please enter amount first", Toast.LENGTH_LONG).show();
             }else{
                 //how to use api to get the rate
-                String currency =spinner1.getSelectedItem().toString();
-                String transfer= spinner2.getSelectedItem().toString();
-
+                base =spinner1.getSelectedItem().toString();
+                symbols= spinner2.getSelectedItem().toString();
+                String response = "https://api.exchangeratesapi.io/latest?base="+base+"&symbols="+symbols;
                 try{
-                    int value=Integer.parseInt(amount.getText().toString());
-                    result.setText(value+" "+currency+" equal to "+value*3+" "+transfer);
+                    double value=Double.parseDouble(amount.getText().toString());
+
+                    Log.d("symbol", "onCreate: "+value);
+
+//                    try {
+//                        JSONObject jsonObject=new JSONObject(response);
+//                        Log.d("symbol", "onCreate: "+response);
+//                        JSONObject rateObject=jsonObject.getJSONObject("rates");
+//
+//                        Double rate=rateObject.getDouble(symbols);
+
+
+                        result.setText(value+" "+base+" equal to "+String.valueOf(3*value)+" "+symbols);
+//                    }catch (JSONException e){
+//                        Snackbar.make(insert, "jason failed", Snackbar.LENGTH_LONG).show();
+//                    }
+
+
+
                     Toast.makeText(this, "Convert seccessfully!", Toast.LENGTH_LONG).show();
                 }catch(Exception e){
                     Toast.makeText(this, "Please enter number!", Toast.LENGTH_LONG).show();
@@ -167,4 +198,5 @@ public class ForCurrency extends AppCompatActivity {
         }
 
     }
+
 }
