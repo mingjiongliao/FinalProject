@@ -38,7 +38,7 @@ import java.util.Arrays;
 
 public class ForCurrency extends AppCompatActivity {
 
-    ArrayList<String> objects = new ArrayList<>( );
+    ArrayList<CountryItem> objects = new ArrayList<>( );
 
     private static int ACTIVITY_VIEW_CONTACT = 33;
     int positionClicked = 0;
@@ -104,21 +104,26 @@ public class ForCurrency extends AppCompatActivity {
         SQLiteDatabase db = dbOpener.getWritableDatabase();
 
         //query all the results from the database:
-        String [] columns = {MyDatabaseOpenHelper.COL_ID, MyDatabaseOpenHelper.COL_MESSAGE};
+        String [] columns = {MyDatabaseOpenHelper.COL_ID, MyDatabaseOpenHelper.COL_MESSAGE,MyDatabaseOpenHelper.COL_FLAG1,MyDatabaseOpenHelper.COL_FLAG2};
+        Log.d("dddd", "onCreate: "+columns[0].toString()+columns[2].toString());
         Cursor results = db.query(false, MyDatabaseOpenHelper.TABLE_NAME, columns, null, null, null, null, null, null);
         //find the column indices:
 
         int mesColIndex = results.getColumnIndex(MyDatabaseOpenHelper.COL_MESSAGE);
         int idColIndex = results.getColumnIndex(MyDatabaseOpenHelper.COL_ID);
+        int flag1ColIndex=results.getColumnIndex(MyDatabaseOpenHelper.COL_FLAG1);
+        int flag2ColIndex=results.getColumnIndex(MyDatabaseOpenHelper.COL_FLAG2);
 
         //iterate over the results, return true if there is a next item:
         while(results.moveToNext())
         {
+            int flag1=results.getInt(flag1ColIndex);
+            int flag2=results.getInt(flag2ColIndex);
             String message = results.getString(mesColIndex);
             long id = results.getLong(idColIndex);
 
             //add the new Contact to the array list:
-            objects.add(message);
+            objects.add(new CountryItem(message,flag1,flag2));
         }
 
         myAdapter = new MyOwnAdapter();
@@ -174,10 +179,17 @@ public class ForCurrency extends AppCompatActivity {
         insert.setOnClickListener(v -> {
             ContentValues newRowValues = new ContentValues();
             //put string name in the NAME column:
+            ImageView flag1Image=(ImageView)findViewById(R.id.imageView1);
+            ImageView flag2Image=(ImageView)findViewById(R.id.imageView2);
+            int flag1=Integer.valueOf(flag1Image.toString());
+            Log.d("", "onCreate: "+flag1);
+            int flag2=Integer.valueOf(flag2Image.toString());
             newRowValues.put(MyDatabaseOpenHelper.COL_MESSAGE, result.getText().toString());
+            newRowValues.put(MyDatabaseOpenHelper.COL_MESSAGE, flag1);
+            newRowValues.put(MyDatabaseOpenHelper.COL_MESSAGE, flag2);
             long newId = db.insert(MyDatabaseOpenHelper.TABLE_NAME, null, newRowValues);
 
-            objects.add(result.getText().toString());
+            objects.add(new CountryItem(result.getText().toString(),flag1,flag2));
             //update the listView:
             myAdapter.notifyDataSetChanged();
             Snackbar.make(insert, "Insert sucessfully!", Snackbar.LENGTH_LONG).show();
@@ -189,8 +201,10 @@ public class ForCurrency extends AppCompatActivity {
             positionClicked = position;
 
             //When you click on a row, open selected contact on a new page (ViewContact)
-            String chosenOne = objects.get(position);
+            CountryItem chosenOne = objects.get(position);
             Intent nextPage = new Intent(ForCurrency.this, ViewMessage.class);
+            nextPage.putExtra("Flag1",chosenOne.getmFlagImage());
+            nextPage.putExtra("Flag2",chosenOne.getoFlagImage());
             nextPage.putExtra("Message", chosenOne.toString());
             nextPage.putExtra("Id", position);
             startActivity(nextPage);
@@ -201,7 +215,7 @@ public class ForCurrency extends AppCompatActivity {
 
         public int getCount() {  return objects.size();  } //This function tells how many objects to show
 
-        public String getItem(int position) { return objects.get(position);  }  //This returns the string at position p
+        public CountryItem getItem(int position) { return objects.get(position);  }  //This returns the string at position p
 
         public long getItemId(int p) { return p; } //This returns the database id of the item at position p
 

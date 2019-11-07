@@ -13,6 +13,8 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
     public static final String TABLE_NAME = "Messages";
     public static final String COL_ID = "_id";
     public static final String COL_MESSAGE = "Message";
+    public static final String COL_FLAG1 = "Flag1";
+    public static final String COL_FLAG2 = "Flag2";
 
 
 
@@ -26,7 +28,7 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
         //Make sure you put spaces between SQL statements and Java strings:
         db.execSQL("CREATE TABLE " + TABLE_NAME + "( "
                 + COL_ID +" INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + COL_MESSAGE +  " TEXT)");
+                + COL_MESSAGE+"TEXT," + COL_FLAG1+"TEXT,"+ COL_FLAG2+" TEXT)");
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
