@@ -7,7 +7,7 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_weight="1"
         android:padding="10dp"
         android:src="@drawable/usd" />
@@ -15,11 +15,11 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_weight="1"
         android:padding="10dp"
         android:text="USD"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+         />
 
 
 </LinearLayout>

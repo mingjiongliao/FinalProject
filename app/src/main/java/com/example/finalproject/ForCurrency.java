@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -148,8 +149,12 @@ public class ForCurrency extends AppCompatActivity {
 //
 //                        Double rate=rateObject.getDouble(symbols);
 
+                        ImageView imageViewFlag1 =findViewById(R.id.imageView1);
+                        ImageView imageViewFlag2 =findViewById(R.id.imageView2);
 
-                        result.setText(value+" "+baseValue+" equal to "+String.valueOf(3*value)+" "+symbols);
+                        imageViewFlag1.setImageResource(mCountryList.get(spinner1.getSelectedItemPosition()).getmFlagImage());
+                        imageViewFlag2.setImageResource(mCountryList.get(spinner2.getSelectedItemPosition()).getmFlagImage());
+                        result.setText(value+" "+baseValue+" = "+String.valueOf(3*value)+" "+symbols);
 //                    }catch (JSONException e){
 //                        Snackbar.make(insert, "jason failed", Snackbar.LENGTH_LONG).show();
 //                    }
@@ -245,7 +250,10 @@ public class ForCurrency extends AppCompatActivity {
         mCountryList=new ArrayList<>();
         mCountryList.add(new CountryItem("USD",R.drawable.usd));
         mCountryList.add(new CountryItem("CAD",R.drawable.cad));
-        mCountryList.add(new CountryItem("CHY",R.drawable.chy));
+        mCountryList.add(new CountryItem("CNY",R.drawable.chy));
+        mCountryList.add(new CountryItem("JPY",R.drawable.jpy));
+        mCountryList.add(new CountryItem("KRW",R.drawable.krw));
+        mCountryList.add(new CountryItem("VND",R.drawable.vnd));
     }
 
 }
