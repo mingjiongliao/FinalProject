@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,26 +38,66 @@ import java.util.Arrays;
 public class ForCurrency extends AppCompatActivity {
 
     ArrayList<String> objects = new ArrayList<>( );
+
     private static int ACTIVITY_VIEW_CONTACT = 33;
     int positionClicked = 0;
     MyOwnAdapter myAdapter;
     private EditText result=null;
-    private String base=null;
+    private String baseValue=null;
     private String symbols=null;
 //    private String response = "https://api.exchangeratesapi.io/latest?base="+base+"&symbols="+symbols;
-
+    private ArrayList<CountryItem> mCountryList;
+    private CountryAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_for_currency);
-        Spinner spinner1 =(Spinner)findViewById(R.id.spinner1);
-        Spinner spinner2 =(Spinner)findViewById(R.id.spinner2);
+
+
         EditText amount = (EditText)findViewById(R.id.input);
         result = (EditText)findViewById(R.id.result);
         Button convert = (Button)findViewById(R.id.convert);
         Button insert = (Button)findViewById(R.id.insert);
         ListView theList = (ListView)findViewById(R.id.the_list);
+
+
+
+        initList();
+//        Spinner spinnerCountries=findViewById(R.id.spinner);
+        Spinner spinner1 =(Spinner)findViewById(R.id.spinner1);
+        Spinner spinner2 =(Spinner)findViewById(R.id.spinner2);
+        mAdapter =new CountryAdapter(this,mCountryList);
+        spinner1.setAdapter(mAdapter);
+        spinner2.setAdapter(mAdapter);
+        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                CountryItem clickedItem=(CountryItem)parent.getItemAtPosition(position);
+                String clickedCountryName=clickedItem.getmCountryName();
+                Toast.makeText(ForCurrency.this,clickedCountryName+"selected",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                CountryItem clickedItem=(CountryItem)parent.getItemAtPosition(position);
+                String clickedCountryName=clickedItem.getmCountryName();
+                Toast.makeText(ForCurrency.this,clickedCountryName+"selected",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         MyDatabaseOpenHelper dbOpener = new MyDatabaseOpenHelper(this);
         SQLiteDatabase db = dbOpener.getWritableDatabase();
@@ -90,9 +131,11 @@ public class ForCurrency extends AppCompatActivity {
                 Toast.makeText(this, "Please enter amount first", Toast.LENGTH_LONG).show();
             }else{
                 //how to use api to get the rate
-                base =spinner1.getSelectedItem().toString();
-                symbols= spinner2.getSelectedItem().toString();
-                String response = "https://api.exchangeratesapi.io/latest?base="+base+"&symbols="+symbols;
+                baseValue =mCountryList.get(spinner1.getSelectedItemPosition()).getmCountryName();
+
+                Log.d("", "onCreate: "+baseValue);
+                symbols= mCountryList.get(spinner2.getSelectedItemPosition()).getmCountryName();
+                String response = "https://api.exchangeratesapi.io/latest?base="+baseValue+"&symbols="+symbols;
                 try{
                     double value=Double.parseDouble(amount.getText().toString());
 
@@ -106,7 +149,7 @@ public class ForCurrency extends AppCompatActivity {
 //                        Double rate=rateObject.getDouble(symbols);
 
 
-                        result.setText(value+" "+base+" equal to "+String.valueOf(3*value)+" "+symbols);
+                        result.setText(value+" "+baseValue+" equal to "+String.valueOf(3*value)+" "+symbols);
 //                    }catch (JSONException e){
 //                        Snackbar.make(insert, "jason failed", Snackbar.LENGTH_LONG).show();
 //                    }
@@ -197,6 +240,12 @@ public class ForCurrency extends AppCompatActivity {
 
         }
 
+    }
+    private void initList(){
+        mCountryList=new ArrayList<>();
+        mCountryList.add(new CountryItem("USD",R.drawable.usd));
+        mCountryList.add(new CountryItem("CAD",R.drawable.cad));
+        mCountryList.add(new CountryItem("CHY",R.drawable.chy));
     }
 
 }
