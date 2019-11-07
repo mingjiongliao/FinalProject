@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">FinalProject</string>
+    <string name="search_name">FinalProject</string>
+    <string name="search_buttom">FinalProject</string>
+
+
 </resources>
