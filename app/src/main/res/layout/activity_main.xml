@@ -15,7 +15,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name" />
+        android:hint ="@string/search_name"
+        android:autofillHints=""/>
 
     <ProgressBar
         android:id="@+id/progressBar2"
@@ -28,7 +29,7 @@
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="@string/search_buttom" />
 
 
     <ListView
