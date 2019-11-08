@@ -99,36 +99,38 @@ public class ForCurrency extends AppCompatActivity {
             }
         });
 
-
-        MyDatabaseOpenHelper dbOpener = new MyDatabaseOpenHelper(this);
-        SQLiteDatabase db = dbOpener.getWritableDatabase();
-
-        //query all the results from the database:
-        String [] columns = {MyDatabaseOpenHelper.COL_ID, MyDatabaseOpenHelper.COL_MESSAGE,MyDatabaseOpenHelper.COL_FLAG1,MyDatabaseOpenHelper.COL_FLAG2};
-        Log.d("dddd", "onCreate: "+columns[0].toString()+columns[2].toString());
-        Cursor results = db.query(false, MyDatabaseOpenHelper.TABLE_NAME, columns, null, null, null, null, null, null);
-        //find the column indices:
-
-        int mesColIndex = results.getColumnIndex(MyDatabaseOpenHelper.COL_MESSAGE);
-        int idColIndex = results.getColumnIndex(MyDatabaseOpenHelper.COL_ID);
-        int flag1ColIndex=results.getColumnIndex(MyDatabaseOpenHelper.COL_FLAG1);
-        int flag2ColIndex=results.getColumnIndex(MyDatabaseOpenHelper.COL_FLAG2);
-
-        //iterate over the results, return true if there is a next item:
-        while(results.moveToNext())
-        {
-            int flag1=results.getInt(flag1ColIndex);
-            int flag2=results.getInt(flag2ColIndex);
-            String message = results.getString(mesColIndex);
-            long id = results.getLong(idColIndex);
-
-            //add the new Contact to the array list:
-            objects.add(new CountryItem(message,flag1,flag2));
-        }
-
-        myAdapter = new MyOwnAdapter();
-        theList.setAdapter(myAdapter);
-        printCursor(results);
+//
+//        MyDatabaseOpenHelper dbOpener = new MyDatabaseOpenHelper(this);
+//
+//        SQLiteDatabase db = dbOpener.getWritableDatabase();
+////        dbOpener.onUpgrade(db,1,2);
+//
+//        //query all the results from the database:
+//        String [] columns = {MyDatabaseOpenHelper.COL_ID, MyDatabaseOpenHelper.COL_MESSAGE,MyDatabaseOpenHelper.COL_FLAG1,MyDatabaseOpenHelper.COL_FLAG2};
+//        Log.d("dddd", "onCreate: "+columns[0].toString()+columns[2].toString());
+//        Cursor results = db.query(false, MyDatabaseOpenHelper.TABLE_NAME, columns, null, null, null, null, null, null);
+//        //find the column indices:
+//
+//        int mesColIndex = results.getColumnIndex(MyDatabaseOpenHelper.COL_MESSAGE);
+//        int idColIndex = results.getColumnIndex(MyDatabaseOpenHelper.COL_ID);
+//        int flag1ColIndex=results.getColumnIndex(MyDatabaseOpenHelper.COL_FLAG1);
+//        int flag2ColIndex=results.getColumnIndex(MyDatabaseOpenHelper.COL_FLAG2);
+//
+//        //iterate over the results, return true if there is a next item:
+//        while(results.moveToNext())
+//        {
+//            int flag1=results.getInt(flag1ColIndex);
+//            int flag2=results.getInt(flag2ColIndex);
+//            String message = results.getString(mesColIndex);
+//            long id = results.getLong(idColIndex);
+//
+//            //add the new Contact to the array list:
+//            objects.add(new CountryItem(message,flag1,flag2));
+//        }
+//
+//        myAdapter = new MyOwnAdapter();
+//        theList.setAdapter(myAdapter);
+//        printCursor(results);
 
 
         convert.setOnClickListener(v -> {
@@ -187,7 +189,7 @@ public class ForCurrency extends AppCompatActivity {
             newRowValues.put(MyDatabaseOpenHelper.COL_MESSAGE, result.getText().toString());
             newRowValues.put(MyDatabaseOpenHelper.COL_MESSAGE, flag1);
             newRowValues.put(MyDatabaseOpenHelper.COL_MESSAGE, flag2);
-            long newId = db.insert(MyDatabaseOpenHelper.TABLE_NAME, null, newRowValues);
+//            long newId = db.insert(MyDatabaseOpenHelper.TABLE_NAME, null, newRowValues);
 
             objects.add(new CountryItem(result.getText().toString(),flag1,flag2));
             //update the listView:
@@ -222,25 +224,31 @@ public class ForCurrency extends AppCompatActivity {
         public View getView(int p, View recycled, ViewGroup parent)
         {
 
+
+//            LayoutInflater inflater = getLayoutInflater();
+//            View thisRow = null;
+//            thisRow = inflater.inflate(R.layout.row_layout, null);
+//            TextView itemField = thisRow.findViewById(R.id.message);
+//            itemField.setText(getItem(p).toString());
+
             LayoutInflater inflater = getLayoutInflater();
-            View thisRow = null;
+
+            View newView = inflater.inflate(R.layout.row_layout, parent, false );
+
+            CountryItem thisRow = getItem(p);
+
+            ImageView flag1 = (ImageView) newView.findViewById(R.id.imageView1);
+            TextView message = (TextView)newView.findViewById(R.id.message);
+            ImageView flag2=(ImageView) newView.findViewById(R.id.imageView2);
+
+            if(thisRow!=null){
+                flag1.setImageResource(thisRow.getmFlagImage());
+                message.setText(thisRow.getmCountryName());
+                flag2.setImageResource(thisRow.getoFlagImage());
+            }
 
 
-            thisRow = inflater.inflate(R.layout.row_layout, null);
-
-
-
-
-
-
-            TextView itemField = thisRow.findViewById(R.id.message);
-
-
-
-            itemField.setText(getItem(p).toString());
-
-
-            return thisRow;
+            return newView;
         }
     }
 

@@ -3,13 +3,14 @@ package com.example.finalproject;
 
 
 import android.app.Activity;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "MyDatabaseFile";
-    public static final int VERSION_NUM = 1;
+    public static final int VERSION_NUM = 3;
     public static final String TABLE_NAME = "Messages";
     public static final String COL_ID = "_id";
     public static final String COL_MESSAGE = "Message";
@@ -26,11 +27,13 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db)
     {
         //Make sure you put spaces between SQL statements and Java strings:
+        Log.d("haha", "onCreate:haha");
         db.execSQL("CREATE TABLE " + TABLE_NAME + "( "
                 + COL_ID +" INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + COL_MESSAGE+"TEXT," + COL_FLAG1+"TEXT,"+ COL_FLAG2+" TEXT)");
-    }
 
+        Log.d("haha", "onCreate:");
+    }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
     {
         Log.i("Database upgrade", "Old version:" + oldVersion + " newVersion:"+newVersion);
