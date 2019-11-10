@@ -8,18 +8,18 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "MyDatabaseFile";
-    public static final int VERSION_NUM = 3;
-    public static final String TABLE_NAME = "Messages";
-    public static final String COL_ID = "_id";
-    public static final String COL_MESSAGE = "Message";
+public class CurrencyDatabaseOpenHelper extends SQLiteOpenHelper {
+    public static final String DATABASE_NAME = "CurrencyDatabase";
+    public static final int VERSION_NUM = 1;
+    public static final String TABLE_NAME = "currencies";
+    public static final String COL_ID = "currency_id";
+    public static final String COL_MESSAGE = "result";
     public static final String COL_FLAG1 = "Flag1";
     public static final String COL_FLAG2 = "Flag2";
 
 
 
-    public MyDatabaseOpenHelper(Activity ctx){
+    public CurrencyDatabaseOpenHelper(Activity ctx){
         //The factory parameter should be null, unless you know a lot about Database Memory management
         super(ctx, DATABASE_NAME, null, VERSION_NUM );
     }
@@ -30,7 +30,7 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
         Log.d("haha", "onCreate:haha");
         db.execSQL("CREATE TABLE " + TABLE_NAME + "( "
                 + COL_ID +" INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + COL_MESSAGE+"TEXT," + COL_FLAG1+"TEXT,"+ COL_FLAG2+" TEXT)");
+                + COL_MESSAGE+" TEXT," + COL_FLAG1+" TEXT,"+ COL_FLAG2+" TEXT)");
 
         Log.d("haha", "onCreate:");
     }

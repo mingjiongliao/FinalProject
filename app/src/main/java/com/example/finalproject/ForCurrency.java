@@ -23,18 +23,7 @@ import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ForCurrency extends AppCompatActivity {
 
@@ -99,38 +88,38 @@ public class ForCurrency extends AppCompatActivity {
             }
         });
 
-//
-//        MyDatabaseOpenHelper dbOpener = new MyDatabaseOpenHelper(this);
-//
-//        SQLiteDatabase db = dbOpener.getWritableDatabase();
-////        dbOpener.onUpgrade(db,1,2);
-//
-//        //query all the results from the database:
-//        String [] columns = {MyDatabaseOpenHelper.COL_ID, MyDatabaseOpenHelper.COL_MESSAGE,MyDatabaseOpenHelper.COL_FLAG1,MyDatabaseOpenHelper.COL_FLAG2};
-//        Log.d("dddd", "onCreate: "+columns[0].toString()+columns[2].toString());
-//        Cursor results = db.query(false, MyDatabaseOpenHelper.TABLE_NAME, columns, null, null, null, null, null, null);
-//        //find the column indices:
-//
-//        int mesColIndex = results.getColumnIndex(MyDatabaseOpenHelper.COL_MESSAGE);
-//        int idColIndex = results.getColumnIndex(MyDatabaseOpenHelper.COL_ID);
-//        int flag1ColIndex=results.getColumnIndex(MyDatabaseOpenHelper.COL_FLAG1);
-//        int flag2ColIndex=results.getColumnIndex(MyDatabaseOpenHelper.COL_FLAG2);
-//
-//        //iterate over the results, return true if there is a next item:
-//        while(results.moveToNext())
-//        {
-//            int flag1=results.getInt(flag1ColIndex);
-//            int flag2=results.getInt(flag2ColIndex);
-//            String message = results.getString(mesColIndex);
-//            long id = results.getLong(idColIndex);
-//
-//            //add the new Contact to the array list:
-//            objects.add(new CountryItem(message,flag1,flag2));
-//        }
-//
-//        myAdapter = new MyOwnAdapter();
-//        theList.setAdapter(myAdapter);
-//        printCursor(results);
+
+        CurrencyDatabaseOpenHelper dbOpener = new CurrencyDatabaseOpenHelper(this);
+
+        SQLiteDatabase db = dbOpener.getWritableDatabase();
+//        dbOpener.onUpgrade(db,1,2);
+
+        //query all the results from the database:
+        String [] columns = {CurrencyDatabaseOpenHelper.COL_ID, CurrencyDatabaseOpenHelper.COL_MESSAGE, CurrencyDatabaseOpenHelper.COL_FLAG1, CurrencyDatabaseOpenHelper.COL_FLAG2};
+        Log.d("dddd", "onCreate: "+columns[0].toString()+columns[2].toString());
+        Cursor results = db.query(false, CurrencyDatabaseOpenHelper.TABLE_NAME, columns, null, null, null, null, null, null);
+        //find the column indices:
+
+        int mesColIndex = results.getColumnIndex(CurrencyDatabaseOpenHelper.COL_MESSAGE);
+        int idColIndex = results.getColumnIndex(CurrencyDatabaseOpenHelper.COL_ID);
+        int flag1ColIndex=results.getColumnIndex(CurrencyDatabaseOpenHelper.COL_FLAG1);
+        int flag2ColIndex=results.getColumnIndex(CurrencyDatabaseOpenHelper.COL_FLAG2);
+
+        //iterate over the results, return true if there is a next item:
+        while(results.moveToNext())
+        {
+            int flag1=results.getInt(flag1ColIndex);
+            int flag2=results.getInt(flag2ColIndex);
+            String message = results.getString(mesColIndex);
+            long id = results.getLong(idColIndex);
+
+            //add the new Contact to the array list:
+            objects.add(new CountryItem(message,flag1,flag2));
+        }
+
+        myAdapter = new MyOwnAdapter();
+        theList.setAdapter(myAdapter);
+        printCursor(results);
 
 
         convert.setOnClickListener(v -> {
@@ -186,10 +175,10 @@ public class ForCurrency extends AppCompatActivity {
             int flag1=Integer.valueOf(flag1Image.toString());
             Log.d("", "onCreate: "+flag1);
             int flag2=Integer.valueOf(flag2Image.toString());
-            newRowValues.put(MyDatabaseOpenHelper.COL_MESSAGE, result.getText().toString());
-            newRowValues.put(MyDatabaseOpenHelper.COL_MESSAGE, flag1);
-            newRowValues.put(MyDatabaseOpenHelper.COL_MESSAGE, flag2);
-//            long newId = db.insert(MyDatabaseOpenHelper.TABLE_NAME, null, newRowValues);
+            newRowValues.put(CurrencyDatabaseOpenHelper.COL_MESSAGE, result.getText().toString());
+            newRowValues.put(CurrencyDatabaseOpenHelper.COL_MESSAGE, flag1);
+            newRowValues.put(CurrencyDatabaseOpenHelper.COL_MESSAGE, flag2);
+            long newId = db.insert(CurrencyDatabaseOpenHelper.TABLE_NAME, null, newRowValues);
 
             objects.add(new CountryItem(result.getText().toString(),flag1,flag2));
             //update the listView:
@@ -256,8 +245,8 @@ public class ForCurrency extends AppCompatActivity {
         c.moveToFirst();
 
 
-        int mesColIndex = c.getColumnIndex(MyDatabaseOpenHelper.COL_MESSAGE);
-        int idColIndex = c.getColumnIndex(MyDatabaseOpenHelper.COL_ID);
+        int mesColIndex = c.getColumnIndex(CurrencyDatabaseOpenHelper.COL_MESSAGE);
+        int idColIndex = c.getColumnIndex(CurrencyDatabaseOpenHelper.COL_ID);
 
         //iterate over the results, return true if there is a next item:
         while(c.moveToNext())
