@@ -31,7 +31,7 @@ public class CurrencyDatabaseOpenHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + TABLE_NAME + "( "
                 + COL_ID +" INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + COL_MESSAGE+" TEXT," + COL_FLAG1+" TEXT,"+ COL_FLAG2+" TEXT)");
-
+//notice space and coma in SQL
         Log.d("haha", "onCreate:");
     }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)

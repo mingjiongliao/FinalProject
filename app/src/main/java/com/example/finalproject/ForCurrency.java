@@ -172,12 +172,12 @@ public class ForCurrency extends AppCompatActivity {
             //put string name in the NAME column:
             ImageView flag1Image=(ImageView)findViewById(R.id.imageView1);
             ImageView flag2Image=(ImageView)findViewById(R.id.imageView2);
-            int flag1=Integer.valueOf(flag1Image.toString());
+            int flag1=(int)flag1Image.getTag();
             Log.d("", "onCreate: "+flag1);
-            int flag2=Integer.valueOf(flag2Image.toString());
+            int flag2=(int)flag2Image.getTag();
             newRowValues.put(CurrencyDatabaseOpenHelper.COL_MESSAGE, result.getText().toString());
-            newRowValues.put(CurrencyDatabaseOpenHelper.COL_MESSAGE, flag1);
-            newRowValues.put(CurrencyDatabaseOpenHelper.COL_MESSAGE, flag2);
+            newRowValues.put(CurrencyDatabaseOpenHelper.COL_FLAG1, flag1);
+            newRowValues.put(CurrencyDatabaseOpenHelper.COL_FLAG2, flag2);
             long newId = db.insert(CurrencyDatabaseOpenHelper.TABLE_NAME, null, newRowValues);
 
             objects.add(new CountryItem(result.getText().toString(),flag1,flag2));
