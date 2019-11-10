@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
-
+        //go to wangqiang's page
         Button currency =(Button)findViewById(R.id.currency);
         currency.setOnClickListener(v -> {
             AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
@@ -75,7 +75,28 @@ public class MainActivity extends AppCompatActivity {
             dialog1.show();
 
         });
+       //go to mingjiong's page
+        Button mingjiong =(Button)findViewById(R.id.mingjiong);
+        mingjiong.setOnClickListener(v -> {
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
 
+            //This is the builder pattern, just call many functions on the same object:
+            AlertDialog dialog1 = builder1.setTitle("You will get into Electric Car Charging Station finder activity that is created by Mingjiong")
+                    .setMessage("Are you sure you will get in?")
+                    .setPositiveButton("Yes", (d,w) -> {
+                                Intent goToPageElectricCar = new Intent(MainActivity.this, ElectricCarChargingStationFinder.class);
+                                startActivity(goToPageElectricCar);
+                            }
+
+                    )
+                    //If you click the "Cancel" button:
+                    .setNegativeButton("Cancel", (d,w) -> {  /* nothing */})
+                    .create();
+
+            //then show the dialog
+            dialog1.show();
+
+        });
     }
 
     @Override

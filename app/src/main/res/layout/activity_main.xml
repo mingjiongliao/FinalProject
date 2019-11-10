@@ -46,6 +46,7 @@
         android:maxHeight="42dp"
         ></ImageView>
     <Button
+        android:id="@+id/mingjiong"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="News Api.org headlines" />
