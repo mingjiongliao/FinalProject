@@ -103,6 +103,5 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         Toast.makeText(this, "We are processing", Toast.LENGTH_LONG).show();
-
     }
 }
