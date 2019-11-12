@@ -124,8 +124,8 @@ public class JSONTSearch extends AppCompatActivity {
                     String count = json.getString("count");//if the type is string, ues getString() to get the value of the object count
                     JSONArray items = json.getJSONArray("recipes");// if the type is object, use getJSONArray() method to get the value and assign it to items of type JSONArray
 
-                    Log.d("response1 is:", "count");
-                    Log.d("response1 is:", count);
+                    Log.v("response1 is:", "count");
+                    Log.v("response1 is:", count);
                     for (int i = 0; i < items.length(); i++) {
 
                         JSONObject aDataModel = items.getJSONObject(i);//get each data object from items of type JSONArray, means a row of array
