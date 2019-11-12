@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ElectricCarChargingStationFinder"></activity>
+        <activity android:name=".ListResult"></activity>
+        <activity android:name=".listResults" />
+        <activity android:name=".googlemap" />
+        <activity android:name=".EcarStationResult" />
+        <activity android:name=".ElectricCarChargingStationFinder" />
         <activity android:name=".StudentInfo" />
         <activity android:name=".ViewMessage" />
         <activity android:name=".ForCurrency" />
