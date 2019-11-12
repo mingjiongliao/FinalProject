@@ -39,7 +39,9 @@ import java.util.List;
 
 public class ListResult extends AppCompatActivity {
     private ProgressBar progressBar;
+    private Context thisApp;
     private String apiLine;
+    private String resultObj;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,8 +63,10 @@ public class ListResult extends AppCompatActivity {
         TextView txtList = findViewById(R.id.txtList);
         txtList.setText("List of Stations for Location(Lat: " + LatitudeFromUser + " Long: "+ longtitudeFromUser+")");
         apiLine = "https://api.openchargemap.io/v3/poi/?output=json&latitude="+ LatitudeFromUser+ "&longitude=" + longtitudeFromUser+"&compact=true&verbose=false&maxresults=10";
-      //  LocationQuery networkThread = new LocationQuery();
-       // networkThread.execute();
+        LocationQuery networkThread = new LocationQuery();
+        networkThread.execute(apiLine);
+
+
         /**
          * find out the progressbar and listview
          */
@@ -71,14 +75,16 @@ public class ListResult extends AppCompatActivity {
         /**
          * make up an arrayList
          */
-        Address[] listAddress = {
+       Address[] listAddress = {
                 new Address("Baseline", 34, 21.50,null),
                 new Address("Barhaven", 56, 15.99,"819-321-2345"),
                 new Address("Kanata", 42, 14.90,"613-234-4452"),
         };
+
         /**
          * populate the listview adapter
          */
+
         ArrayAdapter<Address> adapter = new ArrayAdapter<Address>(this,
                 android.R.layout.simple_expandable_list_item_1, listAddress);
         jsonList.setAdapter(adapter);
@@ -103,7 +109,7 @@ public class ListResult extends AppCompatActivity {
         });
 
     }
-    /*
+
     private class LocationQuery extends AsyncTask<String, Integer, String>
     {
         String tempValue, min, max, uv, weatherIcon;
@@ -126,13 +132,12 @@ public class ListResult extends AppCompatActivity {
                 {
                     sb.append(line + "\n");
                 }
-                String result = sb.toString();
+                resultObj = sb.toString();
 
                 //now a JSON table:
-                JSONObject jObject = new JSONObject(result);
-                JSONObject obj = String.valueOf(jObject.getJSONObject("AddressInfo"));
-                uv = obj.
-                Log.e("AsyncTask",  uv);
+
+
+                //Log.e("AsyncTask",  uv);
 
 
             }catch (Exception ex)
@@ -140,26 +145,26 @@ public class ListResult extends AppCompatActivity {
                 Log.e("Crash!!", ex.getMessage() );
             }
 
-            return "Finished task";
+            return resultObj;
         }
 
         @Override
         protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
             progressBar.setVisibility(View.VISIBLE);
-            progressBar.setProgress(values[0]);
-//
+
+
         }
 
         @Override
         protected void onPostExecute(String s) {
-
-            progressBar.setVisibility(View.INVISIBLE);
+            TextView txtTest = findViewById(R.id.txtTest);
+            txtTest.setText(s);
+           // progressBar.setVisibility(View.INVISIBLE);
         }
 
 
     }
-
-     */
     }
 
 
