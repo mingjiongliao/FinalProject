@@ -14,6 +14,9 @@
     <string name="wang">Qing Wang       wang0582@algonquinlive.com</string>
     <string name="ye">Rongzhong Ye    ye000038@algonquinlive.com</string>
     <string name="luo">Chunyuan Luo    luo00047@algonquinlive.com</string>
+    <string name="latitude">latitude</string>
+    <string name="longitude">longitude</string>
+
     <string-array name="spinner1">
         <item>CAD</item>
         <item>USD</item>
