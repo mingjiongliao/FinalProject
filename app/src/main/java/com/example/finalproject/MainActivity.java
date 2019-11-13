@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button milestone1Button = (Button)findViewById(R.id.button);
+        Button milestone1Button = (Button)findViewById(R.id.searchrecipybutton);
         milestone1Button.setOnClickListener ( Click ->
         {
 
@@ -44,12 +44,6 @@ public class MainActivity extends AppCompatActivity {
 
             //show a notice window to say how many were updated.
             Toast.makeText(this, "I'm a toast", Toast.LENGTH_LONG).show();
-
-
-
-
-
-
 
         });
 

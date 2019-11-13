@@ -10,7 +10,7 @@
 
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/insertchoice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/searchrecipybutton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/search_buttom" />

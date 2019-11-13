@@ -3,6 +3,14 @@
     <string name="search_name">Insert your choice</string>
     <string name="search_buttom">Search Recipe</string>
     <string name="recipy_title">recipy title</string>
-    button2
+
+    <string name="liao">Mingjiong Liao  liao0019@algonquinlive.com</string>
+    <string name="wang">Qing Wang       wang0582@algonquinlive.com</string>
+    <string name="ye">Rongzhong Ye    ye000038@algonquinlive.com</string>
+    <string name="luo">Chunyuan Luo    luo00047@algonquinlive.com</string>
+
+    <string name="buttontostudentinformation">Click to get student information</string>
+
+
 
 </resources>
