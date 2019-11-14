@@ -36,15 +36,15 @@ public class ElectricCarChargingStationFinder extends AppCompatActivity {
                 /**
                  * transfer the input data--- Latitude & Longtitude to the next page(activity)
                  */
-                ResultPage.putExtra("typedLatitude", editTextLongitude.getText().toString());
-                ResultPage.putExtra("typedLongtitude", editTextLatitude.getText().toString());
+                ResultPage.putExtra("typedLatitude", editTextLatitude.getText().toString());
+                ResultPage.putExtra("typedLongtitude", editTextLongitude.getText().toString());
                 //go to the next activity
                 startActivityForResult(ResultPage, 30);
             });
         }
         //set the sanckbar content to display details in it
-        Snackbar.make(btnFind, "Input a latitude & longitude, Get your list of location", Snackbar.LENGTH_LONG).show();
+        Snackbar.make(btnFind, "Input a latitude & longitude, Get your list of location", Snackbar.LENGTH_SHORT).show();
         //show a welcome notice.
-        Toast.makeText(this, "Welcome to Electric Car Charging Station Finder", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Welcome to Electric Car Charging Station Finder", Toast.LENGTH_SHORT).show();
     }
 }

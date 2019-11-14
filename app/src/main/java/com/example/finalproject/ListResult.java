@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -32,9 +33,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListResult extends AppCompatActivity {
@@ -42,6 +45,7 @@ public class ListResult extends AppCompatActivity {
     private Context thisApp;
     private String apiLine;
     private String resultObj;
+    private LocationQuery networkThread;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,60 +57,36 @@ public class ListResult extends AppCompatActivity {
         /**
          * retrieve Latitude from the old page
          */
-
         String LatitudeFromUser = dataFromUser.getStringExtra("typedLatitude");
         //retrieve Longtitude from the old page
-        String longtitudeFromUser = dataFromUser.getStringExtra("typedLongtitude");
+        String LongtitudeFromUser = dataFromUser.getStringExtra("typedLongtitude");
         /**
          * show the user's input in the textview
          */
-        TextView txtList = findViewById(R.id.txtList);
-        txtList.setText("List of Stations for Location(Lat: " + LatitudeFromUser + " Long: "+ longtitudeFromUser+")");
-        apiLine = "https://api.openchargemap.io/v3/poi/?output=json&latitude="+ LatitudeFromUser+ "&longitude=" + longtitudeFromUser+"&compact=true&verbose=false&maxresults=10";
-        LocationQuery networkThread = new LocationQuery();
+
+        apiLine = "https://api.openchargemap.io/v3/poi/?output=json&latitude="+ LatitudeFromUser+ "&longitude=" + LongtitudeFromUser+"&maxresults=10";
+        //apiLine = "https://api.openchargemap.io/v3/poi/?output=json&countrycode=CA&latitude=45.347571&longitude=-75.756140&maxresults=5";
+        networkThread = new LocationQuery();
         networkThread.execute(apiLine);
-
-
         /**
          * find out the progressbar and listview
          */
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
-        ListView jsonList = findViewById(R.id.listResult);
+
         /**
          * make up an arrayList
          */
-       Address[] listAddress = {
-                new Address("Baseline", 34, 21.50,null),
-                new Address("Barhaven", 56, 15.99,"819-321-2345"),
-                new Address("Kanata", 42, 14.90,"613-234-4452"),
-        };
 
         /**
          * populate the listview adapter
          */
-
-        ArrayAdapter<Address> adapter = new ArrayAdapter<Address>(this,
-                android.R.layout.simple_expandable_list_item_1, listAddress);
-        jsonList.setAdapter(adapter);
+       // ListView jsonList = findViewById(R.id.listResult);
+       // ArrayAdapter<Address> adapter = new ArrayAdapter<Address>(this,
+        //        android.R.layout.simple_expandable_list_item_1, listAddress);
+       // jsonList.setAdapter(adapter);
         /**
          * use the setOnItemClickListener method for every list item when being clicked
          */
-        jsonList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position,
-                                    long id) {
-                /**
-                 * set what to display in the toast for detail
-                 */
-                String item = "Title: " + listAddress[position].getTitle()+"\n"
-                        +"Phone: " + listAddress[position].getPhone()+"\n"
-                        + "Latitude: " + listAddress[position].getlatitude()+"\n"
-                        + "Longtitude: " + listAddress[position].getLongitude()+"\n";
-
-                Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG).show();
-
-            }
-        });
 
     }
 
@@ -116,17 +96,13 @@ public class ListResult extends AppCompatActivity {
         @Override
         protected String doInBackground(String ... params) {
             try {
-
                 //create the network connection:
                 URL url = new URL(apiLine);
                 HttpURLConnection newConnection = (HttpURLConnection) url.openConnection();
                 InputStream inStream = newConnection.getInputStream();
-
-
                 //create a JSON object from the response
                 BufferedReader reader = new BufferedReader(new InputStreamReader(inStream, "UTF-8"), 8);
                 StringBuilder sb = new StringBuilder();
-
                 String line = null;
                 while ((line = reader.readLine()) != null)
                 {
@@ -135,7 +111,6 @@ public class ListResult extends AppCompatActivity {
                 resultObj = sb.toString();
 
                 //now a JSON table:
-
 
                 //Log.e("AsyncTask",  uv);
 
@@ -158,11 +133,55 @@ public class ListResult extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
-            TextView txtTest = findViewById(R.id.txtTest);
-            txtTest.setText(s);
-           // progressBar.setVisibility(View.INVISIBLE);
-        }
 
+            /*Address[] listAddress = {
+                    new Address("Baseline", 34, 21.50,null),
+                    new Address("Barhaven", 56, 15.99,"819-321-2345"),
+                    new Address("Kanata", 42, 14.90,"613-234-4452"),
+            };*/
+            TextView txtList = findViewById(R.id.txtList);
+            try {
+                JSONArray jObject = new JSONArray(s);
+                int Length = jObject.length();
+                if (Length==0){
+
+                    txtList.setText("There is not station for this location");
+                }else{
+                    txtList.setText("List of Stations for this Location");
+                ArrayList<Address> listAddress = new ArrayList<Address>();
+                for (int i=0; i < jObject.length(); i++)
+                {
+                    JSONObject anObject = jObject.getJSONObject(i);
+                    String title = anObject.getJSONObject("AddressInfo").getString("Title");
+                    String phone = anObject.getJSONObject("AddressInfo").getString("ContactTelephone1");
+                    double latitude = anObject.getJSONObject("AddressInfo").getDouble("Latitude");
+                    double longitude = anObject.getJSONObject("AddressInfo").getDouble("Longitude");
+                    listAddress.add(new Address(title,latitude,longitude,phone));
+                }
+                ListView jsonList = findViewById(R.id.listResult);
+                ArrayAdapter<Address> adapter = new ArrayAdapter<Address>(getBaseContext(),
+                        android.R.layout.simple_expandable_list_item_1, listAddress);
+                jsonList.setAdapter(adapter);
+                jsonList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position,
+                                            long id) {
+                                String item = "Title: " + listAddress.get(position).getTitle()+"\n"
+                                +"Phone: " + listAddress.get(position).getPhone()+"\n"
+                                + "Latitude: " + listAddress.get(position).getlatitude()+"\n"
+                                + "Longtitude: " + listAddress.get(position).getLongitude()+"\n";
+
+                        Toast.makeText(getBaseContext(), item, Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+                }
+            } catch (JSONException e) {
+                // Oops
+
+            }
+
+        }
 
     }
     }
