@@ -33,6 +33,12 @@
         <ListView
             android:id="@+id/listResult"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:outlineSpotShadowColor="@color/colorAccent"
+            android:textStyle="bold"
+            android:typeface="sans"
+            android:textColor="@color/design_default_color_on_primary"
+            android:background="@color/cardview_shadow_start_color"
+            android:outlineAmbientShadowColor="@color/mtrl_on_surface_emphasis_high_type"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
