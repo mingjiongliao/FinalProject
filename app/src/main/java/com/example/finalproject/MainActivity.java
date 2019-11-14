@@ -29,16 +29,16 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
             //This is the builder pattern, just call many functions on the same object:
-            AlertDialog dialog = builder.setTitle("This is information about our team member")
-                    .setMessage("Do you want to go there?")
-                    .setPositiveButton("Yes", (d,w) -> {
+            AlertDialog dialog = builder.setTitle(getString(R.string.s5))
+                    .setMessage(getString(R.string.s6))
+                    .setPositiveButton(getString(R.string.s7), (d, w) -> {
                                 Intent student = new Intent(MainActivity.this, StudentInfo.class);
                                 startActivity(student);
                     }
 
                     )
                     //If you click the "Cancel" button:
-                    .setNegativeButton("Cancel", (d,w) -> {  /* nothing */})
+                    .setNegativeButton(getString(R.string.s8), (d, w) -> {  /* nothing */})
                     .create();
 
             //then show the dialog
@@ -81,16 +81,16 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
 
             //This is the builder pattern, just call many functions on the same object:
-            AlertDialog dialog1 = builder1.setTitle("You will get into Electric Car Charging Station finder activity that is created by Mingjiong")
-                    .setMessage("Are you sure you will get in?")
-                    .setPositiveButton("Yes", (d,w) -> {
+            AlertDialog dialog1 = builder1.setTitle(getString(R.string.s9))
+                    .setMessage(getString(R.string.s10))
+                    .setPositiveButton(getString(R.string.s11), (d, w) -> {
                                 Intent goToPageElectricCar = new Intent(MainActivity.this, ElectricCarChargingStationFinder.class);
                                 startActivity(goToPageElectricCar);
                             }
 
                     )
                     //If you click the "Cancel" button:
-                    .setNegativeButton("Cancel", (d,w) -> {  /* nothing */})
+                    .setNegativeButton(getString(R.string.s13), (d, w) -> {  /* nothing */})
                     .create();
 
             //then show the dialog
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Toast.makeText(this, "We are processing", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.s12, Toast.LENGTH_LONG).show();
 
     }
 }

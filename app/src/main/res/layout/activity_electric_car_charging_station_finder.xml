@@ -17,7 +17,7 @@
             android:textSize="50px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Electric Car Charging Station finder" />
+            android:text="@string/electric_car_charging_station_finder" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Input here:"
+            android:text="@string/input_here"
             />
         <EditText
             android:id="@+id/editTextLatitude"
@@ -47,7 +47,7 @@
             android:id="@+id/btnFind"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Find" />
+            android:text="@string/find" />
     </LinearLayout>
 
 

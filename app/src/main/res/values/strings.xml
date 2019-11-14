@@ -16,6 +16,22 @@
     <string name="luo">Chunyuan Luo    luo00047@algonquinlive.com</string>
     <string name="latitude">latitude</string>
     <string name="longitude">longitude</string>
+    <string name="electric_car_charging_station_finder" translatable="false">Electric Car Charging Station finder</string>
+    <string name="input_here">Input here:</string>
+    <string name="find">Find</string>
+    <string name="s1"><![CDATA[Input a latitude & longitude, Get your list of location]]></string>
+    <string name="s2">Welcome to Electric Car Charging Station Finder</string>
+    <string name="s3">There is not station for this location</string>
+    <string name="s4">List of Stations for this Location</string>
+    <string name="s5">This is information about our team member</string>
+    <string name="s6">Do you want to go there?</string>
+    <string name="s7">Yes</string>
+    <string name="s8">Cancel</string>
+    <string name="s9">You will get into Electric Car Charging Station finder activity that is created by Mingjiong</string>
+    <string name="s10">Are you sure you will get in?</string>
+    <string name="s12">We are processing</string>
+    <string name="s11">Yes</string>
+    <string name="s13">Cancel</string>
 
     <string-array name="spinner1">
         <item>CAD</item>

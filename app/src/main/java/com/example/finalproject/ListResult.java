@@ -145,9 +145,9 @@ public class ListResult extends AppCompatActivity {
                 int Length = jObject.length();
                 if (Length==0){
 
-                    txtList.setText("There is not station for this location");
+                    txtList.setText(R.string.s3);
                 }else{
-                    txtList.setText("List of Stations for this Location");
+                    txtList.setText(R.string.s4);
                 ArrayList<Address> listAddress = new ArrayList<Address>();
                 for (int i=0; i < jObject.length(); i++)
                 {

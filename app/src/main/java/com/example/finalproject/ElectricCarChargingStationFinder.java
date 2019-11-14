@@ -43,8 +43,8 @@ public class ElectricCarChargingStationFinder extends AppCompatActivity {
             });
         }
         //set the sanckbar content to display details in it
-        Snackbar.make(btnFind, "Input a latitude & longitude, Get your list of location", Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(btnFind, getString(R.string.s1), Snackbar.LENGTH_SHORT).show();
         //show a welcome notice.
-        Toast.makeText(this, "Welcome to Electric Car Charging Station Finder", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.s2, Toast.LENGTH_SHORT).show();
     }
 }
