@@ -2,10 +2,14 @@ package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,13 +21,36 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+
+import static org.xmlpull.v1.XmlPullParser.END_TAG;
+import static org.xmlpull.v1.XmlPullParser.START_TAG;
+import static org.xmlpull.v1.XmlPullParser.TEXT;
 
 public class ForCurrency extends AppCompatActivity {
 
@@ -33,9 +60,13 @@ public class ForCurrency extends AppCompatActivity {
     int positionClicked = 0;
     MyOwnAdapter myAdapter;
     private EditText result=null;
+    private EditText amount=null;
     private String baseValue=null;
     private String symbols=null;
-//    private String response = "https://api.exchangeratesapi.io/latest?base="+base+"&symbols="+symbols;
+//    private ProgressBar progressBar;
+    private float rate=0.0f;
+
+    private String uvURL;
     private ArrayList<CountryItem> mCountryList;
     private CountryAdapter mAdapter;
 
@@ -45,11 +76,12 @@ public class ForCurrency extends AppCompatActivity {
         setContentView(R.layout.activity_for_currency);
 
 
-        EditText amount = (EditText)findViewById(R.id.input);
+        amount = (EditText)findViewById(R.id.input);
         result = (EditText)findViewById(R.id.result);
         Button convert = (Button)findViewById(R.id.convert);
         Button insert = (Button)findViewById(R.id.insert);
         ListView theList = (ListView)findViewById(R.id.the_list);
+//        progressBar=(ProgressBar)findViewById(R.id.progressBar);
 
 
 
@@ -123,6 +155,14 @@ public class ForCurrency extends AppCompatActivity {
 
 
         convert.setOnClickListener(v -> {
+            ProgressDialog progressBar = new ProgressDialog(v.getContext());
+            progressBar.setCancelable(true);
+            progressBar.setMessage("File downloading ...");
+            progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progressBar.setProgress(0);
+            progressBar.setMax(100);
+            progressBar.show();
+
             if(amount.getText().toString()==null){
                 //todo ask tutor
                 Toast.makeText(this, "Please enter amount first", Toast.LENGTH_LONG).show();
@@ -130,20 +170,21 @@ public class ForCurrency extends AppCompatActivity {
                 //how to use api to get the rate
                 baseValue =mCountryList.get(spinner1.getSelectedItemPosition()).getmCountryName();
 
-                Log.d("", "onCreate: "+baseValue);
+                Log.d("base", "onCreate: "+baseValue);
                 symbols= mCountryList.get(spinner2.getSelectedItemPosition()).getmCountryName();
-                String response = "https://api.exchangeratesapi.io/latest?base="+baseValue+"&symbols="+symbols;
-                try{
-                    double value=Double.parseDouble(amount.getText().toString());
-
-                    Log.d("symbol", "onCreate: "+value);
-
-//                    try {
-//                        JSONObject jsonObject=new JSONObject(response);
-//                        Log.d("symbol", "onCreate: "+response);
-//                        JSONObject rateObject=jsonObject.getJSONObject("rates");
+                Log.d("symbol", "onCreate: "+symbols);
+                uvURL = "https://api.exchangeratesapi.io/latest?base="+baseValue+"&symbols="+symbols;
+//                try{
+////                    double value=Double.parseDouble(amount.getText().toString());
+////
+////                    Log.d("symbol", "onCreate: "+value);
 //
-//                        Double rate=rateObject.getDouble(symbols);
+////                    try {
+////                        JSONObject jsonObject=new JSONObject(response);
+////                        Log.d("symbol", "onCreate: "+response);
+////                        JSONObject rateObject=jsonObject.getJSONObject("rates");
+////
+////                        Double rate=rateObject.getDouble(symbols);
 
                         ImageView imageViewFlag1 =findViewById(R.id.imageView1);
                         ImageView imageViewFlag2 =findViewById(R.id.imageView2);
@@ -152,7 +193,8 @@ public class ForCurrency extends AppCompatActivity {
                         imageViewFlag1.setTag(mCountryList.get(spinner1.getSelectedItemPosition()).getmFlagImage());
                         imageViewFlag2.setImageResource(mCountryList.get(spinner2.getSelectedItemPosition()).getmFlagImage());
                         imageViewFlag2.setTag(mCountryList.get(spinner2.getSelectedItemPosition()).getmFlagImage());
-                        result.setText(value+" "+baseValue+" = "+String.valueOf(3*value)+" "+symbols);
+                        new RateQuery().execute();
+//                        progressBar.setVisibility(View.INVISIBLE);
 //                    }catch (JSONException e){
 //                        Snackbar.make(insert, "jason failed", Snackbar.LENGTH_LONG).show();
 //                    }
@@ -160,9 +202,10 @@ public class ForCurrency extends AppCompatActivity {
 
 
                     Toast.makeText(this, "Convert seccessfully!", Toast.LENGTH_LONG).show();
-                }catch(Exception e){
-                    Toast.makeText(this, "Please enter number!", Toast.LENGTH_LONG).show();
-                }
+//                progressBar.cancel();
+//                }catch(Exception e){
+//                    Toast.makeText(this, "Please enter number!", Toast.LENGTH_LONG).show();
+//                }
 
 
 
@@ -271,7 +314,82 @@ public class ForCurrency extends AppCompatActivity {
         mCountryList.add(new CountryItem("CNY",R.drawable.chy));
         mCountryList.add(new CountryItem("JPY",R.drawable.jpy));
         mCountryList.add(new CountryItem("KRW",R.drawable.krw));
-        mCountryList.add(new CountryItem("VND",R.drawable.vnd));
     }
+    private class RateQuery extends AsyncTask<String, Integer, String> {
+        String ret = null;
 
+
+
+        @Override                       //Type 1
+        protected String doInBackground(String... strings) {
+            try {       // Connect to the server:
+                Log.d("RateQuery", "doInBackground: "+uvURL);
+                JSONObject jObject = GetJsonData(uvURL);
+                Log.d("ddd", "doInBackground: "+jObject);
+                rate = (float) jObject.getJSONObject("rates").getDouble(symbols);
+
+            } catch (JSONException e){
+                ret="JSONException";
+                Toast.makeText(ForCurrency.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+            }
+
+
+            //What is returned here will be passed as a parameter to onPostExecute:
+            return ret;
+        }
+
+
+        public JSONObject GetJsonData(String url){
+            String line = null;
+            JSONObject jObject = null;
+            try{
+                URL u = new URL(url);
+                Log.d("ddd", "doInBackground: "+url+"    "+u.toString());
+                HttpURLConnection connection = (HttpURLConnection) u.openConnection();
+                Log.d("ddd", "doInBackground: "+url+"    "+connection);
+//                InputStream is = connection.getInputStream();
+                connection.connect();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"), 8);
+
+                StringBuilder sb = new StringBuilder();
+
+                while((line = reader.readLine())!=null){
+                    sb.append(line);
+                }
+                line = sb.toString();
+                Log.d("ddd", "doInBackground: "+url+"    "+line);
+                jObject= new JSONObject(line);
+
+                connection.disconnect();
+                connection.getInputStream().close();
+//                sb.delete(0, sb.length());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                return null;
+            } catch (JSONException e) {
+                Log.i("GetJsonData", "Error parsing data " + e.toString());
+                return null;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+
+
+            return jObject;
+        }
+        @Override                   //Type 3
+        protected void onPostExecute(String s) {
+            DecimalFormat df=new DecimalFormat("#.##");
+            double value=Double.parseDouble(amount.getText().toString());
+            result.setText(value+" "+baseValue+" = "+df.format(rate*value)+" "+symbols);
+        }
+
+        @Override                       //Type 2
+        protected void onProgressUpdate(Integer... results) {
+
+        }
+
+
+
+    }
 }

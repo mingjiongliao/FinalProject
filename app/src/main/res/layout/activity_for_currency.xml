@@ -62,12 +62,12 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:hint="@string/result" />
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+<!--        <ProgressBar-->
+<!--            android:id="@+id/progressBar"-->
+<!--            style="?android:attr/progressBarStyle"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            />-->
 
         <ImageView
             android:id="@+id/imageView2"
@@ -86,10 +86,19 @@
         android:text="@string/insert" />
 
 
-    <ListView
-        android:id="@+id/the_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        >
+
+        <ListView
+            android:id="@+id/the_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </LinearLayout>
