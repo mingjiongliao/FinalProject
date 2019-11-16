@@ -3,7 +3,7 @@
     <string name="Button">Student information</string>
     <string name="currency">Foreign currency conversion</string>
     <string name="convert">convert</string>
-    <string name="insert">insert</string>
+    <string name="insert">save to history</string>
     <string name="amount">Enter amount</string>
     <string name="result">Result</string>
     <string name="country_prompt">Choose currency</string>

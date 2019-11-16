@@ -149,7 +149,9 @@ public class ForCurrency extends AppCompatActivity {
                         ImageView imageViewFlag2 =findViewById(R.id.imageView2);
 
                         imageViewFlag1.setImageResource(mCountryList.get(spinner1.getSelectedItemPosition()).getmFlagImage());
+                        imageViewFlag1.setTag(mCountryList.get(spinner1.getSelectedItemPosition()).getmFlagImage());
                         imageViewFlag2.setImageResource(mCountryList.get(spinner2.getSelectedItemPosition()).getmFlagImage());
+                        imageViewFlag2.setTag(mCountryList.get(spinner2.getSelectedItemPosition()).getmFlagImage());
                         result.setText(value+" "+baseValue+" = "+String.valueOf(3*value)+" "+symbols);
 //                    }catch (JSONException e){
 //                        Snackbar.make(insert, "jason failed", Snackbar.LENGTH_LONG).show();
@@ -172,18 +174,23 @@ public class ForCurrency extends AppCompatActivity {
             //put string name in the NAME column:
             ImageView flag1Image=(ImageView)findViewById(R.id.imageView1);
             ImageView flag2Image=(ImageView)findViewById(R.id.imageView2);
-            int flag1=(int)flag1Image.getTag();
-            Log.d("", "onCreate: "+flag1);
-            int flag2=(int)flag2Image.getTag();
-            newRowValues.put(CurrencyDatabaseOpenHelper.COL_MESSAGE, result.getText().toString());
-            newRowValues.put(CurrencyDatabaseOpenHelper.COL_FLAG1, flag1);
-            newRowValues.put(CurrencyDatabaseOpenHelper.COL_FLAG2, flag2);
-            long newId = db.insert(CurrencyDatabaseOpenHelper.TABLE_NAME, null, newRowValues);
+            if(flag1Image.getTag()==null||flag2Image.getTag()==null||result.getText()==null){
+                Snackbar.make(insert, "There was no result! Could not save...", Snackbar.LENGTH_LONG).show();
+            }else{
+                int flag1=(int)flag1Image.getTag();
+                Log.d("", "onCreate: "+flag1);
+                int flag2=(int)flag2Image.getTag();
+                newRowValues.put(CurrencyDatabaseOpenHelper.COL_MESSAGE, result.getText().toString());
+                newRowValues.put(CurrencyDatabaseOpenHelper.COL_FLAG1, flag1);
+                newRowValues.put(CurrencyDatabaseOpenHelper.COL_FLAG2, flag2);
+                long newId = db.insert(CurrencyDatabaseOpenHelper.TABLE_NAME, null, newRowValues);
 
-            objects.add(new CountryItem(result.getText().toString(),flag1,flag2));
-            //update the listView:
-            myAdapter.notifyDataSetChanged();
-            Snackbar.make(insert, "Insert sucessfully!", Snackbar.LENGTH_LONG).show();
+                objects.add(new CountryItem(result.getText().toString(),flag1,flag2));
+                //update the listView:
+                myAdapter.notifyDataSetChanged();
+                Snackbar.make(insert, "Insert sucessfully!", Snackbar.LENGTH_LONG).show();
+            }
+
         });
 
         theList.setOnItemClickListener(( parent,  view,  position,  id) -> {
@@ -230,11 +237,11 @@ public class ForCurrency extends AppCompatActivity {
             TextView message = (TextView)newView.findViewById(R.id.message);
             ImageView flag2=(ImageView) newView.findViewById(R.id.imageView2);
 
-            if(thisRow!=null){
+//            if(thisRow!=null){
                 flag1.setImageResource(thisRow.getmFlagImage());
                 message.setText(thisRow.getmCountryName());
                 flag2.setImageResource(thisRow.getoFlagImage());
-            }
+//            }
 
 
             return newView;
