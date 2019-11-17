@@ -1,9 +1,13 @@
 package com.example.finalproject;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,6 +17,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -69,12 +76,13 @@ public class ForCurrency extends AppCompatActivity {
     private String uvURL;
     private ArrayList<CountryItem> mCountryList;
     private CountryAdapter mAdapter;
-
+    private String message="This is the initial message";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_for_currency);
-
+        Toolbar tBar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(tBar);
 
         amount = (EditText)findViewById(R.id.input);
         result = (EditText)findViewById(R.id.result);
@@ -314,6 +322,93 @@ public class ForCurrency extends AppCompatActivity {
         mCountryList.add(new CountryItem("CNY",R.drawable.chy));
         mCountryList.add(new CountryItem("JPY",R.drawable.jpy));
         mCountryList.add(new CountryItem("KRW",R.drawable.krw));
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.example_menu, menu);
+
+
+        /* slide 15 material:  */
+        MenuItem searchItem = menu.findItem(R.id.search_item);
+        SearchView sView = (SearchView) searchItem.getActionView();
+        sView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch(item.getItemId())
+        {
+            //what to do when the menu item is selected:
+            case R.id.action_sign_out:
+                Toast.makeText(this, "You clicked on sign out", Toast.LENGTH_LONG).show();
+                Intent nextPage=new Intent(this,Intruction.class);
+                startActivity(nextPage);
+                break;
+            case R.id.option1:
+                Toast.makeText(this, "This is the initial message", Toast.LENGTH_LONG).show();
+                break;
+            case R.id.option2:
+                Toast.makeText(this, "You clicked the search string", Toast.LENGTH_LONG).show();
+                alertExample();
+                break;
+            case R.id.item1:
+                Toast.makeText(this, message , Toast.LENGTH_LONG).show();
+
+                break;
+            case R.id.item2:
+                alertExample();
+                break;
+            case R.id.item3:
+                Snackbar.make(findViewById(R.id.toolbar), "Go Back?", Snackbar.LENGTH_LONG).setAction("Yes",new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                }).show();
+        }
+        return true;
+    }
+
+    public void alertExample()
+    {
+        View middle = getLayoutInflater().inflate(R.layout.view_extra_stuff, null);
+//        Button btn = (Button)middle.findViewById(R.id.view_button);
+        EditText et = (EditText)middle.findViewById(R.id.view_edit_text);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("The Message")
+                .setPositiveButton("Positive", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // What to do on Accept
+                        Log.d("aaaaaaa","hhhhhhhh");
+                        message=et.getText().toString();
+
+                    }
+                })
+                .setNegativeButton("Negative", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // What to do on Cancel
+                    }
+                }).setView(middle);
+
+        builder.create().show();
     }
     private class RateQuery extends AsyncTask<String, Integer, String> {
         String ret = null;
