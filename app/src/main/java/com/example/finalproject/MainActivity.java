@@ -8,7 +8,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -81,8 +86,6 @@ public class MainActivity extends AppCompatActivity {
         Button mingjiong =(Button)findViewById(R.id.mingjiong);
         mingjiong.setOnClickListener(v -> {
             AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-
-            //This is the builder pattern, just call many functions on the same object:
             AlertDialog dialog1 = builder1.setTitle(getString(R.string.s9))
                     .setMessage(getString(R.string.s10))
                     .setPositiveButton(getString(R.string.s11), (d, w) -> {
@@ -106,5 +109,42 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         Toast.makeText(this, R.string.s12, Toast.LENGTH_LONG).show();
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId())
+        {
+            //what to do when the menu item is selected:
+            case R.id.id1:
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+                AlertDialog dialog1 = builder1.setTitle(getString(R.string.s9))
+                        .setMessage(getString(R.string.s10))
+                        .setPositiveButton(getString(R.string.s11), (d, w) -> {
+                                    Intent goToPageElectricCar = new Intent(MainActivity.this, ElectricCarChargingStationFinder.class);
+                                    startActivity(goToPageElectricCar);
+                                }
+
+                        )
+                        //If you click the "Cancel" button:
+                        .setNegativeButton(getString(R.string.s13), (d, w) -> {  /* nothing */})
+                        .create();
+
+                //then show the dialog
+                dialog1.show();
+                break;
+            case R.id.id2:
+                break;
+            case R.id.id3:
+                break;
+            case R.id.id4:
+                break;
+        }
+        return true;
     }
 }
