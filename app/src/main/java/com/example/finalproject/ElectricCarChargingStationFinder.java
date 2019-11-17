@@ -1,9 +1,14 @@
 package com.example.finalproject;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -17,6 +22,11 @@ public class ElectricCarChargingStationFinder extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_electric_car_charging_station_finder);
+        /**
+         * find the toolbar
+         */
+        Toolbar myToolbar = (Toolbar)findViewById(R.id.toolbar2);
+        setSupportActionBar(myToolbar);
         /**
          * find the two input text editor:
          *  Latitude editor & //longtitude editor
@@ -46,5 +56,28 @@ public class ElectricCarChargingStationFinder extends AppCompatActivity {
         Snackbar.make(btnFind, getString(R.string.s1), Snackbar.LENGTH_SHORT).show();
         //show a welcome notice.
         Toast.makeText(this, R.string.s2, Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * inflate the menu into the toolbar
+     * @param menu
+     * @return true
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.help_menu_liao, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId())
+        {
+            //what to do when the menu item is selected:
+            case R.id.id5:
+                Toast.makeText(this, "I'm a toast", Toast.LENGTH_LONG).show();
+                break;
+        }
+        return true;
     }
 }
