@@ -49,7 +49,7 @@
         android:id="@+id/mingjiong"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="News Api.org headlines" />
+        android:text="Electric Car Charging Station finder" />
 
 </LinearLayout>
     <LinearLayout
@@ -94,7 +94,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Electric Car Charging Station finder" />
+            android:text="News Api.org headlines" />
     </LinearLayout>
 
     <LinearLayout
