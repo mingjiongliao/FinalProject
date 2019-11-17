@@ -4,11 +4,13 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -75,7 +77,13 @@ public class ElectricCarChargingStationFinder extends AppCompatActivity {
         {
             //what to do when the menu item is selected:
             case R.id.id5:
-                Toast.makeText(this, "I'm a toast", Toast.LENGTH_LONG).show();
+
+                View middle = getLayoutInflater().inflate(R.layout.help_dialog_electric_car, null);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("Electric Car Charging Station Finder help menu")
+                        .setView(middle)
+                .setCancelable(true);
+                builder.create().show();
                 break;
         }
         return true;

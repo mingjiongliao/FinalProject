@@ -32,6 +32,9 @@
     <string name="s12">We are processing</string>
     <string name="s11">Yes</string>
     <string name="s13">Cancel</string>
+    <string name="what_is_your_new_message">This is the Version 5.23. \n Author: Mingjiong Liao \n How to use it? \n Just input the latitude and longitude of your desination, and Get your list of location. if you want to know exactly of the location, click the google map icon to get the detals. that is it!
+
+    </string>
 
     <string-array name="spinner1">
         <item>CAD</item>

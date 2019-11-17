@@ -33,4 +33,5 @@
     <string name="s12">Nous traitons</string>
     <string name="s11">Oui</string>
     <string name="s13">Annuler</string>
+    <string name="what_is_your_new_message">Ceci est la version 5.23. \ n Auteur: Mingjiong Liao \ n Comment la utiliser? \ n Entrez simplement la latitude et la longitude de votre choix et obtenez votre liste de localisations. si vous voulez connaître exactement le emplacement, cliquez sur icône Google Map pour obtenir les détails. voi la!</string>
 </resources>
