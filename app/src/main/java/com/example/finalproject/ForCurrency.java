@@ -171,6 +171,7 @@ public class ForCurrency extends AppCompatActivity {
             progressBar.setMax(100);
             progressBar.show();
 
+
             if(amount.getText().toString()==null){
                 //todo ask tutor
                 Toast.makeText(this, "Please enter amount first", Toast.LENGTH_LONG).show();
@@ -210,7 +211,7 @@ public class ForCurrency extends AppCompatActivity {
 
 
                     Toast.makeText(this, "Convert seccessfully!", Toast.LENGTH_LONG).show();
-//                progressBar.cancel();
+                progressBar.cancel();
 //                }catch(Exception e){
 //                    Toast.makeText(this, "Please enter number!", Toast.LENGTH_LONG).show();
 //                }
