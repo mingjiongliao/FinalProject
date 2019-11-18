@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">FinalProject</string>
+
     <string name="Button">Student information</string>
     <string name="currency">Foreign currency conversion</string>
     <string name="convert">convert</string>
@@ -41,4 +42,5 @@
         in spinner, enter amount in editText and choose second currency,  and then click button "convert", which will calulate the
         result from api. If you want to save the result, click the "save to history" button, which will store to database and when the
         user open it secondly, it will show again!</string>
+
 </resources>

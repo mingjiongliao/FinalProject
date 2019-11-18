@@ -6,6 +6,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -28,8 +30,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar tBar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(tBar);
+
         Button milestone1Button = (Button)findViewById(R.id.button);
         milestone1Button.setOnClickListener ( Click ->
         {
@@ -37,12 +41,14 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
             //This is the builder pattern, just call many functions on the same object:
+
             AlertDialog dialog = builder.setTitle("This is information about our team member")
                     .setMessage("Do you want to go there?")
                     .setPositiveButton("Yes", (d,w) -> {
                                 Intent student = new Intent(MainActivity.this, StudentInfo.class);
                                 startActivity(student);
                     }
+
 
                     )
                     //If you click the "Cancel" button:
@@ -61,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
+
 
         Button currency =(Button)findViewById(R.id.currency);
         currency.setOnClickListener(v -> {
@@ -174,5 +181,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         Toast.makeText(this, "We are processing", Toast.LENGTH_LONG).show();
+
     }
+
 }
