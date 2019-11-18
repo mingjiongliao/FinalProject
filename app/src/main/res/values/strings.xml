@@ -44,4 +44,5 @@
         <item>JPY</item>
         <item>EUR</item>
     </string-array>
+    <string name="search_buttom">FinalProject</string>
 </resources>

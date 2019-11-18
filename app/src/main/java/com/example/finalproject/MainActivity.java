@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
             //This is the builder pattern, just call many functions on the same object:
+
             AlertDialog dialog = builder.setTitle(getString(R.string.s5))
                     .setMessage(getString(R.string.s6))
                     .setPositiveButton(getString(R.string.s7), (d, w) -> {
@@ -147,4 +150,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
+
 }
