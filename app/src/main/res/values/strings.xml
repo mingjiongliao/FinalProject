@@ -10,6 +10,10 @@
     <string name="luo">Chunyuan Luo    luo00047@algonquinlive.com</string>
 
     <string name="buttontostudentinformation">Click to get student information</string>
+    <string name="authorname">Author\'s name: Chunyuan Luo</string>
+    <string name="activityversionnumber">Activity version number: v1.0</string>
+    <string name="instruction">Instruction: insert your choise such as steak, beef. And click on SEARCH RECIPE botton for list of recipe containing your choice</string>
+
 
 
 
