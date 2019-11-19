@@ -24,7 +24,7 @@
         android:orderInCategory="300"
         app:showAsAction="always"/>
     <item
-    android:id="@+id/action_sign_out"
+    android:id="@+id/help"
     android:title="@string/help"
     app:showAsAction="never"/>
     <item
