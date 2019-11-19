@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+
     <string name="app_name">终局之战</string>
     <string name="search_name">输入你的选择</string>
     <string name="search_buttom">搜索菜谱</string>
@@ -17,6 +18,43 @@
     <string name="instruction">指导: 输入你想要查询的东西，比如说牛肉，鸡肉，然后点击搜索菜谱按钮即可获得包含你选择的相应菜谱</string>
 
 
-
-
+    <string name="app_name">期末作业</string>
+    <string name="Button">学生信息</string>
+    <string name="currency">外汇转换</string>
+    <string name="convert">转换</string>
+    <string name="insert">存入数据</string>
+    <string name="amount">输入金额</string>
+    <string name="result">结果</string>
+    <string name="country_prompt">选择货币</string>
+    <string name="country_transfer">选择要转换的货币</string>
+    <string name="update">上传</string>
+    <string name="home">家</string>
+    <string name="delete">删除</string>
+    <string name="dollar">元</string>
+    <string name="email">邮件</string>
+    <string name="version">版本: 2.0</string>
+    <string name="twiter">推特</string>
+    <string name="help">帮助</string>
+    <string name="contact">联系</string>
+    <string name="headlines">新闻头条</string>.
+    <string name="finder">电动汽车充电站查找器</string>
+    <string name="engine">菜谱搜索引擎</string>
+    <string name="search">搜索</string>
+    <string name="liao">廖明炅  liao0019@algonquinlive.com</string>
+    <string name="wang">王清       wang0582@algonquinlive.com</string>
+    <string name="ye">叶荣中    ye000038@algonquinlive.com</string>
+    <string name="luo">罗春元    luo00047@algonquinlive.com</string>
+    <string-array name="spinner1">
+        <item>加元</item>
+        <item>美元</item>
+        <item>人民币</item>
+        <item>港币</item>
+        <item>日币</item>
+        <item>欧元</item>
+    </string-array>
+    <string name="intruction">说明:</string>
+    <string name="information">第一行是工具栏，点击家图标可以回到主菜单！点击金额的图标可以到另一个汇率页面。邮件的图标可以写邮件给其他人。点击推特的图标
+        可以到推特的主页面。 选择下拉菜单选择国旗，然后输入金额， 然后再选择另一个国旗，最后点击转换。 最后将从API中计算结果，并且显示出来！如果你点击“存入数
+        据”按钮，这时候数据会存入到数据库中！</string>
 </resources>
+

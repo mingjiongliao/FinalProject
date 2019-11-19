@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">FinalProject</string>
+
     <string name="search_name">Insert your choice</string>
     <string name="search_buttom">Search Recipe</string>
     <string name="recipe_title">recipe title</string>
@@ -16,5 +17,46 @@
 
 
 
+    <string name="Button">Student information</string>
+    <string name="currency">Foreign currency conversion</string>
+    <string name="convert">convert</string>
+    <string name="insert">save to history</string>
+    <string name="amount">Enter amount</string>
+    <string name="result">Result</string>
+    <string name="country_prompt">Choose currency</string>
+    <string name="country_transfer">Choose currency you want to transfer</string>
+    <string name="update">update</string>
+    <string name="home">home</string>
+    <string name="delete">delete</string>
+    <string name="dollar">dollar</string>
+    <string name="email">email</string>
+    <string name="twiter">twiter</string>
+    <string name="help">help</string>
+    <string name="headlines">News Api.org headlines</string>.
+    <string name="finder">Electric Car Charging Station finder</string>
+    <string name="engine">Recipe search engine</string>
+
+    <string name="contact">contact</string>
+    <string name="search">search</string>
+    <string name="version">version: 2.0</string>
+    <string name="liao">Mingjiong Liao  liao0019@algonquinlive.com</string>
+    <string name="wang">Qing Wang       wang0582@algonquinlive.com</string>
+    <string name="ye">Rongzhong Ye    ye000038@algonquinlive.com</string>
+    <string name="luo">Chunyuan Luo    luo00047@algonquinlive.com</string>
+    <string-array name="spinner1">
+        <item>CAD</item>
+        <item>USD</item>
+        <item>CNY</item>
+        <item>HKD</item>
+        <item>JPY</item>
+        <item>EUR</item>
+    </string-array>
+    <string name="intruction">Intruction:</string>
+    <string name="information">The first line is toolbar! Click the home icon, which can return to main menu. The
+        dollar icon can go to the new page which will show the rate that 1 dollar transfer to other currency. The email icon can
+        edit a message which can sent to other user. The twitter icon can connect http to twitter\'s home page. Choose the currency
+        in spinner, enter amount in editText and choose second currency,  and then click button "convert", which will calulate the
+        result from api. If you want to save the result, click the "save to history" button, which will store to database and when the
+        user open it secondly, it will show again!</string>
 
 </resources>
