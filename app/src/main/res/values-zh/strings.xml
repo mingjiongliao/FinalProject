@@ -7,10 +7,6 @@
     <string name="search_buttom">搜索菜谱</string>
     <string name="recipe_title">菜谱名</string>
 
-    <string name="liao">Mingjiong Liao  liao0019@algonquinlive.com</string>
-    <string name="wang">Qing Wang       wang0582@algonquinlive.com</string>
-    <string name="ye">Rongzhong Ye    ye000038@algonquinlive.com</string>
-    <string name="luo">Chunyuan Luo    luo00047@algonquinlive.com</string>
 
     <string name="buttontostudentinformation">点击获取学生信息</string>
     <string name="authorname">作者: Chunyuan Luo</string>
@@ -18,7 +14,7 @@
     <string name="instruction">指导: 输入你想要查询的东西，比如说牛肉，鸡肉，然后点击搜索菜谱按钮即可获得包含你选择的相应菜谱</string>
 
 
-    <string name="app_name">期末作业</string>
+
     <string name="Button">学生信息</string>
     <string name="currency">外汇转换</string>
     <string name="convert">转换</string>
