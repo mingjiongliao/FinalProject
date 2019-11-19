@@ -10,7 +10,6 @@
 package com.example.finalproject;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -22,12 +21,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -58,9 +54,9 @@ public class RecipeSearchActivity extends AppCompatActivity {
      */
     EditText search;
     /**
-     *Define a ListAdapter variable adapter
+     *Define a ListAdapter_recipe variable adapter
      */
-    private ListAdapter adapter;
+    private ListAdapter_recipe adapter;
 
     /**
      * main entrance that load activity layout
@@ -69,16 +65,15 @@ public class RecipeSearchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.recipe_activity_main);
         search = (EditText)findViewById(R.id.insertchoice);
         thisApp = this;
-
 
         /**
          * Create the adapter to convert the array to views
          */
-        ArrayList<DataModel> arrayOfDataModels = new ArrayList<DataModel>();//define an ArrayList
-        adapter = new ListAdapter( arrayOfDataModels, this);//assign the array list to adapter
+        ArrayList<DataModel_recipe> arrayOfDataModelLuos = new ArrayList<DataModel_recipe>();//define an ArrayList
+        adapter = new ListAdapter_recipe(arrayOfDataModelLuos, this);//assign the array list to adapter
         /**
          * get the listview
           */
@@ -95,11 +90,7 @@ public class RecipeSearchActivity extends AppCompatActivity {
          *
          */
         searchButton.setOnClickListener( click -> {
-
-
-
-
-
+            
 
             /**
              * tring query = Uri.encode(search.getText().toString() ); //Have to encode strings to send in URL
@@ -108,6 +99,7 @@ public class RecipeSearchActivity extends AppCompatActivity {
             String baseURL = "https://www.food2fork.com/api/search?key=fdfc2f97466caa0f5b142bc3b913c366&q=";//construct the new forme of url
             String searchText=search.getText().toString();//get search content
             String realURL = baseURL + Uri.encode(searchText);//construct the real url
+            realURL = "https://torunski.ca/FinalProjectChickenBreast.json";
             Log.d("newURL is:", realURL);
             this.runURL(realURL);
         });}
@@ -120,7 +112,7 @@ public class RecipeSearchActivity extends AppCompatActivity {
 
 
     /**
-     * inflate the menu items for use in the action bar
+     * inflate the recipe_menu items for use in the action bar
      * @param menu
      * @return boolean value of whether or not the action is successful
      */
@@ -128,13 +120,13 @@ public class RecipeSearchActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
 
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
+        inflater.inflate(R.menu.recipe_menu, menu);
 
         return true;
     }
 
     /**
-     * the actions for what to do when the menu item is selected:
+     * the actions for what to do when the recipe_menu item is selected:
      * @param item
      * @return boolean value of whether or not the action is successful
      */
@@ -151,11 +143,11 @@ public class RecipeSearchActivity extends AppCompatActivity {
     }
 
     /**
-     * To dispaly dialog box
+     * To dispaly recipe_dialog box
      */
     public void alertExample()
     {
-        View middle = getLayoutInflater().inflate(R.layout.dialog, null);
+        View middle = getLayoutInflater().inflate(R.layout.recipe_dialog, null);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(middle);
         builder.create().show();
@@ -232,7 +224,7 @@ public class RecipeSearchActivity extends AppCompatActivity {
             protected void onPostExecute(String result) {
                 super.onPostExecute(result);
 
-                ArrayList<DataModel> aListDataModels=new ArrayList<>();
+                ArrayList<DataModel_recipe> aListDataModelLuos =new ArrayList<>();
 
                 try{
                     JSONObject json = new JSONObject(result);//assign the result into json of type JSONObject
@@ -263,8 +255,8 @@ public class RecipeSearchActivity extends AppCompatActivity {
                         Log.d("social_rank:",social_rank);
                         Log.d("publisher_url:",publisher_url);
 
-                        DataModel recipesObj= new DataModel(publisher, f2f_url, title, source_url, recipe_id, image_url, social_rank,publisher_url ); //create a model object
-                        aListDataModels.add(recipesObj);//add a model object into arraylist
+                        DataModel_recipe recipesObj= new DataModel_recipe(publisher, f2f_url, title, source_url, recipe_id, image_url, social_rank,publisher_url ); //create a model object
+                        aListDataModelLuos.add(recipesObj);//add a model object into arraylist
                     }
 
                 }catch(JSONException e){
@@ -272,7 +264,7 @@ public class RecipeSearchActivity extends AppCompatActivity {
                 }
 
 
-                adapter.setItemList(aListDataModels);//add response data to adapter    arrayList----> adapter ------->listView
+                adapter.setItemList(aListDataModelLuos);//add response data to adapter    arrayList----> adapter ------->listView
                 adapter.notifyDataSetChanged();//notify listview that data is changed and display it
 
             }

@@ -1,6 +1,6 @@
 package com.example.finalproject;
 
-public class DataModel {
+public class DataModel_recipe {
 
     private String publisher;
     private String f2f_url;
@@ -11,8 +11,8 @@ public class DataModel {
     private String social_rank;
     private String publisher_url;
 
-    //String publisher, String f2f_url, String title, String source_url, String recipe_id, String image_url, String social_rank, String publisher_url
-    public DataModel(String publisher, String f2f_url, String title, String source_url, String recipe_id, String image_url, String social_rank, String publisher_url) {
+    //String publisher, String f2f_url, String recipe_title, String source_url, String recipe_id, String image_url, String social_rank, String publisher_url
+    public DataModel_recipe(String publisher, String f2f_url, String title, String source_url, String recipe_id, String image_url, String social_rank, String publisher_url) {
         this.publisher = publisher;
         this.f2f_url = f2f_url;
         this.title = title;
