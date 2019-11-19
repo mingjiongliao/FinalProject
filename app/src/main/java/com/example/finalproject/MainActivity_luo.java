@@ -151,7 +151,7 @@ public class MainActivity_luo extends AppCompatActivity {
         switch(item.getItemId())
         {
             //what to do when the menu item is selected:
-            case R.id.action_sign_out:
+            case R.id.help:
                 Toast.makeText(this, "You clicked on sign out", Toast.LENGTH_LONG).show();
                 break;
             case R.id.option1:
