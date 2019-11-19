@@ -1,3 +1,12 @@
+/**
+ * File name: MainActivity_recipe.java
+ * Author: Chunyuan Luo, ID# 040926918
+ * Course: 19F_CST2335_010_020 Mobile Graphic interface Prog
+ * Assignment: Final Project
+ * Date: 2019-11-16
+ * Professor: Adewole Adewumi
+ * Purpose:  android activity applications design
+ */
 package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,9 +17,17 @@ import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
-
+/**
+ * Main activity to display and request
+ * @author chunyuan luo
+ */
 public class MainActivity_recipe extends AppCompatActivity {
 
+    /**
+     *
+     *  main entrance that load activity layout
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

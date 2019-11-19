@@ -115,6 +115,7 @@
             android:maxHeight="42dp"
             ></ImageView>
         <Button
+            android:id="@+id/logintorecipe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Recipe search engine" />
