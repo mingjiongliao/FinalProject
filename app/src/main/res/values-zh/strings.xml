@@ -52,5 +52,13 @@
     <string name="information">第一行是工具栏，点击家图标可以回到主菜单！点击金额的图标可以到另一个汇率页面。邮件的图标可以写邮件给其他人。点击推特的图标
         可以到推特的主页面。 选择下拉菜单选择国旗，然后输入金额， 然后再选择另一个国旗，最后点击转换。 最后将从API中计算结果，并且显示出来！如果你点击“存入数
         据”按钮，这时候数据会存入到数据库中！</string>
+
+
+    <string name="newsapi">新闻:</string>
+    <string name="currencymain">货币转换</string>
+    <string name="electricmain">电动车充电站:</string>
+    <string name="logintorecipe">菜单搜索引擎:</string>
+    <string name="Name">姓名:</string>
+
 </resources>
 

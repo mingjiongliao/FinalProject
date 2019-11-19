@@ -56,4 +56,16 @@
         result from api. If you want to save the result, click the "save to history" button, which will store to database and when the
         user open it secondly, it will show again!</string>
 
+
+    <string name="newsapi">News Api.org headlines:</string>currencymain
+    <string name="currencymain">currency:</string>
+    <string name="electricmain">Electric Car Charging Station finder:</string>
+    <string name="logintorecipe">RECIPE SEARCH ENGIN:</string>Name
+
+    <string name="Name">Name:</string>
+
+
+
+
+
 </resources>
