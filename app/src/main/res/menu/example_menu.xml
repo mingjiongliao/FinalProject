@@ -26,7 +26,9 @@
     <item
     android:id="@+id/help"
     android:title="@string/help"
-    app:showAsAction="never"/>
+        android:icon="@drawable/toast"
+        android:orderInCategory="400"
+    app:showAsAction="always"/>
     <item
         android:id="@+id/option1"
         android:title="@string/contact"
