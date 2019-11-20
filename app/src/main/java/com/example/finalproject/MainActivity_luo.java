@@ -52,7 +52,6 @@ public class MainActivity_luo extends AppCompatActivity {
  //       Button milestone1Button = (Button)findViewById(R.id.logintorecipe);
   //      milestone1Button.setOnClickListener ( Click ->
   //      {
-//
  //           AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
  //           //This is the builder pattern, just call many functions on the same object:
@@ -63,8 +62,6 @@ public class MainActivity_luo extends AppCompatActivity {
     //                            Intent student = new Intent(MainActivity.this, StudentInfo.class);
   //                              startActivity(student);
    //                         }
-
-
   //                  )
   //                  //If you click the "Cancel" button:
    //                 .setNegativeButton("Cancel", (d,w) -> {  /* nothing */})
@@ -79,8 +76,6 @@ public class MainActivity_luo extends AppCompatActivity {
  //           //show a notice window to say how many were updated.
  //           Toast.makeText(this, "I'm a toast", Toast.LENGTH_LONG).show();
 //
-
-
    //     });
 
 
