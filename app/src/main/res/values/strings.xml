@@ -16,7 +16,6 @@
     <string name="instruction">Instruction: insert your choise such as steak, beef. And click on SEARCH RECIPE botton for list of recipe containing your choice</string>
 
 
-
     <string name="Button">Student information</string>
     <string name="currency">Foreign currency conversion</string>
     <string name="convert">convert</string>
@@ -63,9 +62,6 @@
     <string name="logintorecipe">RECIPE SEARCH ENGIN:</string>Name
 
     <string name="Name">Name:</string>
-
-
-
 
 
 </resources>

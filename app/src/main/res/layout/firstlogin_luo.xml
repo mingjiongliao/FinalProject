@@ -46,10 +46,10 @@
             android:maxHeight="42dp"
             ></ImageView>
         <Button
-            android:id="@+id/newsapi"
+            android:id="@+id/electricmain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/newsapi" />
+            android:text="@string/electricmain" />
 
     </LinearLayout>
     <LinearLayout
@@ -92,10 +92,10 @@
             android:maxHeight="42dp"
             ></ImageView>
         <Button
-            android:id="@+id/electricmain"
+            android:id="@+id/newsapi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/electricmain" />
+            android:text="@string/newsapi" />
     </LinearLayout>
 
     <LinearLayout

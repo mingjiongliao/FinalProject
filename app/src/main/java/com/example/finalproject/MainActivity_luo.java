@@ -80,6 +80,9 @@ public class MainActivity_luo extends AppCompatActivity {
 
 
         Button recipe =(Button)findViewById(R.id.logintorecipe);
+        Button qing=(Button)findViewById(R.id.currency);
+        Button ye=(Button)findViewById(R.id.newsapi);
+        Button liao=(Button)findViewById(R.id.electricmain);
         recipe.setOnClickListener(v -> {
             AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
 
@@ -100,6 +103,10 @@ public class MainActivity_luo extends AppCompatActivity {
             dialog1.show();
 
         });
+        qing.setOnClickListener(v -> {
+            Intent goToPage2 = new Intent(MainActivity_luo.this, ForCurrency.class);
+            startActivity(goToPage2);
+        });
 
     }
 
@@ -118,6 +125,7 @@ public class MainActivity_luo extends AppCompatActivity {
         /* slide 15 material:  */
         MenuItem searchItem = menu.findItem(R.id.search_item);
         SearchView sView = (SearchView) searchItem.getActionView();
+
         sView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
