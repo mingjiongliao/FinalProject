@@ -413,7 +413,7 @@ public class ForCurrency extends AppCompatActivity {
     }
     private class RateQuery extends AsyncTask<String, Integer, String> {
         String ret = null;
-
+ 
 
 
         @Override                       //Type 1
