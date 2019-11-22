@@ -3,7 +3,7 @@
 
     <string name="search_name">Insert your choice</string>
     <string name="search_buttom">Search Recipe</string>
-    <string name="recipy_title">recipy title</string>
+    <string name="recipe_title">recipe title</string>
 
     <string name="liao">Mingjiong Liao  liao0019@algonquinlive.com</string>
     <string name="wang">Qing Wang       wang0582@algonquinlive.com</string>
@@ -39,10 +39,7 @@
     <string name="contact">contact</string>
     <string name="search">search</string>
     <string name="version">version: 2.0</string>
-    <string name="liao">Mingjiong Liao  liao0019@algonquinlive.com</string>
-    <string name="wang">Qing Wang       wang0582@algonquinlive.com</string>
-    <string name="ye">Rongzhong Ye    ye000038@algonquinlive.com</string>
-    <string name="luo">Chunyuan Luo    luo00047@algonquinlive.com</string>
+
     <string-array name="spinner1">
         <item>CAD</item>
         <item>USD</item>
@@ -58,5 +55,17 @@
         in spinner, enter amount in editText and choose second currency,  and then click button "convert", which will calulate the
         result from api. If you want to save the result, click the "save to history" button, which will store to database and when the
         user open it secondly, it will show again!</string>
+
+
+    <string name="newsapi">News Api.org headlines:</string>currencymain
+    <string name="currencymain">currency:</string>
+    <string name="electricmain">Electric Car Charging Station finder:</string>
+    <string name="logintorecipe">RECIPE SEARCH ENGIN:</string>Name
+
+    <string name="Name">Name:</string>
+
+
+
+
 
 </resources>

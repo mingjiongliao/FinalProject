@@ -1,7 +1,6 @@
 package com.example.finalproject;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,13 +9,13 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class ListAdapter extends BaseAdapter {
+public class ListAdapter_recipe extends BaseAdapter {
 
-    private List<DataModel> listModels;
+    private List<DataModel_recipe> listModels;
     private Context context;
     private LayoutInflater inflater;
 
-    public ListAdapter(List<DataModel> listModels, Context context) {
+    public ListAdapter_recipe(List<DataModel_recipe> listModels, Context context) {
         this.listModels = listModels;
         this.context = context;
         this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -39,7 +38,7 @@ public class ListAdapter extends BaseAdapter {
     public View getView(int position, View oldView, ViewGroup parent) {
 
         View newView;
-        newView = inflater.inflate(R.layout.title, null);
+        newView = inflater.inflate(R.layout.recipe_title, null);
 
 
             TextView messageText = (TextView)newView.findViewById(R.id.textView2);
@@ -50,7 +49,7 @@ public class ListAdapter extends BaseAdapter {
     }
 
 
-    public void setItemList(List<DataModel> itemList) {
+    public void setItemList(List<DataModel_recipe> itemList) {
         this.listModels = itemList;
     }
 

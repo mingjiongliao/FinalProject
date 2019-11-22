@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity_recipe">
 
     <ImageView
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name" />
+        android:hint="@string/Name" />
 
 
 
@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        tools:context=".MainActivity">
+        tools:context=".MainActivity_recipe">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -49,7 +49,7 @@
             android:id="@+id/newsapi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="News Api.org headlines" />
+            android:text="@string/newsapi" />
 
     </LinearLayout>
     <LinearLayout
@@ -72,7 +72,7 @@
             android:id="@+id/currency"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="currency" />
+            android:text="@string/currencymain" />
     </LinearLayout>
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -81,7 +81,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        tools:context=".MainActivity">
+        tools:context=".MainActivity_recipe">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -92,9 +92,10 @@
             android:maxHeight="42dp"
             ></ImageView>
         <Button
+            android:id="@+id/electricmain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Electric Car Charging Station finder" />
+            android:text="@string/electricmain" />
     </LinearLayout>
 
     <LinearLayout
@@ -104,7 +105,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        tools:context=".MainActivity">
+        tools:context=".MainActivity_recipe">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -115,9 +116,10 @@
             android:maxHeight="42dp"
             ></ImageView>
         <Button
+            android:id="@+id/logintorecipe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Recipe search engine" />
+            android:text="@string/logintorecipe" />
     </LinearLayout>
 
 
@@ -126,8 +128,6 @@
         android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-
     </ListView>
 
 
