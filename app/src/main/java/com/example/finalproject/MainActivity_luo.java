@@ -104,7 +104,7 @@ public class MainActivity_luo extends AppCompatActivity {
 
         });
         qing.setOnClickListener(v -> {
-            Intent goToPage2 = new Intent(MainActivity_luo.this, ForCurrency.class);
+            Intent goToPage2 = new Intent(MainActivity_luo.this, ForCurrency_qing.class);
             startActivity(goToPage2);
         });
 

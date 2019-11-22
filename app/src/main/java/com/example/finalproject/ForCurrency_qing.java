@@ -81,8 +81,8 @@ public class ForCurrency_qing extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_for_currency_qing);
-        Toolbar tBar = (Toolbar)findViewById(R.id.toolbar);
-        setSupportActionBar(tBar);
+//        Toolbar tBar = (Toolbar)findViewById(R.id.toolbarqing);
+//        setSupportActionBar(tBar);
 
         amount = (EditText)findViewById(R.id.input);
         result = (EditText)findViewById(R.id.result);

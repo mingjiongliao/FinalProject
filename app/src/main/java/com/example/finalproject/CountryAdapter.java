@@ -30,17 +30,16 @@ public class CountryAdapter extends ArrayAdapter <CountryItem>{
     }
     private View initView(int position, @Nullable View convertView, @NonNull ViewGroup parent){
         if(convertView==null){
-            //convertView= LayoutInflater.from(getContext()).inflate(R.layout.counrtyspinnerrow,parent,false);
+            convertView= LayoutInflater.from(getContext()).inflate(R.layout.counrtyspinnerrow,parent,false);
         }
-        //ImageView imageViewFlag =convertView.findViewById(R.id.imageView);
+        ImageView imageViewFlag =convertView.findViewById(R.id.imageView);
         TextView textViewName=convertView.findViewById((R.id.textView));
 
         CountryItem currentItem= getItem(position);
         if(currentItem!=null){
-            //imageViewFlag.setImageResource(currentItem.getmFlagImage());
+            imageViewFlag.setImageResource(currentItem.getmFlagImage());
             textViewName.setText(currentItem.getmCountryName());
         }
         return convertView;
     }
 }
-
