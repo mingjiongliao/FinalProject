@@ -77,9 +77,7 @@ public class ElectricCarChargingStationFinder extends AppCompatActivity {
         {
             //what to do when the menu item is selected:
             case R.id.id5:
-                /**
-                 * inflate the dialog into the menu
-                 */
+
                 View middle = getLayoutInflater().inflate(R.layout.help_dialog_electric_car, null);
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage("Electric Car Charging Station Finder help menu")

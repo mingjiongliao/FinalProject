@@ -92,11 +92,7 @@ public class ListResult extends AppCompatActivity {
 
     private class LocationQuery extends AsyncTask<String, Integer, String>
     {
-        /**
-         * use the connection to return the string from the url
-         * @param params
-         * @return jason obejct store in the string
-         */
+        String tempValue, min, max, uv, weatherIcon;
         @Override
         protected String doInBackground(String ... params) {
             try {
@@ -131,13 +127,18 @@ public class ListResult extends AppCompatActivity {
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
             progressBar.setVisibility(View.VISIBLE);
+
+
         }
 
         @Override
         protected void onPostExecute(String s) {
-            /**
-             * initialize the list to store the json object array
-             */
+
+            /*Address[] listAddress = {
+                    new Address("Baseline", 34, 21.50,null),
+                    new Address("Barhaven", 56, 15.99,"819-321-2345"),
+                    new Address("Kanata", 42, 14.90,"613-234-4452"),
+            };*/
             TextView txtList = findViewById(R.id.txtList);
             try {
                 JSONArray jObject = new JSONArray(s);
@@ -148,9 +149,6 @@ public class ListResult extends AppCompatActivity {
                 }else{
                     txtList.setText(R.string.s4);
                 ArrayList<Address> listAddress = new ArrayList<Address>();
-                    /**
-                     * parse the list of json object into the address object I created
-                     */
                 for (int i=0; i < jObject.length(); i++)
                 {
                     JSONObject anObject = jObject.getJSONObject(i);
@@ -160,16 +158,10 @@ public class ListResult extends AppCompatActivity {
                     double longitude = anObject.getJSONObject("AddressInfo").getDouble("Longitude");
                     listAddress.add(new Address(title,latitude,longitude,phone));
                 }
-                    /**
-                     * into the adapter
-                     */
                 ListView jsonList = findViewById(R.id.listResult);
                 ArrayAdapter<Address> adapter = new ArrayAdapter<Address>(getBaseContext(),
                         android.R.layout.simple_expandable_list_item_1, listAddress);
                 jsonList.setAdapter(adapter);
-                    /**
-                     * set the event for this listview
-                     */
                 jsonList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -178,9 +170,7 @@ public class ListResult extends AppCompatActivity {
                                 +"Phone: " + listAddress.get(position).getPhone()+"\n"
                                 + "Latitude: " + listAddress.get(position).getlatitude()+"\n"
                                 + "Longtitude: " + listAddress.get(position).getLongitude()+"\n";
-                        /**
-                         * make a Toast to display the content
-                         */
+
                         Toast.makeText(getBaseContext(), item, Toast.LENGTH_SHORT).show();
 
                     }
