@@ -21,7 +21,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".menuToolbar_recipe" />
         <activity android:name=".RecipeSearchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -329,6 +329,7 @@ public class ForCurrency_qing extends AppCompatActivity {
         // Inflate the menu items for use in the action bar
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menuqing, menu);
+//        inflater.inflate(R.menu.example_menu, menu);
 
 
         /* slide 15 material:  */

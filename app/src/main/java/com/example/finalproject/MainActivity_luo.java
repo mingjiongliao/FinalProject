@@ -46,39 +46,6 @@ public class MainActivity_luo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.firstlogin_luo);
 
-        //Toolbar tBar = (Toolbar)findViewById(R.id.toolbar);
-        //setSupportActionBar(tBar);
-
- //       Button milestone1Button = (Button)findViewById(R.id.logintorecipe);
-  //      milestone1Button.setOnClickListener ( Click ->
-  //      {
- //           AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
- //           //This is the builder pattern, just call many functions on the same object:
-
- //           AlertDialog dialog = builder.setTitle("This is information about our team member")
-  //                  .setMessage("Do you want to go there?")
-  //                  .setPositiveButton("Yes", (d,w) -> {
-    //                            Intent student = new Intent(MainActivity.this, StudentInfo.class);
-  //                              startActivity(student);
-   //                         }
-  //                  )
-  //                  //If you click the "Cancel" button:
-   //                 .setNegativeButton("Cancel", (d,w) -> {  /* nothing */})
-   //                 .create();
-
-  //          //then show the dialog
-   //         dialog.show();
-
-            //show a notification: first parameter is any view on screen. second parameter is the text. Third parameter is the length (SHORT/LONG)
-  //          Snackbar.make(milestone1Button, "I'm a snackbar", Snackbar.LENGTH_LONG).show();
-
- //           //show a notice window to say how many were updated.
- //           Toast.makeText(this, "I'm a toast", Toast.LENGTH_LONG).show();
-//
-   //     });
-
-
         Button recipe =(Button)findViewById(R.id.logintorecipe);
         Button qing=(Button)findViewById(R.id.currency);
         Button ye=(Button)findViewById(R.id.newsapi);
@@ -119,13 +86,13 @@ public class MainActivity_luo extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.example_menu, menu);
+        inflater.inflate(R.menu.menuqing, menu);
+//        inflater.inflate(R.menu.example_menu, menu);
 
 
         /* slide 15 material:  */
         MenuItem searchItem = menu.findItem(R.id.search_item);
         SearchView sView = (SearchView) searchItem.getActionView();
-
         sView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -143,19 +110,16 @@ public class MainActivity_luo extends AppCompatActivity {
         return true;
     }
 
-    /**
-     * the actions for what to do when the recipe_menu item is selected:
-     * @param item
-     * @return boolean value of whether or not the action is successful
-     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch(item.getItemId())
         {
             //what to do when the menu item is selected:
-            case R.id.help:
+            case R.id.action_sign_out:
                 Toast.makeText(this, "You clicked on sign out", Toast.LENGTH_LONG).show();
+                Intent nextPage=new Intent(this,Instruction_qing.class);
+                startActivity(nextPage);
                 break;
             case R.id.option1:
                 Toast.makeText(this, "This is the initial message", Toast.LENGTH_LONG).show();
@@ -165,8 +129,8 @@ public class MainActivity_luo extends AppCompatActivity {
                 alertExample();
                 break;
             case R.id.item1:
-
                 Toast.makeText(this, message , Toast.LENGTH_LONG).show();
+
                 break;
             case R.id.item2:
                 alertExample();
@@ -182,9 +146,6 @@ public class MainActivity_luo extends AppCompatActivity {
         return true;
     }
 
-    /**
-     * To dispaly alert_dialog box
-     */
     public void alertExample()
     {
         View middle = getLayoutInflater().inflate(R.layout.view_extra_stuff, null);
