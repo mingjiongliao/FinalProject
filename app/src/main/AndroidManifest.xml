@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ListResult"></activity>
-        <activity android:name=".listResults" />
         <activity android:name=".googlemap" />
         <activity android:name=".EcarStationResult" />
         <activity android:name=".ElectricCarChargingStationFinder" />
