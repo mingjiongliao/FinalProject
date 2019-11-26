@@ -77,6 +77,11 @@ public class ForCurrency_qing extends AppCompatActivity {
     private ArrayList<CountryItem> mCountryList;
     private CountryAdapter mAdapter;
     private String message="This is the initial message";
+    public static final String ITEM_FLAG1 = "FLAG1";
+    public static final String ITEM_FLAG2 = "FLAG2";
+    public static final String ITEM_MESSAGE = "MESSAGE";
+    public static final String ITEM_POSITION = "POSITION";
+    public static final String ITEM_ID = "ID";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +94,7 @@ public class ForCurrency_qing extends AppCompatActivity {
         Button convert = (Button)findViewById(R.id.convert);
         Button insert = (Button)findViewById(R.id.insert);
         ListView theList = (ListView)findViewById(R.id.the_list);
+        boolean isTablet = findViewById(R.id.fragmentLocation) != null;
 //        progressBar=(ProgressBar)findViewById(R.id.progressBar);
 
 
@@ -249,7 +255,23 @@ public class ForCurrency_qing extends AppCompatActivity {
             Log.d("you clicked on :" , "item "+ position);
             //save the position in case this object gets deleted or updated
             positionClicked = position;
-
+            Bundle dataToPass = new Bundle();
+            dataToPass.putInt(ITEM_FLAG1, objects.get(position).getmFlagImage() );
+            dataToPass.putInt(ITEM_FLAG2, objects.get(position).getoFlagImage() );
+            dataToPass.putString(ITEM_MESSAGE,objects.get(position).getmCountryName()  );
+            dataToPass.putInt(ITEM_POSITION, position);
+            dataToPass.putLong(ITEM_ID, id);
+//            if(isTablet){
+//                DetailFragmentQing dFragment = new DetailFragmentQing(); //add a DetailFragment
+//                dFragment.setArguments( dataToPass ); //pass it a bundle for information
+//                dFragment.setTablet(true);  //tell the fragment if it's running on a tablet or not
+//                getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .add(R.id.fragmentLocation, dFragment) //Add the fragment in FrameLayout
+//                        .addToBackStack("Back") //make the back button undo the transaction
+//                        .commit(); //actually load the fragment.
+//
+//            }
             //When you click on a row, open selected contact on a new page (ViewContact)
             CountryItem chosenOne = objects.get(position);
             Intent nextPage = new Intent(ForCurrency_qing.this, ViewMessage_qing.class);
