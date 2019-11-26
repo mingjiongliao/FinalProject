@@ -166,13 +166,19 @@ public class ListResult extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position,
                                             long id) {
-                                String item = "Title: " + listAddress.get(position).getTitle()+"\n"
+                     /*          String item = "Title: " + listAddress.get(position).getTitle()+"\n"
                                 +"Phone: " + listAddress.get(position).getPhone()+"\n"
                                 + "Latitude: " + listAddress.get(position).getlatitude()+"\n"
-                                + "Longtitude: " + listAddress.get(position).getLongitude()+"\n";
+                                + "Longtitude: " + listAddress.get(position).getLongitude()+"\n";*/
 
-                        Toast.makeText(getBaseContext(), item, Toast.LENGTH_SHORT).show();
-
+                        Bundle dataToPass = new Bundle();
+                        dataToPass.putString("title", listAddress.get(position).getTitle());
+                        dataToPass.putString("phone", listAddress.get(position).getPhone());
+                        dataToPass.putDouble("latitude", listAddress.get(position).getlatitude());
+                        dataToPass.putDouble("longitude", listAddress.get(position).getLongitude());
+                        Intent listDetail = new Intent(ListResult.this, EcarStationResult.class);
+                        listDetail.putExtras(dataToPass); //send data to next activity
+                        startActivityForResult(listDetail, 250);
                     }
                 });
                 }
