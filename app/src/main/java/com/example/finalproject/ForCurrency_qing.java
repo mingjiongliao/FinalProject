@@ -72,7 +72,7 @@ public class ForCurrency_qing extends AppCompatActivity {
     private String symbols=null;
     //    private ProgressBar progressBar;
     private float rate=0.0f;
-
+    SQLiteDatabase db;
     private String uvURL;
     private ArrayList<CountryItem> mCountryList;
     private CountryAdapter mAdapter;
@@ -261,26 +261,30 @@ public class ForCurrency_qing extends AppCompatActivity {
             dataToPass.putString(ITEM_MESSAGE,objects.get(position).getmCountryName()  );
             dataToPass.putInt(ITEM_POSITION, position);
             dataToPass.putLong(ITEM_ID, id);
-//            if(isTablet){
-//                DetailFragmentQing dFragment = new DetailFragmentQing(); //add a DetailFragment
-//                dFragment.setArguments( dataToPass ); //pass it a bundle for information
-//                dFragment.setTablet(true);  //tell the fragment if it's running on a tablet or not
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .add(R.id.fragmentLocation, dFragment) //Add the fragment in FrameLayout
-//                        .addToBackStack("Back") //make the back button undo the transaction
-//                        .commit(); //actually load the fragment.
-//
-//            }
-            //When you click on a row, open selected contact on a new page (ViewContact)
-            CountryItem chosenOne = objects.get(position);
-            Intent nextPage = new Intent(ForCurrency_qing.this, ViewMessage_qing.class);
-            nextPage.putExtra("Flag1",chosenOne.getmFlagImage());
-            nextPage.putExtra("Flag2",chosenOne.getoFlagImage());
-            nextPage.putExtra("Message", chosenOne.getmCountryName());
-            nextPage.putExtra("Id", position);
-            startActivity(nextPage);
-//            startActivityForResult(nextPage, ACTIVITY_VIEW_CONTACT);
+            if(isTablet){
+                DetailFragmentQing dFragment = new DetailFragmentQing(); //add a DetailFragment
+                dFragment.setArguments( dataToPass ); //pass it a bundle for information
+                dFragment.setTablet(true);  //tell the fragment if it's running on a tablet or not
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.fragmentLocation, dFragment) //Add the fragment in FrameLayout
+                        .addToBackStack("Back") //make the back button undo the transaction
+                        .commit(); //actually load the fragment.
+
+            }else{
+                //When you click on a row, open selected contact on a new page (ViewContact)
+                CountryItem chosenOne = objects.get(position);
+                Intent nextPage = new Intent(ForCurrency_qing.this, ViewMessage_qing.class);
+                nextPage.putExtra("Flag1",chosenOne.getmFlagImage());
+                nextPage.putExtra("Flag2",chosenOne.getoFlagImage());
+                nextPage.putExtra("Message", chosenOne.getmCountryName());
+                nextPage.putExtra("Id", position);
+                startActivity(nextPage);
+                startActivityForResult(nextPage, ACTIVITY_VIEW_CONTACT);
+            }
+
+
+
         });
     }
     private class MyOwnAdapter extends BaseAdapter {
@@ -509,6 +513,35 @@ public class ForCurrency_qing extends AppCompatActivity {
         }
 
 
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == ACTIVITY_VIEW_CONTACT)
+        {
+            if(resultCode == RESULT_OK) //if you hit the delete button instead of back button
+            {
+                long id = data.getLongExtra(ITEM_ID, 0);
+                deleteMessageId((int)id);
+            }
+        }
+    }
+    public void deleteMessageId(long id) {
+        //delete item from db and list
+        Log.d("Aaaaaaaa","id="+id);
+
+//        Message itemToDelete=null;
+//        for(Message m: objects){
+//            if(m.getId()==id){
+//                itemToDelete =m;
+//            }
+//        }
+        objects.remove(positionClicked);
+        myAdapter.notifyDataSetChanged();
+        int numDeleted = db.delete(CurrencyDatabaseOpenHelper.TABLE_NAME, CurrencyDatabaseOpenHelper.COL_ID + "=?", new String[] {Long.toString(id)});
+//        int numDeleted =db.delete(MyDatabaseOpenHelper.TABLE_NAME, MyDatabaseOpenHelper.COL_ID + "=" + id, null);
+        Log.d("Aaaaaaaa","numDeleted="+numDeleted);
 
     }
 }
