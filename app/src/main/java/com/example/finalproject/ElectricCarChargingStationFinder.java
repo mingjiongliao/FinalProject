@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -38,9 +39,19 @@ public class ElectricCarChargingStationFinder extends AppCompatActivity {
         /**
          * use a Lambda function to set a click listener
          */
+        SharedPreferences prefs = getSharedPreferences("FileName", MODE_PRIVATE);
+        String previousLat = prefs.getString("ReserveNameLat", "");
+        String previousLong = prefs.getString("ReserveNameLong", "");
+        editTextLatitude.setText(previousLat);
+        editTextLongitude.setText(previousLong);
         Button btnFind = (Button)findViewById(R.id.btnFind);
         if(btnFind != null){
             btnFind.setOnClickListener(clk -> {
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("ReserveName1", editTextLatitude.getText().toString());
+                editor.putString("ReserveName2", editTextLongitude.getText().toString());
+                editor.commit();
+
                 /**
                  * new intent to go to the next page
                  */
@@ -86,7 +97,7 @@ public class ElectricCarChargingStationFinder extends AppCompatActivity {
                 builder.create().show();
                 break;
             case R.id.id6:
-                
+
                 break;
         }
         return true;
