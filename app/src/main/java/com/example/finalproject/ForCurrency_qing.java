@@ -277,7 +277,7 @@ public class ForCurrency_qing extends AppCompatActivity {
             Intent nextPage = new Intent(ForCurrency_qing.this, ViewMessage_qing.class);
             nextPage.putExtra("Flag1",chosenOne.getmFlagImage());
             nextPage.putExtra("Flag2",chosenOne.getoFlagImage());
-            nextPage.putExtra("Message", chosenOne.toString());
+            nextPage.putExtra("Message", chosenOne.getmCountryName());
             nextPage.putExtra("Id", position);
             startActivity(nextPage);
 //            startActivityForResult(nextPage, ACTIVITY_VIEW_CONTACT);
