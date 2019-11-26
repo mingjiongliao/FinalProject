@@ -2,7 +2,9 @@ package com.example.finalproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -36,4 +38,17 @@ public class EcarStationResult extends AppCompatActivity {
                     startActivity(mapPage);
                 }
                 );
+        Button btnSave = (Button)findViewById(R.id.saveButton);
+
+        btnSave.setOnClickListener(c->{
+
+            FavoriteDBhelper dbOpener = new FavoriteDBhelper(this);
+            SQLiteDatabase db = dbOpener.getWritableDatabase();
+            ContentValues newRowValues = new ContentValues();
+            newRowValues.put(FavoriteDBhelper.COL_TITLE, title);
+            //insert in the database:
+            long newId = db.insert(FavoriteDBhelper.TABLE_NAME, null, newRowValues);
+            Toast.makeText(this, title+" is save to your favoriate", Toast.LENGTH_SHORT).show();
+                }
+        );
     }}

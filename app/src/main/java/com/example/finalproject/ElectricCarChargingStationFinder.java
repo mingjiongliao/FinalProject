@@ -85,6 +85,9 @@ public class ElectricCarChargingStationFinder extends AppCompatActivity {
                 .setCancelable(true);
                 builder.create().show();
                 break;
+            case R.id.id6:
+                
+                break;
         }
         return true;
     }
