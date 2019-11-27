@@ -126,7 +126,7 @@ public class MainActivity_luo extends AppCompatActivity {
                 break;
             case R.id.option2:
                 Toast.makeText(this, "You clicked the search string", Toast.LENGTH_LONG).show();
-                alertExample();
+//                alertExample();
                 break;
             case R.id.item1:
                 Toast.makeText(this, message , Toast.LENGTH_LONG).show();
@@ -136,12 +136,14 @@ public class MainActivity_luo extends AppCompatActivity {
                 alertExample();
                 break;
             case R.id.item3:
-                Snackbar.make(findViewById(R.id.toolbar), "Go Back?", Snackbar.LENGTH_LONG).setAction("Yes",new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        finish();
-                    }
-                }).show();
+//                Snackbar.make(findViewById(R.id.toolbar), "Go Back?", Snackbar.LENGTH_LONG).setAction("Yes",new View.OnClickListener() {
+////                    @Override
+////                    public void onClick(View v) {
+////                        finish();
+////                    }
+////                }).show();
+                Snackbar.make(findViewById(R.id.item3), "You would go to gmail webpage", Snackbar.LENGTH_LONG).show();
+
         }
         return true;
     }
