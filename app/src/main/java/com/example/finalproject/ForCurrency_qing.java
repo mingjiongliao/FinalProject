@@ -9,6 +9,7 @@ import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -68,10 +69,12 @@ public class ForCurrency_qing extends AppCompatActivity {
     MyOwnAdapter myAdapter;
     private EditText result=null;
     private EditText amount=null;
+    private String amountValue=null;
     private String baseValue=null;
     private String symbols=null;
     //    private ProgressBar progressBar;
     private float rate=0.0f;
+    private SharedPreferences prefs;
     SQLiteDatabase db;
     private String uvURL;
     private ArrayList<CountryItem> mCountryList;
@@ -96,9 +99,12 @@ public class ForCurrency_qing extends AppCompatActivity {
         ListView theList = (ListView)findViewById(R.id.the_list);
         boolean isTablet = findViewById(R.id.fragmentLocation) != null;
 //        progressBar=(ProgressBar)findViewById(R.id.progressBar);
-
-
-
+        prefs = getSharedPreferences("FileName", MODE_PRIVATE);
+        amountValue = prefs.getString("Amount", "");
+        if(!amountValue.isEmpty()){
+            amount.setText(amountValue);
+        }
+        Log.d("prefs", "prefs "+amountValue);
         initList();
 //        Spinner spinnerCountries=findViewById(R.id.spinner);
         Spinner spinner1 =(Spinner)findViewById(R.id.spinner1);
@@ -505,8 +511,10 @@ public class ForCurrency_qing extends AppCompatActivity {
         @Override                   //Type 3
         protected void onPostExecute(String s) {
             DecimalFormat df=new DecimalFormat("#.##");
-            double value=Double.parseDouble(amount.getText().toString());
+            amountValue=amount.getText().toString();
+            double value=Double.parseDouble(amountValue);
             result.setText(value+" "+baseValue+" = "+df.format(rate*value)+" "+symbols);
+            Log.d("result for convert", "onPostExecute: "+result.getText().toString());
         }
 
         @Override                       //Type 2
@@ -546,5 +554,13 @@ public class ForCurrency_qing extends AppCompatActivity {
 //        int numDeleted =db.delete(CurrencyDatabaseOpenHelper.TABLE_NAME, CurrencyDatabaseOpenHelper.COL_ID + "=" + id, null);
         Log.d("Aaaaaaaa","numDeleted="+numDeleted);
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("Amount",amountValue);
+        editor.commit();
     }
 }
