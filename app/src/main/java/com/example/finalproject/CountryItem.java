@@ -31,4 +31,7 @@ public class CountryItem {
     public long getId(){
         return this.id;
     }
+    public void update(String mCountryName){
+        this.mCountryName=mCountryName;
+    }
 }

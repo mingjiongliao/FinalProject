@@ -55,6 +55,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static org.xmlpull.v1.XmlPullParser.END_TAG;
 import static org.xmlpull.v1.XmlPullParser.START_TAG;
@@ -536,8 +537,24 @@ public class ForCurrency_qing extends AppCompatActivity {
                 Log.d("qing", "qing "+id);
                 deleteMessageId((int)id);
             }
+            if(resultCode==DetailFragmentQing.PUSHED_UPDATE){
+                long id=data.getLongExtra(ITEM_ID,0);
+                String message=data.getStringExtra("Message");
+                Log.d("Wang", "onActivityResult: "+id+",  "+message);
+                updateMessage(id,message);
+            }
         }
     }
+
+    public void updateMessage(long id,String message) {
+        ContentValues newValues = new ContentValues();
+        newValues.put(CurrencyDatabaseOpenHelper.COL_MESSAGE, message);
+        db.update(CurrencyDatabaseOpenHelper.TABLE_NAME, newValues, CurrencyDatabaseOpenHelper.COL_ID + "=?", new String[] { Long.toString(id)} );
+        CountryItem oldItem= objects.get(positionClicked);
+        oldItem.update(message);
+        myAdapter.notifyDataSetChanged();
+    }
+
     public void deleteMessageId(long id) {
         //delete item from db and list
         Log.d("Aaaaaaaa","id="+id);

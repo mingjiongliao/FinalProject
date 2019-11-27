@@ -1,7 +1,9 @@
 package com.example.finalproject;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -12,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -22,6 +25,8 @@ public class DetailFragmentQing extends Fragment {
     private Bundle dataFromActivity;
     private long id;
     private int position;
+    public static final int PUSHED_UPDATE = 5338;
+    protected SQLiteDatabase db = null;
 
     public void setTablet(boolean tablet) { isTablet = tablet; }
 
@@ -74,6 +79,27 @@ public class DetailFragmentQing extends Fragment {
             }
 
 
+        });
+        Button updateButton = (Button)result.findViewById(R.id.updateButton);
+        updateButton.setOnClickListener(btn -> {
+            if(isTablet){
+                Log.d("did it delete", "onCreateView: "+id);
+                ForCurrency_qing parent = (ForCurrency_qing)getActivity();
+                parent.updateMessage(id,message.getText().toString()); //this deletes the item and updates the list
+
+
+                //now remove the fragment since you deleted it from the database:
+                // this is the object to be removed, so remove(this):
+                parent.getSupportFragmentManager().beginTransaction().remove(this).commit();
+            }else{
+                ViewMessage_qing parent = (ViewMessage_qing) getActivity();
+                Intent backToFragmentExample = new Intent();
+                Log.d("item ", "onCreateView: "+dataFromActivity.getLong(ForCurrency_qing.ITEM_ID));
+                backToFragmentExample.putExtra(ForCurrency_qing.ITEM_ID, dataFromActivity.getLong(ForCurrency_qing.ITEM_ID ));
+                backToFragmentExample.putExtra("Message",message.getText().toString());
+                parent.setResult(PUSHED_UPDATE, backToFragmentExample); //send data back to FragmentExample in onActivityResult()
+                parent.finish(); //go back
+            }
         });
         return result;
     }
