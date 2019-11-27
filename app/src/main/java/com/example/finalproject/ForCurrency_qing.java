@@ -86,6 +86,11 @@ public class ForCurrency_qing extends AppCompatActivity {
     public static final String ITEM_MESSAGE = "MESSAGE";
     public static final String ITEM_POSITION = "POSITION";
     public static final String ITEM_ID = "ID";
+
+    /**
+     * gets the data from database, get jason Object from API and set the result to the layout
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,6 +118,7 @@ public class ForCurrency_qing extends AppCompatActivity {
         mAdapter =new CountryAdapter(this,mCountryList);
         spinner1.setAdapter(mAdapter);
         spinner2.setAdapter(mAdapter);
+        //set the spinner listener
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -126,7 +132,7 @@ public class ForCurrency_qing extends AppCompatActivity {
 
             }
         });
-
+        //set spinner 2 listener
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -174,7 +180,7 @@ public class ForCurrency_qing extends AppCompatActivity {
         theList.setAdapter(myAdapter);
         printCursor(results);
 
-
+        // convert data to the result
         convert.setOnClickListener(v -> {
             ProgressDialog progressBar = new ProgressDialog(v.getContext());
             progressBar.setCancelable(true);
@@ -233,7 +239,7 @@ public class ForCurrency_qing extends AppCompatActivity {
 
             }
         });
-
+        //insert the data to the history
         insert.setOnClickListener(v -> {
             ContentValues newRowValues = new ContentValues();
             //put string name in the NAME column:
@@ -257,7 +263,7 @@ public class ForCurrency_qing extends AppCompatActivity {
             }
 
         });
-
+        //set the list listener
         theList.setOnItemClickListener(( parent,  view,  position,  id) -> {
             Log.d("you clicked on :" , "item "+ position);
             //save the position in case this object gets deleted or updated
@@ -275,7 +281,7 @@ public class ForCurrency_qing extends AppCompatActivity {
                 dFragment.setTablet(true);  //tell the fragment if it's running on a tablet or not
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .add(R.id.fragmentLocation, dFragment) //Add the fragment in FrameLayout
+                        .replace(R.id.fragmentLocation, dFragment) //Add the fragment in FrameLayout
                         .addToBackStack("Back") //make the back button undo the transaction
                         .commit(); //actually load the fragment.
 
@@ -296,6 +302,10 @@ public class ForCurrency_qing extends AppCompatActivity {
 
         });
     }
+
+    /**
+     * the MyOwnAdapter to set list view
+     */
     private class MyOwnAdapter extends BaseAdapter {
 
         public int getCount() {  return objects.size();  } //This function tells how many objects to show
@@ -335,6 +345,10 @@ public class ForCurrency_qing extends AppCompatActivity {
         }
     }
 
+    /**
+     * print the data in the debug
+     * @param c
+     */
     public void printCursor( Cursor c){
         c.moveToFirst();
 
@@ -351,6 +365,10 @@ public class ForCurrency_qing extends AppCompatActivity {
         }
 
     }
+
+    /**
+     * initiate the spinner
+     */
     private void initList(){
         mCountryList=new ArrayList<>();
         mCountryList.add(new CountryItem("USD",R.drawable.usd));
@@ -359,6 +377,12 @@ public class ForCurrency_qing extends AppCompatActivity {
         mCountryList.add(new CountryItem("JPY",R.drawable.jpy));
         mCountryList.add(new CountryItem("KRW",R.drawable.krw));
     }
+
+    /**
+     * create the toolbar
+     * @param menu inflate menu
+     * @return true and not
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
@@ -387,6 +411,11 @@ public class ForCurrency_qing extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * create menu option item
+     * @param item menu item
+     * @return true or not
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -423,6 +452,9 @@ public class ForCurrency_qing extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * use dialog to prompt the user, if the user clicks "Yes", it starts new activity
+     */
     public void alertExample()
     {
         View middle = getLayoutInflater().inflate(R.layout.view_extra_stuff, null);
@@ -447,10 +479,18 @@ public class ForCurrency_qing extends AppCompatActivity {
 
         builder.create().show();
     }
+
+    /**
+     * AsyncTask class would connect the http and get jason from API
+     */
     private class RateQuery extends AsyncTask<String, Integer, String> {
         String ret = null;
 
-
+        /**
+         * override method do in back ground
+         * @param strings Type1
+         * @return String
+         */
 
         @Override                       //Type 1
         protected String doInBackground(String... strings) {
@@ -518,6 +558,10 @@ public class ForCurrency_qing extends AppCompatActivity {
             Log.d("result for convert", "onPostExecute: "+result.getText().toString());
         }
 
+        /**
+         * override method on progress update
+         * @param results Type 2
+         */
         @Override                       //Type 2
         protected void onProgressUpdate(Integer... results) {
 
@@ -526,6 +570,13 @@ public class ForCurrency_qing extends AppCompatActivity {
 
 
     }
+
+    /**
+     * get the result from other activity
+     * @param requestCode set by user
+     * @param resultCode get this code from last activty
+     * @param data bundle data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -546,6 +597,11 @@ public class ForCurrency_qing extends AppCompatActivity {
         }
     }
 
+    /**
+     * update database
+     * @param id database id
+     * @param message the result in database
+     */
     public void updateMessage(long id,String message) {
         ContentValues newValues = new ContentValues();
         newValues.put(CurrencyDatabaseOpenHelper.COL_MESSAGE, message);
@@ -555,6 +611,10 @@ public class ForCurrency_qing extends AppCompatActivity {
         myAdapter.notifyDataSetChanged();
     }
 
+    /**
+     * delete data in the database
+     * @param id database id
+     */
     public void deleteMessageId(long id) {
         //delete item from db and list
         Log.d("Aaaaaaaa","id="+id);
@@ -573,6 +633,9 @@ public class ForCurrency_qing extends AppCompatActivity {
 
     }
 
+    /**
+     * override onPause() method which start new activity will implement
+     */
     @Override
     protected void onPause() {
         super.onPause();
