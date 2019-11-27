@@ -407,7 +407,7 @@ public class ForCurrency_qing extends AppCompatActivity {
                 break;
             case R.id.item1:
                 Toast.makeText(this, message , Toast.LENGTH_LONG).show();
-
+                finish();
                 break;
             case R.id.item2:
                 alertExample();

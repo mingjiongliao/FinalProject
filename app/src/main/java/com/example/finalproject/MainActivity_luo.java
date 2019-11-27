@@ -153,16 +153,17 @@ public class MainActivity_luo extends AppCompatActivity {
         EditText et = (EditText)middle.findViewById(R.id.view_edit_text);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("The Message")
-                .setPositiveButton("Positive", new DialogInterface.OnClickListener() {
+        builder.setMessage("Go to currency")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // What to do on Accept
                         Log.d("aaaaaaa","hhhhhhhh");
-                        message=et.getText().toString();
-
+//                        message=et.getText().toString();
+                        Intent goToPage2 = new Intent(MainActivity_luo.this, ForCurrency_qing.class);
+                        startActivity(goToPage2);
                     }
                 })
-                .setNegativeButton("Negative", new DialogInterface.OnClickListener() {
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // What to do on Cancel
                     }

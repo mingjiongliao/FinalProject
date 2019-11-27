@@ -103,5 +103,7 @@ public class DetailFragmentQing extends Fragment {
         });
         return result;
     }
+
+
 }
 
