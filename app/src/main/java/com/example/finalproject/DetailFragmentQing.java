@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ public class DetailFragmentQing extends Fragment {
 
         dataFromActivity = getArguments();
         id = dataFromActivity.getLong(ForCurrency_qing.ITEM_ID );
+        Log.d("item_id", "onCreateView: "+id);
         position = dataFromActivity.getInt(ForCurrency_qing.ITEM_POSITION );
 
         // Inflate the layout for this fragment
@@ -53,6 +55,7 @@ public class DetailFragmentQing extends Fragment {
         deleteButton.setOnClickListener( clk -> {
 
             if(isTablet){
+                Log.d("did it delete", "onCreateView: "+id);
                 ForCurrency_qing parent = (ForCurrency_qing)getActivity();
                 parent.deleteMessageId(id); //this deletes the item and updates the list
 
@@ -63,6 +66,7 @@ public class DetailFragmentQing extends Fragment {
             }else{
                 ViewMessage_qing parent = (ViewMessage_qing) getActivity();
                 Intent backToFragmentExample = new Intent();
+                Log.d("item ", "onCreateView: "+dataFromActivity.getLong(ForCurrency_qing.ITEM_ID));
                 backToFragmentExample.putExtra(ForCurrency_qing.ITEM_ID, dataFromActivity.getLong(ForCurrency_qing.ITEM_ID ));
 
                 parent.setResult(Activity.RESULT_OK, backToFragmentExample); //send data back to FragmentExample in onActivityResult()

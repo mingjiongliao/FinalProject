@@ -137,7 +137,7 @@ public class ForCurrency_qing extends AppCompatActivity {
 
         CurrencyDatabaseOpenHelper dbOpener = new CurrencyDatabaseOpenHelper(this);
 
-        SQLiteDatabase db = dbOpener.getWritableDatabase();
+        db = dbOpener.getWritableDatabase();
 //        dbOpener.onUpgrade(db,1,2);
 
         //query all the results from the database:
@@ -158,9 +158,9 @@ public class ForCurrency_qing extends AppCompatActivity {
             int flag2=results.getInt(flag2ColIndex);
             String message = results.getString(mesColIndex);
             long id = results.getLong(idColIndex);
-
+            Log.d("shujukuID", "shu: "+id);
             //add the new Contact to the array list:
-            objects.add(new CountryItem(message,flag1,flag2));
+            objects.add(new CountryItem(message,flag1,flag2,id));
         }
 
         myAdapter = new MyOwnAdapter();
@@ -243,7 +243,7 @@ public class ForCurrency_qing extends AppCompatActivity {
                 newRowValues.put(CurrencyDatabaseOpenHelper.COL_FLAG2, flag2);
                 long newId = db.insert(CurrencyDatabaseOpenHelper.TABLE_NAME, null, newRowValues);
 
-                objects.add(new CountryItem(result.getText().toString(),flag1,flag2));
+                objects.add(new CountryItem(result.getText().toString(),flag1,flag2,newId));
                 //update the listView:
                 myAdapter.notifyDataSetChanged();
                 Snackbar.make(insert, "Insert sucessfully!", Snackbar.LENGTH_LONG).show();
@@ -260,7 +260,8 @@ public class ForCurrency_qing extends AppCompatActivity {
             dataToPass.putInt(ITEM_FLAG2, objects.get(position).getoFlagImage() );
             dataToPass.putString(ITEM_MESSAGE,objects.get(position).getmCountryName()  );
             dataToPass.putInt(ITEM_POSITION, position);
-            dataToPass.putLong(ITEM_ID, id);
+            dataToPass.putLong(ITEM_ID, objects.get(position).getId());
+            Log.d("getId", "onCreate: "+objects.get(position).getId());
             if(isTablet){
                 DetailFragmentQing dFragment = new DetailFragmentQing(); //add a DetailFragment
                 dFragment.setArguments( dataToPass ); //pass it a bundle for information
@@ -278,8 +279,9 @@ public class ForCurrency_qing extends AppCompatActivity {
                 nextPage.putExtra("Flag1",chosenOne.getmFlagImage());
                 nextPage.putExtra("Flag2",chosenOne.getoFlagImage());
                 nextPage.putExtra("Message", chosenOne.getmCountryName());
-                nextPage.putExtra("Id", position);
-                startActivity(nextPage);
+                nextPage.putExtra("Id", objects.get(position).getId());
+                Log.d("weizhi", "onCreate: "+position);
+                Log.d("shenmeqingkuang", "onCreate: "+id);
                 startActivityForResult(nextPage, ACTIVITY_VIEW_CONTACT);
             }
 
@@ -523,6 +525,7 @@ public class ForCurrency_qing extends AppCompatActivity {
             if(resultCode == RESULT_OK) //if you hit the delete button instead of back button
             {
                 long id = data.getLongExtra(ITEM_ID, 0);
+                Log.d("qing", "qing "+id);
                 deleteMessageId((int)id);
             }
         }
@@ -540,7 +543,7 @@ public class ForCurrency_qing extends AppCompatActivity {
         objects.remove(positionClicked);
         myAdapter.notifyDataSetChanged();
         int numDeleted = db.delete(CurrencyDatabaseOpenHelper.TABLE_NAME, CurrencyDatabaseOpenHelper.COL_ID + "=?", new String[] {Long.toString(id)});
-//        int numDeleted =db.delete(MyDatabaseOpenHelper.TABLE_NAME, MyDatabaseOpenHelper.COL_ID + "=" + id, null);
+//        int numDeleted =db.delete(CurrencyDatabaseOpenHelper.TABLE_NAME, CurrencyDatabaseOpenHelper.COL_ID + "=" + id, null);
         Log.d("Aaaaaaaa","numDeleted="+numDeleted);
 
     }

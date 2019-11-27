@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -20,6 +21,7 @@ public class ViewMessage_qing extends AppCompatActivity {
         dataToPass.putInt(ForCurrency_qing.ITEM_FLAG2, getIntent().getIntExtra("Flag2",0));
         dataToPass.putInt(ForCurrency_qing.ITEM_POSITION, getIntent().getIntExtra("Position",0));
         dataToPass.putLong(ForCurrency_qing.ITEM_ID, getIntent().getLongExtra("Id",0));
+        Log.d("why", "onCreate: "+getIntent().getLongExtra("Id",0));
         DetailFragmentQing dFragment = new DetailFragmentQing(); //add a DetailFragment
         dFragment.setArguments( dataToPass ); //pass it a bundle for information
         dFragment.setTablet(false);  //tell the fragment if it's running on a tablet or not
