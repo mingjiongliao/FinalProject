@@ -10,6 +10,9 @@
 package com.example.finalproject;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -49,6 +52,12 @@ public class RecipeSearchActivity extends AppCompatActivity {
      *Define a Context variable thisApp
      */
     private Context thisApp ;
+
+    /**
+     * get the listview
+     */
+    ListView listView ;
+
     /**
      *Define a EditText variable search
      */
@@ -57,6 +66,13 @@ public class RecipeSearchActivity extends AppCompatActivity {
      *Define a ListAdapter_recipe variable adapter
      */
     private ListAdapter_recipe adapter;
+
+    RecipeDatabaseHelper db;
+
+    /**
+     * Create the adapter to convert the array to views
+     */
+    ArrayList<DataModel_recipe> arrayOfDataModelLuos = new ArrayList<DataModel_recipe>();//define an ArrayList
 
     /**
      * main entrance that load activity layout
@@ -69,15 +85,20 @@ public class RecipeSearchActivity extends AppCompatActivity {
         search = (EditText)findViewById(R.id.insertchoice);
         thisApp = this;
 
-        /**
-         * Create the adapter to convert the array to views
-         */
-        ArrayList<DataModel_recipe> arrayOfDataModelLuos = new ArrayList<DataModel_recipe>();//define an ArrayList
+        //define a file in order to save information to, so that later the information can be fetched and used by another
+        //parameter1: file name,
+        //parameter2: permission
+        SharedPreferences prefs = getApplicationContext().getSharedPreferences("finalProject_f", Context.MODE_PRIVATE );
+        //EditText input_email = (EditText)findViewById(R.id.inputtext11);  //input_email: 指向你图里的inputtext11
+        search.setText(     prefs.getString("searchText", "")     ); //input_email: 外面已近取到了的指向你图里的inputtext11 //如果没有值，为默认值，如果有值会调用之前的值
+//String x = prefs.getString("email", "");
+        //input_email.setText(x);
+
         adapter = new ListAdapter_recipe(arrayOfDataModelLuos, this);//assign the array list to adapter
         /**
          * get the listview
           */
-        ListView listView = (ListView) findViewById(R.id.listview);
+        listView = (ListView) findViewById(R.id.listview);
         /**
          * Attach the adapter to a ListView
          * set adapter into listView. the first time, the listView will display content of arraylist, but crrently it is empty
@@ -89,18 +110,70 @@ public class RecipeSearchActivity extends AppCompatActivity {
          * encode 'beef' to code that computer understand to
          *
          */
+       // db = new DatabaseHelper(this);
+        boolean isTable = findViewById(R.id.fragmentLocation) != null;
+
+        db = new RecipeDatabaseHelper(this);
+        //viewData();
+
+        listView.setOnItemClickListener((list, item, position, id) -> {
+            Bundle dataToPass = new Bundle();
+            dataToPass.putString("Publisher", arrayOfDataModelLuos.get(position).getPublisher());
+            dataToPass.putString("F2f_url", arrayOfDataModelLuos.get(position).getF2f_url());
+            dataToPass.putString("Title", arrayOfDataModelLuos.get(position).getTitle());
+            dataToPass.putString("Source_url", arrayOfDataModelLuos.get(position).getSource_url());
+            dataToPass.putString("Recipe_id", arrayOfDataModelLuos.get(position).getRecipe_id());
+            dataToPass.putString("Image_url", arrayOfDataModelLuos.get(position).getImage_url());
+            dataToPass.putString("Social_rank", arrayOfDataModelLuos.get(position).getSocial_rank());
+            dataToPass.putString("Publisher_url", arrayOfDataModelLuos.get(position).getPublisher_url());
+            dataToPass.putInt("id", position);
+
+
+
+
+
+            if (isTable){
+                RecipeDetailFragment dFragment = new RecipeDetailFragment(); //add a DetailFragment
+                dFragment.setArguments( dataToPass ); //pass it a bundle for information
+                dFragment.setTablet(true);  //tell the fragment if it's running on a tablet or not
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.fragmentLocation, dFragment) //Add the fragment in FrameLayout
+                        .addToBackStack("AnyName") //make the back button undo the transaction
+                        .commit(); //actually load the fragment.
+            }else {
+                Intent RecipeEmptyActivity = new Intent(RecipeSearchActivity.this, RecipeEmptyActivity.class);
+                RecipeEmptyActivity.putExtras(dataToPass);
+                startActivityForResult(RecipeEmptyActivity, 345);
+            }
+
+        });
+
         searchButton.setOnClickListener( click -> {
             
 
             /**
              * tring query = Uri.encode(search.getText().toString() ); //Have to encode strings to send in URL
              */
+            //prefs = getApplicationContext().getSharedPreferences("lab3_android", Context.MODE_PRIVATE);
 
-            String baseURL = "https://www.food2fork.com/api/search?key=fdfc2f97466caa0f5b142bc3b913c366&q=";//construct the new forme of url
+            //EditText input_text2 = (EditText) findViewById(R.id.inputtext22);
+            //search.setText(     prefs.setString("searchText", "")     );
+
+            //String name="xixi";
+            //String age="22";
+
+            //input_text2.setText(prefs.getString("email", ""));
+
+            String baseURL = "http://www.food2fork.com/api/search?key=fdfc2f97466caa0f5b142bc3b913c366&q=";//construct the new forme of url
             String searchText=search.getText().toString();//get search content
+            SharedPreferences.Editor editor=prefs.edit();
+            editor.putString("searchText", searchText);
+            editor.commit();
             String realURL = baseURL + Uri.encode(searchText);//construct the real url
-            realURL = "https://torunski.ca/FinalProjectChickenBreast.json";
+            realURL = "http://torunski.ca/FinalProjectChickenBreast.json";
             Log.d("newURL is:", realURL);
+
             this.runURL(realURL);
         });}
 
@@ -137,6 +210,9 @@ public class RecipeSearchActivity extends AppCompatActivity {
 
             case R.id.help:
                 alertExample();
+                break;
+            case R.id.favoriteRecipe:
+                viewFavoriteData();
                 break;
         }
         return true;
@@ -224,7 +300,7 @@ public class RecipeSearchActivity extends AppCompatActivity {
             protected void onPostExecute(String result) {
                 super.onPostExecute(result);
 
-                ArrayList<DataModel_recipe> aListDataModelLuos =new ArrayList<>();
+            arrayOfDataModelLuos =new ArrayList<>();
 
                 try{
                     JSONObject json = new JSONObject(result);//assign the result into json of type JSONObject
@@ -256,7 +332,7 @@ public class RecipeSearchActivity extends AppCompatActivity {
                         Log.d("publisher_url:",publisher_url);
 
                         DataModel_recipe recipesObj= new DataModel_recipe(publisher, f2f_url, title, source_url, recipe_id, image_url, social_rank,publisher_url ); //create a model object
-                        aListDataModelLuos.add(recipesObj);//add a model object into arraylist
+                        arrayOfDataModelLuos.add(recipesObj);//add a model object into arraylist
                     }
 
                 }catch(JSONException e){
@@ -264,8 +340,10 @@ public class RecipeSearchActivity extends AppCompatActivity {
                 }
 
 
-                adapter.setItemList(aListDataModelLuos);//add response data to adapter    arrayList----> adapter ------->listView
-                adapter.notifyDataSetChanged();//notify listview that data is changed and display it
+                //adapter.setItemList(arrayOfDataModelLuos);//add response data to adapter    arrayList----> adapter ------->listView
+                //adapter.notifyDataSetChanged();//notify listview that data is changed and display it
+            ListAdapter_recipe adt = new ListAdapter_recipe(arrayOfDataModelLuos, getApplicationContext());
+            listView.setAdapter(adt);
 
             }
 
@@ -327,6 +405,114 @@ public class RecipeSearchActivity extends AppCompatActivity {
 
         }
 
-}
+    //This function only gets called on the phone. The tablet never goes to a new activity
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode,resultCode,data);
+        if(requestCode == 345)
+        {
+            if(resultCode == RESULT_OK) //if you hit the delete button instead of back button
+            {
+                String recipe_id = data.getStringExtra("recipe_id");
+                String button_action = data.getStringExtra("button_action");
+                int position = data.getIntExtra("id",0);
+
+                if( button_action.equals("DELETE"))
+                    deleteMessageId(position);
+                else {  //add favorite
+                    //int position = data.getIntExtra("id",0);
+                    String publisher = arrayOfDataModelLuos.get(position).getPublisher();
+                    String f2f_url =  arrayOfDataModelLuos.get(position).getF2f_url();
+                    String title =  arrayOfDataModelLuos.get(position).getTitle();
+                    String source_url =  arrayOfDataModelLuos.get(position).getSource_url();
+                    //String recipe_id =  arrayOfDataModelLuos.get(position).getRecipe_id();
+                    String image_url =  arrayOfDataModelLuos.get(position).getImage_url();
+                    String social_rank =  arrayOfDataModelLuos.get(position).getSocial_rank();
+                    String publisher_url =  arrayOfDataModelLuos.get(position).getPublisher_url();
+                    db.insertData(publisher, f2f_url, title, source_url, recipe_id, image_url, social_rank,publisher_url );
+
+                }
+
+            }
+
+        }
+    }
+
+    public void deleteMessageId(int recipe_id)
+    {
+
+        arrayOfDataModelLuos.remove(recipe_id);
+        ListAdapter_recipe adt = new ListAdapter_recipe(arrayOfDataModelLuos, getApplicationContext());
+        listView.setAdapter(adt);
+        //adapter.setItemList(arrayOfDataModelLuos);//add response data to adapter    arrayList----> adapter ------->listView
+        //adapter.notifyDataSetChanged();//notify listview that data is changed and display it
+        //db.deleteEntry(recipe_id);
+        //arrayOfDataModelLuos.clear();
+        //viewData();
+    }
+
+    private void viewData(){
+
+        Cursor cursor = db.viewAllData();             //get all data from table and assign the resultset to Curso
+        if (cursor.getCount() != 0){              //
+            while (cursor.moveToNext()){
+                String publisher = cursor.getString(1);
+                String f2f_url= cursor.getString(2);
+                String title = cursor.getString(3);
+                String source_url= cursor.getString(4);
+                String recipe_id= cursor.getString(5);
+                String image_url= cursor.getString(6);
+                String social_rank= cursor.getString(7);
+                String publisher_url= cursor.getString(8);
+                //MessageModel model = new MessageModel(cursor.getString(1), cursor.getInt(2)==0?true:false);//get one message,
+                //DataModel_recipe model = new DataModel_recipe(cursor.getString(1), cursor.getInt(2)==0?true:false,cursor.getLong(0));//get one messag
+                DataModel_recipe recipesObj= new DataModel_recipe(publisher, f2f_url, title, source_url, recipe_id, image_url, social_rank,publisher_url );
+                arrayOfDataModelLuos.add(recipesObj);   //Arraylist List<MessageModel> listMessage = new ArrayList<>();
+                ListAdapter_recipe adt = new ListAdapter_recipe(arrayOfDataModelLuos, getApplicationContext());
+                listView.setAdapter(adt);
+
+
+                //adt.setItemList(arrayOfDataModelLuos);//add response data to adapter    arrayList----> adapter ------->listView
+                //adt.notifyDataSetChanged();//notify listview that data is changed and display it
+                //arrayOfDataModelLuos.setAdapter(adt);
+            }
+        }
+    }
+
+    private void viewFavoriteData(){
+        ArrayList<DataModel_recipe> arrayOfDataModelFavorite = new ArrayList<DataModel_recipe>();//define an ArrayList
+
+        Cursor cursor = db.viewAllData();             //get all data from table and assign the resultset to Curso
+        if (cursor.getCount() != 0){              //
+            while (cursor.moveToNext()){
+                String publisher = cursor.getString(1);
+                String f2f_url= cursor.getString(2);
+                String title = cursor.getString(3);
+                String source_url= cursor.getString(4);
+                String recipe_id= cursor.getString(5);
+                String image_url= cursor.getString(6);
+                String social_rank= cursor.getString(7);
+                String publisher_url= cursor.getString(8);
+                //MessageModel model = new MessageModel(cursor.getString(1), cursor.getInt(2)==0?true:false);//get one message,
+                //DataModel_recipe model = new DataModel_recipe(cursor.getString(1), cursor.getInt(2)==0?true:false,cursor.getLong(0));//get one messag
+                DataModel_recipe recipesObj= new DataModel_recipe(publisher, f2f_url, title, source_url, recipe_id, image_url, social_rank,publisher_url );
+                arrayOfDataModelFavorite.add(recipesObj);   //Arraylist List<MessageModel> listMessage = new ArrayList<>();
+                ListAdapter_recipe adt = new ListAdapter_recipe(arrayOfDataModelFavorite, getApplicationContext());
+                listView.setAdapter(adt);
+
+
+                //adt.setItemList(arrayOfDataModelLuos);//add response data to adapter    arrayList----> adapter ------->listView
+                //adt.notifyDataSetChanged();//notify listview that data is changed and display it
+                //arrayOfDataModelLuos.setAdapter(adt);
+            }
+        }
+    }
+
+    public void saveFavorite(String publisher, String f2f_url,String title,String source_url,String recipe_id,
+                              String image_url,String social_rank,String publisher_url ){
+        db.insertData(publisher, f2f_url, title, source_url, recipe_id, image_url, social_rank,publisher_url );
+    }
+
+    }
 
 

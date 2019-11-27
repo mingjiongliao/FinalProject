@@ -18,9 +18,9 @@
         android:icon="@drawable/email"
         android:orderInCategory="200"
         app:showAsAction="always"/>
-    <item android:id="@+id/item4"
+    <item android:id="@+id/favoriteRecipe"
         android:title="@string/twiter"
-        android:icon="@drawable/twiter"
+        android:icon="@drawable/helpdialog"
         android:orderInCategory="300"
         app:showAsAction="always"/>
     <item
