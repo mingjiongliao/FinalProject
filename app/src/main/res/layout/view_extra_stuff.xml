@@ -12,11 +12,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="What is your new message"/>
+        android:text="Will you go to Qing's currency"/>
 
     <EditText android:id="@+id/view_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Type here"/>
+        android:hint="Leave a message"/>
 
 </LinearLayout>

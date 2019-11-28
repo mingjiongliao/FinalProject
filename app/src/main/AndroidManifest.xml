@@ -24,6 +24,7 @@
         </activity>
         <activity android:name=".menuToolbar_recipe" />
         <activity android:name=".RecipeEmptyActivity" />
+
         <activity android:name=".RecipeSearchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
