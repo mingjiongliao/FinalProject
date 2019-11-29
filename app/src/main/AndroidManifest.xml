@@ -10,11 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <activity android:name=".DetailStationFragment"></activity>
         <activity android:name=".Empty_station" />
         <activity android:name=".ViewStation" />
         <activity android:name=".GotoFavorite" />
         <activity android:name=".ListResult" />
+=======
+        <activity android:name=".ListResult"></activity>
+>>>>>>> parent of d33981e... saved -- delete function is not working....
 =======
         <activity android:name=".ListResult"></activity>
 >>>>>>> parent of d33981e... saved -- delete function is not working....
