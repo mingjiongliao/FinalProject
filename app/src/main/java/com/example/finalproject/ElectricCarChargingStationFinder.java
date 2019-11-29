@@ -95,8 +95,7 @@ public class ElectricCarChargingStationFinder extends AppCompatActivity {
                 builder.create().show();
                 break;
             case R.id.id6:
-                Intent goToFavorite = new Intent(ElectricCarChargingStationFinder.this, GotoFavorite.class);
-                startActivity(goToFavorite);
+
                 break;
         }
         return true;
