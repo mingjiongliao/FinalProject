@@ -40,6 +40,7 @@
     <string name="wang">王清       wang0582@algonquinlive.com</string>
     <string name="ye">叶荣中    ye000038@algonquinlive.com</string>
     <string name="luo">罗春元    luo00047@algonquinlive.com</string>
+    <string name="us">我们</string>
     <string-array name="spinner1">
         <item>加元</item>
         <item>美元</item>

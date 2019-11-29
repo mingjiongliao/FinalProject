@@ -14,6 +14,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -122,15 +123,18 @@ public class MainActivity_luo extends AppCompatActivity {
         {
             //what to do when the menu item is selected:
             case R.id.action_sign_out:
-                Toast.makeText(this, "You clicked on sign out", Toast.LENGTH_LONG).show();
                 Intent nextPage=new Intent(this,Instruction_qing.class);
                 startActivity(nextPage);
                 break;
             case R.id.option1:
-                Toast.makeText(this, "This is the initial message", Toast.LENGTH_LONG).show();
+                Intent goToPage2 = new Intent(MainActivity_luo.this, Information.class);
+                startActivity(goToPage2);
                 break;
             case R.id.option2:
-                Toast.makeText(this, "You clicked the search string", Toast.LENGTH_LONG).show();
+                String algonquin = "http://www.algonquincollege.com";
+                Intent s = new Intent(Intent.ACTION_VIEW);
+                s.setData( Uri.parse(algonquin) );
+                startActivity(s);
 //                alertExample();
                 break;
             case R.id.item1:
@@ -141,14 +145,19 @@ public class MainActivity_luo extends AppCompatActivity {
                 alertExample();
                 break;
             case R.id.item3:
-//                Snackbar.make(findViewById(R.id.toolbar), "Go Back?", Snackbar.LENGTH_LONG).setAction("Yes",new View.OnClickListener() {
-////                    @Override
-////                    public void onClick(View v) {
-////                        finish();
-////                    }
-////                }).show();
-                Snackbar.make(findViewById(R.id.item3), "You would go to gmail webpage", Snackbar.LENGTH_LONG).show();
 
+                Snackbar.make(findViewById(R.id.item3), "You would go to gmail webpage", Snackbar.LENGTH_LONG).show();
+                String gmail = "http://www.gmail.com";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData( Uri.parse(gmail) );
+                startActivity(i);
+                break;
+            case R.id.item4:
+                String titwer = "https://www.facebook.com/TwitterInc/";
+                Intent t = new Intent(Intent.ACTION_VIEW);
+                t.setData( Uri.parse(titwer) );
+                startActivity(t);
+                break;
         }
         return true;
     }
@@ -166,8 +175,10 @@ public class MainActivity_luo extends AppCompatActivity {
                         // What to do on Accept
                         Log.d("aaaaaaa","hhhhhhhh");
 //                        message=et.getText().toString();
-                        Intent goToPage2 = new Intent(MainActivity_luo.this, ForCurrency_qing.class);
-                        startActivity(goToPage2);
+                        String currencyPage = "https://www.xe.com/currencyconverter/";
+                        Intent c = new Intent(Intent.ACTION_VIEW);
+                        c.setData( Uri.parse(currencyPage) );
+                        startActivity(c);
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
