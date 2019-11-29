@@ -40,16 +40,16 @@ public class ElectricCarChargingStationFinder extends AppCompatActivity {
          * use a Lambda function to set a click listener
          */
         SharedPreferences prefs = getSharedPreferences("FileName", MODE_PRIVATE);
-        String previousLat = prefs.getString("ReserveNameLat", "");
-        String previousLong = prefs.getString("ReserveNameLong", "");
+        String previousLat = prefs.getString("ReserveNameLat", "0");
+        String previousLong = prefs.getString("ReserveNameLong", "0");
         editTextLatitude.setText(previousLat);
         editTextLongitude.setText(previousLong);
         Button btnFind = (Button)findViewById(R.id.btnFind);
         if(btnFind != null){
             btnFind.setOnClickListener(clk -> {
                 SharedPreferences.Editor editor = prefs.edit();
-                editor.putString("ReserveName1", editTextLatitude.getText().toString());
-                editor.putString("ReserveName2", editTextLongitude.getText().toString());
+                editor.putString("ReserveNameLat", editTextLatitude.getText().toString());
+                editor.putString("ReserveNameLong", editTextLongitude.getText().toString());
                 editor.commit();
 
                 /**
