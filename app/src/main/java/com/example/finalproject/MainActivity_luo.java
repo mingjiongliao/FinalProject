@@ -46,10 +46,15 @@ public class MainActivity_luo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.firstlogin_luo);
 
+        Button info=(Button)findViewById(R.id.buttontostudentinformation);
         Button recipe =(Button)findViewById(R.id.logintorecipe);
         Button qing=(Button)findViewById(R.id.currency);
         Button ye=(Button)findViewById(R.id.newsapi);
         Button liao=(Button)findViewById(R.id.electricmain);
+        info.setOnClickListener(v->{
+            Intent goToPage2 = new Intent(MainActivity_luo.this, Information.class);
+            startActivity(goToPage2);
+        });
         recipe.setOnClickListener(v -> {
             AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
 
