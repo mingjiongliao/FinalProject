@@ -14,7 +14,6 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.sql.Array;
 import java.util.ArrayList;
@@ -60,8 +59,6 @@ public class GotoFavorite extends AppCompatActivity {
 
         //This listens for items being clicked in the list view
         theList.setOnItemClickListener((parent, view, position, id) -> {
-            boolean deleted = false;
-            adapter.notifyDataSetChanged();
             Log.e("you clicked on :", "item " + position);
             //save the position in case this object gets deleted or updated
             positionClicked = position;
@@ -69,29 +66,16 @@ public class GotoFavorite extends AppCompatActivity {
             //When you click on a row, open selected contact on a new page (ViewContact)
             Station chosenOne = stationList.get(position);
             Intent nextPage = new Intent(GotoFavorite.this, ViewStation.class);
-            Bundle dataToPass = new Bundle();
-            dataToPass.putString("Title", chosenOne.getTitle());
-            dataToPass.putLong("Id", id);
-            dataToPass.putInt("Latitude", chosenOne);
-
-
+            nextPage.putExtra("Title", chosenOne.getTitle());
+            nextPage.putExtra("Id", id);
             startActivity(nextPage);
-            Intent fromViewStation = getIntent();
-            deleted = fromViewStation.getBooleanExtra("deleted", false);
-            if(deleted == true){
-                Toast.makeText(this, "you have deleted station: "+ chosenOne, Toast.LENGTH_SHORT).show();
-                //If you click the "Delete" button
-                int numDeleted = db.delete(FavoriteDBhelper.TABLE_NAME, FavoriteDBhelper.COL_ID + "=?", new String[] {Long.toString(id)});
-                db.close();
-                Log.i("ViewStation", "Deleted " + numDeleted + " rows");
-            }
         });
 
 
     }
 
     //This class needs 4 functions to work properly:
-    public class MyOwnAdapter extends BaseAdapter
+    protected class MyOwnAdapter extends BaseAdapter
     {
         @Override
         public int getCount() {
@@ -119,4 +103,3 @@ public class GotoFavorite extends AppCompatActivity {
     }
 
 }
-

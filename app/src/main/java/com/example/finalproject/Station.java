@@ -6,7 +6,7 @@ public class Station {
     //Android Studio hint: to create getter and setter, put mouse on variable and click "alt+insert"
     protected String title;
     protected long id;
-    
+
     /**Constructor:*/
     public Station(String n, long i)
     {
@@ -28,14 +28,9 @@ public class Station {
     }
 
 
-    public long getLatitude() {
-        return latitude;
-    }
-
     public long getId() {
         return id;
     }
-
 
     @NonNull
     @Override

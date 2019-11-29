@@ -37,18 +37,18 @@ public class EcarStationResult extends AppCompatActivity {
                     mapPage.putExtra("longtitude", longitude);
                     startActivity(mapPage);
                 }
-                );
+        );
         Button btnSave = (Button)findViewById(R.id.saveButton);
 
         btnSave.setOnClickListener(c->{
 
-            FavoriteDBhelper dbOpener = new FavoriteDBhelper(this);
-            SQLiteDatabase db = dbOpener.getWritableDatabase();
-            ContentValues newRowValues = new ContentValues();
-            newRowValues.put(FavoriteDBhelper.COL_TITLE, title);
-            //insert in the database:
-            long newId = db.insert(FavoriteDBhelper.TABLE_NAME, null, newRowValues);
-            Toast.makeText(this, title+" is save to your favoriate", Toast.LENGTH_SHORT).show();
+                    FavoriteDBhelper dbOpener = new FavoriteDBhelper(this);
+                    SQLiteDatabase db = dbOpener.getWritableDatabase();
+                    ContentValues newRowValues = new ContentValues();
+                    newRowValues.put(FavoriteDBhelper.COL_TITLE, title);
+                    //insert in the database:
+                    long newId = db.insert(FavoriteDBhelper.TABLE_NAME, null, newRowValues);
+                    Toast.makeText(this, title+" is save to your favoriate", Toast.LENGTH_SHORT).show();
                 }
         );
     }}

@@ -3,7 +3,6 @@ package com.example.finalproject;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -40,6 +39,13 @@ public class ViewStation extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
+                            //If you click the "Delete" button
+                            int numDeleted = db.delete(FavoriteDBhelper.TABLE_NAME, FavoriteDBhelper.COL_ID + "=?", new String[] {Long.toString(id)});
+
+                            Log.i("ViewContact", "Deleted " + numDeleted + " rows");
+
+                            //go back to previous page:
+                            finish();
                         }
 
                     })
@@ -49,8 +55,6 @@ public class ViewStation extends AppCompatActivity {
 
             //then show the dialog
             dialog.show();
-
-
         });
     }
 }

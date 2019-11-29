@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.finalproject">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,19 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <activity android:name=".DetailStationFragment"></activity>
-        <activity android:name=".Empty_station" />
+        <activity android:name=".GotoFavorite"></activity>
         <activity android:name=".ViewStation" />
-        <activity android:name=".GotoFavorite" />
         <activity android:name=".ListResult" />
-=======
-        <activity android:name=".ListResult"></activity>
->>>>>>> parent of d33981e... saved -- delete function is not working....
-=======
-        <activity android:name=".ListResult"></activity>
->>>>>>> parent of d33981e... saved -- delete function is not working....
         <activity android:name=".googlemap" />
         <activity android:name=".EcarStationResult" />
         <activity android:name=".ElectricCarChargingStationFinder" />
@@ -31,10 +23,10 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

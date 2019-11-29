@@ -63,11 +63,11 @@ public class ListResult extends AppCompatActivity {
         /**
          * show the user's input in the textview
          */
-
+/*
         apiLine = "https://api.openchargemap.io/v3/poi/?output=json&latitude="+ LatitudeFromUser+ "&longitude=" + LongtitudeFromUser+"&maxresults=10";
         //apiLine = "https://api.openchargemap.io/v3/poi/?output=json&countrycode=CA&latitude=45.347571&longitude=-75.756140&maxresults=5";
         networkThread = new LocationQuery();
-        networkThread.execute(apiLine);
+        networkThread.execute(apiLine);*/
         /**
          * find out the progressbar and listview
          */
@@ -76,30 +76,30 @@ public class ListResult extends AppCompatActivity {
         /**
          * make up an arrayList
          */
-        /*Address[] listAddress = {
-                    new Address("Baseline", 34, 21.50,null),
-                    new Address("Barhaven", 56, 15.99,"819-321-2345"),
-                    new Address("Kanata", 42, 14.90,"613-234-4452"),
-            };*/
+        Address[] listAddress = {
+                new Address("Baseline", 34, 21.50,null),
+                new Address("Barhaven", 56, 15.99,"819-321-2345"),
+                new Address("Kanata", 42, 14.90,"613-234-4452"),
+        };
         /**
          * populate the listview adapter
          */
 
-        /*ListView jsonList = findViewById(R.id.listResult);
+        ListView jsonList = findViewById(R.id.listResult);
         ArrayAdapter<Address> adapter = new ArrayAdapter<Address>(this,
                 android.R.layout.simple_expandable_list_item_1, listAddress);
-        jsonList.setAdapter(adapter);*/
+        jsonList.setAdapter(adapter);
         /**
          * use the setOnItemClickListener method for every list item when being clicked
          */
-/*        jsonList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        jsonList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-                     *//*          String item = "Title: " + listAddress.get(position).getTitle()+"\n"
+                     /*          String item = "Title: " + listAddress.get(position).getTitle()+"\n"
                                 +"Phone: " + listAddress.get(position).getPhone()+"\n"
                                 + "Latitude: " + listAddress.get(position).getlatitude()+"\n"
-                                + "Longtitude: " + listAddress.get(position).getLongitude()+"\n";*//*
+                                + "Longtitude: " + listAddress.get(position).getLongitude()+"\n";*/
 
                 Bundle dataToPass = new Bundle();
                 dataToPass.putString("title", listAddress[position].getTitle());
@@ -110,8 +110,8 @@ public class ListResult extends AppCompatActivity {
                 listDetail.putExtras(dataToPass); //send data to next activity
                 startActivityForResult(listDetail, 250);
             }
-        });*/
-        }
+        });
+    }
 
     private class LocationQuery extends AsyncTask<String, Integer, String>
     {
@@ -171,39 +171,39 @@ public class ListResult extends AppCompatActivity {
                     txtList.setText(R.string.s3);
                 }else{
                     txtList.setText(R.string.s4);
-                ArrayList<Address> listAddress = new ArrayList<Address>();
-                for (int i=0; i < jObject.length(); i++)
-                {
-                    JSONObject anObject = jObject.getJSONObject(i);
-                    String title = anObject.getJSONObject("AddressInfo").getString("Title");
-                    String phone = anObject.getJSONObject("AddressInfo").getString("ContactTelephone1");
-                    double latitude = anObject.getJSONObject("AddressInfo").getDouble("Latitude");
-                    double longitude = anObject.getJSONObject("AddressInfo").getDouble("Longitude");
-                    listAddress.add(new Address(title,latitude,longitude,phone));
-                }
-                ListView jsonList = findViewById(R.id.listResult);
-                ArrayAdapter<Address> adapter = new ArrayAdapter<Address>(getBaseContext(),
-                        android.R.layout.simple_expandable_list_item_1, listAddress);
-                jsonList.setAdapter(adapter);
-                jsonList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position,
-                                            long id) {
+                    ArrayList<Address> listAddress = new ArrayList<Address>();
+                    for (int i=0; i < jObject.length(); i++)
+                    {
+                        JSONObject anObject = jObject.getJSONObject(i);
+                        String title = anObject.getJSONObject("AddressInfo").getString("Title");
+                        String phone = anObject.getJSONObject("AddressInfo").getString("ContactTelephone1");
+                        double latitude = anObject.getJSONObject("AddressInfo").getDouble("Latitude");
+                        double longitude = anObject.getJSONObject("AddressInfo").getDouble("Longitude");
+                        listAddress.add(new Address(title,latitude,longitude,phone));
+                    }
+                    ListView jsonList = findViewById(R.id.listResult);
+                    ArrayAdapter<Address> adapter = new ArrayAdapter<Address>(getBaseContext(),
+                            android.R.layout.simple_expandable_list_item_1, listAddress);
+                    jsonList.setAdapter(adapter);
+                    jsonList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position,
+                                                long id) {
                      /*          String item = "Title: " + listAddress.get(position).getTitle()+"\n"
                                 +"Phone: " + listAddress.get(position).getPhone()+"\n"
                                 + "Latitude: " + listAddress.get(position).getlatitude()+"\n"
                                 + "Longtitude: " + listAddress.get(position).getLongitude()+"\n";*/
 
-                        Bundle dataToPass = new Bundle();
-                        dataToPass.putString("title", listAddress.get(position).getTitle());
-                        dataToPass.putString("phone", listAddress.get(position).getPhone());
-                        dataToPass.putDouble("latitude", listAddress.get(position).getlatitude());
-                        dataToPass.putDouble("longitude", listAddress.get(position).getLongitude());
-                        Intent listDetail = new Intent(ListResult.this, EcarStationResult.class);
-                        listDetail.putExtras(dataToPass); //send data to next activity
-                        startActivityForResult(listDetail, 250);
-                    }
-                });
+                            Bundle dataToPass = new Bundle();
+                            dataToPass.putString("title", listAddress.get(position).getTitle());
+                            dataToPass.putString("phone", listAddress.get(position).getPhone());
+                            dataToPass.putDouble("latitude", listAddress.get(position).getlatitude());
+                            dataToPass.putDouble("longitude", listAddress.get(position).getLongitude());
+                            Intent listDetail = new Intent(ListResult.this, EcarStationResult.class);
+                            listDetail.putExtras(dataToPass); //send data to next activity
+                            startActivityForResult(listDetail, 250);
+                        }
+                    });
                 }
             } catch (JSONException e) {
                 // Oops
@@ -213,6 +213,5 @@ public class ListResult extends AppCompatActivity {
         }
 
     }
-    }
-
+}
 

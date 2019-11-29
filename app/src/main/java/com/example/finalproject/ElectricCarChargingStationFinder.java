@@ -40,16 +40,16 @@ public class ElectricCarChargingStationFinder extends AppCompatActivity {
          * use a Lambda function to set a click listener
          */
         SharedPreferences prefs = getSharedPreferences("FileName", MODE_PRIVATE);
-        String previousLat = prefs.getString("ReserveNameLat", "Latitude value");
-        String previousLong = prefs.getString("ReserveNameLong", "Longitude value");
+        String previousLat = prefs.getString("ReserveNameLat", "");
+        String previousLong = prefs.getString("ReserveNameLong", "");
         editTextLatitude.setText(previousLat);
         editTextLongitude.setText(previousLong);
         Button btnFind = (Button)findViewById(R.id.btnFind);
         if(btnFind != null){
             btnFind.setOnClickListener(clk -> {
                 SharedPreferences.Editor editor = prefs.edit();
-                editor.putString("ReserveNameLat", editTextLatitude.getText().toString());
-                editor.putString("ReserveNameLong", editTextLongitude.getText().toString());
+                editor.putString("ReserveName1", editTextLatitude.getText().toString());
+                editor.putString("ReserveName2", editTextLongitude.getText().toString());
                 editor.commit();
 
                 /**
@@ -67,6 +67,8 @@ public class ElectricCarChargingStationFinder extends AppCompatActivity {
         }
         //set the sanckbar content to display details in it
         Snackbar.make(btnFind, getString(R.string.s1), Snackbar.LENGTH_SHORT).show();
+        //show a welcome notice.
+        Toast.makeText(this, R.string.s2, Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -91,11 +93,12 @@ public class ElectricCarChargingStationFinder extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage("Electric Car Charging Station Finder help menu")
                         .setView(middle)
-                .setCancelable(true);
+                        .setCancelable(true);
                 builder.create().show();
                 break;
             case R.id.id6:
-
+                Intent goToFavorite = new Intent(ElectricCarChargingStationFinder.this, GotoFavorite.class);
+                startActivity(goToFavorite);
                 break;
         }
         return true;
