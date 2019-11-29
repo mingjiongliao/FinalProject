@@ -14,15 +14,17 @@ public class googlemap extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_googlemap);
         Intent dataToPass = getIntent();
-        String latitude = dataToPass.getStringExtra("latitude");
-        String longitude = dataToPass.getStringExtra("longitude");
+        double latitude = dataToPass.getDoubleExtra("latitude",0);
+        double longitude = dataToPass.getDoubleExtra("longitude",0);
 
-        String geo = "geo:37.7749,-122.4194";
-     //   String geo = "geo:" + latitude + "," + longitude;
+/**
+ * use the code from google android docs, pass the data from input
+ */
+        String geo = "geo:" + latitude + "," + longitude;
         Uri gmmIntentUri = Uri.parse(geo);
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
         startActivity(mapIntent);
-        Toast.makeText(this, R.string.s2, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Location "+ latitude + "," + longitude, Toast.LENGTH_SHORT).show();
     }
 }

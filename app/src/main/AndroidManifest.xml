@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewStation"></activity>
+        <activity android:name=".DetailStationFragment"></activity>
+        <activity android:name=".Empty_station" />
+        <activity android:name=".ViewStation" />
         <activity android:name=".GotoFavorite" />
         <activity android:name=".ListResult" />
         <activity android:name=".googlemap" />
