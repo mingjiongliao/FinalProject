@@ -39,6 +39,7 @@ public class RecipeDetailFragment extends Fragment {
     private String image_url;
     private String social_rank;
     private String publisher_url;
+    private int favorite_ind;
 
     public void setTablet(boolean tablet) { isTablet = tablet; }
 
@@ -60,6 +61,11 @@ public class RecipeDetailFragment extends Fragment {
         image_url = dataFromActivity.getString("Image_url" );
         social_rank = dataFromActivity.getString("Social_rank" );
         publisher_url = dataFromActivity.getString("Publisher_url" );
+        favorite_ind = dataFromActivity.getInt("favorite_ind" );
+
+
+
+
 
 
 
@@ -101,8 +107,15 @@ public class RecipeDetailFragment extends Fragment {
 
 
 
+
         // get the delete button, and add a click listener:
         Button deleteButton = (Button)result.findViewById(R.id.deleteButton);
+        Button addButton = (Button)result.findViewById(R.id.saveButton);
+        if(favorite_ind==0){
+            deleteButton.setVisibility(View.INVISIBLE);
+        }
+        else
+            addButton.setVisibility(View.INVISIBLE);
         deleteButton.setOnClickListener( clk -> {
 
 
@@ -129,7 +142,7 @@ public class RecipeDetailFragment extends Fragment {
 
         });
 
-        Button addButton = (Button)result.findViewById(R.id.saveButton);
+
         addButton.setOnClickListener( clk -> {
 
 
