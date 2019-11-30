@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    tools:context=".News_Activity_Main">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/main_menu_news"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/news_menu_news"  />
+
+    <TextView
+        android:id="@+id/firstline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/main_menu_news"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:text="@string/firstline"/>
+
+
+
+    <ScrollView
+        android:id="@+id/news_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/relativeMenuLayout"
+        android:fillViewport="true">
+
+        <ListView
+            android:id="@+id/news_articlesListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+        </ListView>
+    </ScrollView>
+
+
+    <RelativeLayout
+        android:id="@+id/relativeMenuLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/firstline">
+
+
+
+        <EditText
+            android:id="@+id/news_search_editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true" />
+
+        <Button
+            android:id="@+id/news_searchnewsbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/news_search_editText"
+            android:text="@string/searchnewsbutton" />
+
+        <Button
+            android:id="@+id/news_favorites"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/news_searchnewsbutton"
+            android:text="@string/news_go_favorites" />
+        <ProgressBar
+            android:id="@+id/news_progress_bar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/news_favorites"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content">
+        </ProgressBar>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
