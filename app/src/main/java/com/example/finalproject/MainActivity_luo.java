@@ -14,6 +14,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -46,43 +47,20 @@ public class MainActivity_luo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.firstlogin_luo);
 
-        //Toolbar tBar = (Toolbar)findViewById(R.id.toolbar);
-        //setSupportActionBar(tBar);
-
- //       Button milestone1Button = (Button)findViewById(R.id.logintorecipe);
-  //      milestone1Button.setOnClickListener ( Click ->
-  //      {
- //           AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
- //           //This is the builder pattern, just call many functions on the same object:
-
- //           AlertDialog dialog = builder.setTitle("This is information about our team member")
-  //                  .setMessage("Do you want to go there?")
-  //                  .setPositiveButton("Yes", (d,w) -> {
-    //                            Intent student = new Intent(MainActivity.this, StudentInfo.class);
-  //                              startActivity(student);
-   //                         }
-  //                  )
-  //                  //If you click the "Cancel" button:
-   //                 .setNegativeButton("Cancel", (d,w) -> {  /* nothing */})
-   //                 .create();
-
-  //          //then show the dialog
-   //         dialog.show();
-
-            //show a notification: first parameter is any view on screen. second parameter is the text. Third parameter is the length (SHORT/LONG)
-  //          Snackbar.make(milestone1Button, "I'm a snackbar", Snackbar.LENGTH_LONG).show();
-
- //           //show a notice window to say how many were updated.
- //           Toast.makeText(this, "I'm a toast", Toast.LENGTH_LONG).show();
-//
-   //     });
-
-
+        Button info=(Button)findViewById(R.id.buttontostudentinformation);
         Button recipe =(Button)findViewById(R.id.logintorecipe);
         Button qing=(Button)findViewById(R.id.currency);
         Button ye=(Button)findViewById(R.id.newsapi);
         Button liao=(Button)findViewById(R.id.electricmain);
+        info.setOnClickListener(v->{
+            Intent goToPage2 = new Intent(MainActivity_luo.this, Information.class);
+            startActivity(goToPage2);
+        });
+
+        ye.setOnClickListener(k->{
+            Intent goToNews = new Intent(MainActivity_luo.this, News_Activity_Main.class);
+            startActivity(goToNews);
+        });
         recipe.setOnClickListener(v -> {
             AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
 
@@ -107,7 +85,10 @@ public class MainActivity_luo extends AppCompatActivity {
             Intent goToPage2 = new Intent(MainActivity_luo.this, ForCurrency_qing.class);
             startActivity(goToPage2);
         });
-
+        liao.setOnClickListener(v -> {
+            Intent goToPage1 = new Intent(MainActivity_luo.this, ElectricCarChargingStationFinder.class);
+            startActivity(goToPage1);
+        });
     }
 
     /**
@@ -119,13 +100,13 @@ public class MainActivity_luo extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.example_menu, menu);
+        inflater.inflate(R.menu.menuqing, menu);
+//        inflater.inflate(R.menu.example_menu, menu);
 
 
         /* slide 15 material:  */
         MenuItem searchItem = menu.findItem(R.id.search_item);
         SearchView sView = (SearchView) searchItem.getActionView();
-
         sView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -143,48 +124,52 @@ public class MainActivity_luo extends AppCompatActivity {
         return true;
     }
 
-    /**
-     * the actions for what to do when the recipe_menu item is selected:
-     * @param item
-     * @return boolean value of whether or not the action is successful
-     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch(item.getItemId())
         {
             //what to do when the menu item is selected:
-            case R.id.help:
-                Toast.makeText(this, "You clicked on sign out", Toast.LENGTH_LONG).show();
+            case R.id.action_sign_out:
+                Intent nextPage=new Intent(this,Instruction_qing.class);
+                startActivity(nextPage);
                 break;
             case R.id.option1:
-                Toast.makeText(this, "This is the initial message", Toast.LENGTH_LONG).show();
+                Intent goToPage2 = new Intent(MainActivity_luo.this, Information.class);
+                startActivity(goToPage2);
                 break;
             case R.id.option2:
-                Toast.makeText(this, "You clicked the search string", Toast.LENGTH_LONG).show();
-                alertExample();
+                String algonquin = "http://www.algonquincollege.com";
+                Intent s = new Intent(Intent.ACTION_VIEW);
+                s.setData( Uri.parse(algonquin) );
+                startActivity(s);
+//                alertExample();
                 break;
             case R.id.item1:
-
                 Toast.makeText(this, message , Toast.LENGTH_LONG).show();
+
                 break;
             case R.id.item2:
                 alertExample();
                 break;
             case R.id.item3:
-                Snackbar.make(findViewById(R.id.toolbar), "Go Back?", Snackbar.LENGTH_LONG).setAction("Yes",new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        finish();
-                    }
-                }).show();
+
+                Snackbar.make(findViewById(R.id.item3), "You would go to gmail webpage", Snackbar.LENGTH_LONG).show();
+                String gmail = "http://www.gmail.com";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData( Uri.parse(gmail) );
+                startActivity(i);
+                break;
+            case R.id.item4:
+                String titwer = "https://www.facebook.com/TwitterInc/";
+                Intent t = new Intent(Intent.ACTION_VIEW);
+                t.setData( Uri.parse(titwer) );
+                startActivity(t);
+                break;
         }
         return true;
     }
 
-    /**
-     * To dispaly alert_dialog box
-     */
     public void alertExample()
     {
         View middle = getLayoutInflater().inflate(R.layout.view_extra_stuff, null);
@@ -192,16 +177,19 @@ public class MainActivity_luo extends AppCompatActivity {
         EditText et = (EditText)middle.findViewById(R.id.view_edit_text);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("The Message")
-                .setPositiveButton("Positive", new DialogInterface.OnClickListener() {
+        builder.setMessage("Go to currency")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // What to do on Accept
                         Log.d("aaaaaaa","hhhhhhhh");
-                        message=et.getText().toString();
-
+//                        message=et.getText().toString();
+                        String currencyPage = "https://www.xe.com/currencyconverter/";
+                        Intent c = new Intent(Intent.ACTION_VIEW);
+                        c.setData( Uri.parse(currencyPage) );
+                        startActivity(c);
                     }
                 })
-                .setNegativeButton("Negative", new DialogInterface.OnClickListener() {
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // What to do on Cancel
                     }

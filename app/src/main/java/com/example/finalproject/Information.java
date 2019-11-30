@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class menuToolbar_recipe extends AppCompatActivity {
+public class Information extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.recipe_menu_toolbar);
+        setContentView(R.layout.activity_information);
     }
 }

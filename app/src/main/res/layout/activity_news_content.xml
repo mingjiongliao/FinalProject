@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/news_fragmentLocation">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:text="@string/news_detail"
+        android:textAlignment="center"
+        android:layout_alignParentTop="true"
+        android:id="@+id/news_frag_detail"
+        />
+
+    <RelativeLayout
+        android:id="@+id/news_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/news_frag_detail"
+       >
+
+        <TextView
+            android:id="@+id/news_content_frag_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            />
+
+        <TextView
+            android:id="@+id/news_details_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/news_content_frag_title"
+            />
+
+        <ImageView
+            android:id="@+id/news_frag_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/news_details_description" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/news_urlbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/news_btn_save"
+        android:text="@string/news_go_to_web"/>
+
+    <Button
+        android:id="@+id/news_btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/news_btn_goback"
+        android:text="@string/news_saveTo_favorite"/>
+
+    <Button
+        android:id="@+id/news_btn_goback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Go back"/>
+
+
+
+</RelativeLayout>

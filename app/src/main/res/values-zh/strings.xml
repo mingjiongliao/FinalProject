@@ -40,6 +40,7 @@
     <string name="wang">王清       wang0582@algonquinlive.com</string>
     <string name="ye">叶荣中    ye000038@algonquinlive.com</string>
     <string name="luo">罗春元    luo00047@algonquinlive.com</string>
+    <string name="us">我们</string>
     <string-array name="spinner1">
         <item>加元</item>
         <item>美元</item>
@@ -59,6 +60,26 @@
     <string name="electricmain">电动车充电站:</string>
     <string name="logintorecipe">菜单搜索引擎:</string>
     <string name="Name">姓名:</string>
+
+
+    <string name="news_Name">姓名:</string>
+
+
+    <string name="news_menu_help">幫助</string>
+    <string name="news_menu_news">新聞</string>
+    <string name="news_go_favorites">保存到收藏夾</string>
+    <string name="firstline">歡迎來到新聞頻道</string>
+    <string name="search_news">輸入關鍵詞</string>
+    <string name="searchnewsbutton">搜索</string>
+    <string name="news_title">新聞標題</string>
+    <string name="news_goback">返回</string>
+    <string name="news_help">2019 最後作業-新聞</string>
+    <string name="news_search1">輸入關鍵詞搜索</string>
+    <string name="news_search2">選擇想要細看的標題</string>
+    <string name="news_search3">觀看保存的新聞</string>
+    <string name="news_detail">新聞内容</string>
+    <string name="news_saveTo_favorite">保留到收藏</string>
+    <string name="news_go_to_web">打開新聞網頁</string>
 
 </resources>
 

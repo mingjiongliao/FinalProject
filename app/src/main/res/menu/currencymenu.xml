@@ -8,19 +8,19 @@
         app:showAsAction="always"/>
 
     <item android:id="@+id/item2"
-        android:title="@string/dollar"
-        android:icon="@drawable/currency"
+        android:title="@string/liao"
+        android:icon="@drawable/liao"
         android:orderInCategory="100"
         app:showAsAction="always"/>
 
     <item android:id="@+id/item3"
-        android:title="@string/email"
-        android:icon="@drawable/email"
+        android:title="@string/luo"
+        android:icon="@drawable/yuan"
         android:orderInCategory="200"
         app:showAsAction="always"/>
     <item android:id="@+id/item4"
-        android:title="@string/twiter"
-        android:icon="@drawable/twiter"
+        android:title="@string/ye"
+        android:icon="@drawable/ye"
         android:orderInCategory="300"
         app:showAsAction="always"/>
     <item
