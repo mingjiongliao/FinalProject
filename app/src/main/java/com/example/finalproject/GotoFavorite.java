@@ -21,7 +21,6 @@ import java.util.ArrayList;
 public class GotoFavorite extends AppCompatActivity {
 
     ArrayList<Station> stationList = new ArrayList<>();
-    MyOwnAdapter myAdapter;
     int positionClicked = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +29,6 @@ public class GotoFavorite extends AppCompatActivity {
         //get a database:
         FavoriteDBhelper dbOpener = new FavoriteDBhelper(this);
         SQLiteDatabase db = dbOpener.getWritableDatabase();
-
         //query all the results from the database:
         String[] columns = {FavoriteDBhelper.COL_ID, FavoriteDBhelper.COL_TITLE};
         Cursor results = db.query(false, FavoriteDBhelper.TABLE_NAME, columns, null, null, null, null, null, null);
@@ -72,34 +70,6 @@ public class GotoFavorite extends AppCompatActivity {
         });
 
 
-    }
-
-    //This class needs 4 functions to work properly:
-    protected class MyOwnAdapter extends BaseAdapter
-    {
-        @Override
-        public int getCount() {
-            return stationList.size();
-        }
-
-        public Station getItem(int position){
-            return stationList.get(position);
-        }
-
-        public View getView(int position, View old, ViewGroup parent)
-        {
-            LayoutInflater inflater = getLayoutInflater();
-
-            View newView = inflater.inflate(R.layout.activity_goto_favorite, parent, false );
-
-
-            return newView;
-        }
-
-        public long getItemId(int position)
-        {
-            return getItem(position).getId();
-        }
     }
 
 }
