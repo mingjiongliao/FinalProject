@@ -73,6 +73,9 @@ public class RecipeSearchActivity extends AppCompatActivity {
      * Create the adapter to convert the array to views
      */
     ArrayList<DataModel_recipe> arrayOfDataModelLuos = new ArrayList<DataModel_recipe>();//define an ArrayList
+    ArrayList<DataModel_recipe> arrayOfDataModelFavorite = new ArrayList<DataModel_recipe>();
+
+    int favorite_ind = 0;
 
     /**
      * main entrance that load activity layout
@@ -127,6 +130,8 @@ public class RecipeSearchActivity extends AppCompatActivity {
             dataToPass.putString("Social_rank", arrayOfDataModelLuos.get(position).getSocial_rank());
             dataToPass.putString("Publisher_url", arrayOfDataModelLuos.get(position).getPublisher_url());
             dataToPass.putInt("id", position);
+            dataToPass.putInt("favorite_ind", favorite_ind);
+
 
 
 
@@ -212,6 +217,7 @@ public class RecipeSearchActivity extends AppCompatActivity {
                 alertExample();
                 break;
             case R.id.favoriteRecipe:
+                favorite_ind=1;
                 viewFavoriteData();
                 break;
         }
@@ -300,7 +306,8 @@ public class RecipeSearchActivity extends AppCompatActivity {
             protected void onPostExecute(String result) {
                 super.onPostExecute(result);
 
-            arrayOfDataModelLuos =new ArrayList<>();
+            //arrayOfDataModelLuos =new ArrayList<>();
+            arrayOfDataModelLuos.clear();
 
                 try{
                     JSONObject json = new JSONObject(result);//assign the result into json of type JSONObject
@@ -339,11 +346,13 @@ public class RecipeSearchActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-
+            favorite_ind=0;
                 //adapter.setItemList(arrayOfDataModelLuos);//add response data to adapter    arrayList----> adapter ------->listView
                 //adapter.notifyDataSetChanged();//notify listview that data is changed and display it
-            ListAdapter_recipe adt = new ListAdapter_recipe(arrayOfDataModelLuos, getApplicationContext());
-            listView.setAdapter(adt);
+            //ListAdapter_recipe adt = new ListAdapter_recipe(arrayOfDataModelLuos, getApplicationContext());
+            //listView.setAdapter(adt);
+            adapter.setItemList(arrayOfDataModelLuos);
+            adapter.notifyDataSetChanged();
 
             }
 
@@ -438,12 +447,24 @@ public class RecipeSearchActivity extends AppCompatActivity {
         }
     }
 
-    public void deleteMessageId(int recipe_id)
+    public void deleteMessageId(int position)
     {
+        //String recipe_id = arrayOfDataModelLuos.get(position).getRecipe_id();
+        //db.deleteEntry(recipe_id);
+        //arrayOfDataModelLuos.remove(position);
 
-        arrayOfDataModelLuos.remove(recipe_id);
-        ListAdapter_recipe adt = new ListAdapter_recipe(arrayOfDataModelLuos, getApplicationContext());
-        listView.setAdapter(adt);
+        String recipe_id = arrayOfDataModelFavorite.get(position).getRecipe_id();
+        int numberOFEntriesDeleted = db.deleteEntry(recipe_id);
+        Log.d("Delted favorite","id:"+numberOFEntriesDeleted);
+        arrayOfDataModelFavorite.remove(position);
+
+        arrayOfDataModelLuos=arrayOfDataModelFavorite;
+
+        adapter.notifyDataSetChanged();
+        //ListAdapter_recipe adt = new ListAdapter_recipe(arrayOfDataModelLuos, getApplicationContext());
+        //listView.setAdapter(adt);
+
+
         //adapter.setItemList(arrayOfDataModelLuos);//add response data to adapter    arrayList----> adapter ------->listView
         //adapter.notifyDataSetChanged();//notify listview that data is changed and display it
         //db.deleteEntry(recipe_id);
@@ -480,8 +501,8 @@ public class RecipeSearchActivity extends AppCompatActivity {
     }
 
     private void viewFavoriteData(){
-        ArrayList<DataModel_recipe> arrayOfDataModelFavorite = new ArrayList<DataModel_recipe>();//define an ArrayList
-
+        //ArrayList<DataModel_recipe> arrayOfDataModelFavorite = new ArrayList<DataModel_recipe>();//define an ArrayList
+        arrayOfDataModelFavorite.clear();
         Cursor cursor = db.viewAllData();             //get all data from table and assign the resultset to Curso
         if (cursor.getCount() != 0){              //
             while (cursor.moveToNext()){
@@ -497,15 +518,22 @@ public class RecipeSearchActivity extends AppCompatActivity {
                 //DataModel_recipe model = new DataModel_recipe(cursor.getString(1), cursor.getInt(2)==0?true:false,cursor.getLong(0));//get one messag
                 DataModel_recipe recipesObj= new DataModel_recipe(publisher, f2f_url, title, source_url, recipe_id, image_url, social_rank,publisher_url );
                 arrayOfDataModelFavorite.add(recipesObj);   //Arraylist List<MessageModel> listMessage = new ArrayList<>();
-                ListAdapter_recipe adt = new ListAdapter_recipe(arrayOfDataModelFavorite, getApplicationContext());
-                listView.setAdapter(adt);
+                //ListAdapter_recipe adt = new ListAdapter_recipe(arrayOfDataModelFavorite, getApplicationContext());
+                //listView.setAdapter(adt);
 
 
                 //adt.setItemList(arrayOfDataModelLuos);//add response data to adapter    arrayList----> adapter ------->listView
                 //adt.notifyDataSetChanged();//notify listview that data is changed and display it
                 //arrayOfDataModelLuos.setAdapter(adt);
             }
+
         }
+        //arrayOfDataModelLuos.clear();
+        arrayOfDataModelLuos=arrayOfDataModelFavorite;
+
+        adapter.setItemList(arrayOfDataModelFavorite);
+
+        adapter.notifyDataSetChanged();
     }
 
     public void saveFavorite(String publisher, String f2f_url,String title,String source_url,String recipe_id,
