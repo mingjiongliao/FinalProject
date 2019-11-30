@@ -26,7 +26,6 @@ public class FavoriteFragment extends Fragment {
 
         dataFromActivity = getArguments();
         db_id = dataFromActivity.getLong("db_id" );
-        id = dataFromActivity.getInt("id" );
         // Inflate the layout for this fragment
         View result =  inflater.inflate(R.layout.favorite_fragment, container, false);
 
