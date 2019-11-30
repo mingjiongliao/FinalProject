@@ -63,7 +63,6 @@
     <string name="logintorecipe">RECIPE SEARCH ENGIN:</string>Name
 
     <string name="Name">Name:</string>
-
     <string name="latitude">latitude</string>
     <string name="longitude">longitude</string>
     <string name="electric_car_charging_station_finder" translatable="false">Electric Car Charging Station finder</string>
@@ -83,4 +82,20 @@
     <string name="s11">Yes</string>
     <string name="s13">Cancel</string>
     <string name="what_is_your_new_message">This is the Version 5.23. \n Author: Mingjiong Liao \n How to use it? \n Just input the latitude and longitude of your desination, and Get your list of location. if you want to know exactly of the location, click the google map icon to get the detals. that is it!</string>
+    <string name="news_Name">Name:</string>
+    <string name="news_menu_help">help</string>
+    <string name="news_menu_news">News</string>
+    <string name="news_go_favorites">Go to favorites</string>
+    <string name="firstline">welcome to news search</string>
+    <string name="search_news">Type search title</string>
+    <string name="searchnewsbutton">Search</string>
+    <string name="news_title">News Title</string>
+    <string name="news_goback">goback</string>
+    <string name="news_help">2019 finalProject-NewsApi</string>
+    <string name="news_search1">Type tile to start search</string>
+    <string name="news_search2">Select item from the list to view content</string>
+    <string name="news_search3">choose to view saved articles</string>
+    <string name="news_detail">News Detail</string>
+    <string name="news_saveTo_favorite">Save to favorite</string>
+    <string name="news_go_to_web">Open news webpage</string>
 </resources>

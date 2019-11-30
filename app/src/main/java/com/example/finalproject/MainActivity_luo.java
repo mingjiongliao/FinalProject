@@ -56,6 +56,11 @@ public class MainActivity_luo extends AppCompatActivity {
             Intent goToPage2 = new Intent(MainActivity_luo.this, Information.class);
             startActivity(goToPage2);
         });
+
+        ye.setOnClickListener(k->{
+            Intent goToNews = new Intent(MainActivity_luo.this, News_Activity_Main.class);
+            startActivity(goToNews);
+        });
         recipe.setOnClickListener(v -> {
             AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
 
