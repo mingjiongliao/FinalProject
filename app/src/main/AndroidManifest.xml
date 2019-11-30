@@ -16,6 +16,13 @@
         <activity android:name=".ViewMessage_qing" />
         <activity android:name=".Instruction_qing" />
         <activity android:name=".ForCurrency_qing" />
+        <activity android:name=".ElectricCarChargingStationFinder" />
+        <activity android:name=".Empty_favorite_fragment" />
+        <activity android:name=".GotoFavorite" />
+        <activity android:name=".ViewStation" />
+        <activity android:name=".googlemap" />
+        <activity android:name=".EcarStationResult" />
+        <activity android:name=".ListResult" />
         <activity android:name=".News_Empty_Activity" />
         <activity android:name=".News_Activity_Main" />
         <activity android:name=".NewsFavourites" />

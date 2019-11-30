@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ProjetFinal</string>
+    <string name="Button">Informations sur les étudiants</string>
+    <string name="currency">Conversion de devise étrangère</string>
+    <string name="convert">convert</string>
+    <string name="insert">insert</string>
+    <string name="amount">Enter amount</string>
+    <string name="result">Result</string>
+    <string name="country_prompt">Choose currency</string>
+    <string name="country_transfer">Choose currency you want to transfer</string>
+    <string name="update">update</string>
+    <string name="delete">delete</string>
+    <string name="liao">Mingjiong Liao  liao0019@algonquinlive.com</string>
+    <string name="wang">Qing Wang       wang0582@algonquinlive.com</string>
+    <string name="ye">Rongzhong Ye    ye000038@algonquinlive.com</string>
+    <string name="luo">Chunyuan Luo    luo00047@algonquinlive.com</string>
+    <string name="latitude">latitude</string>
+    <string name="longitude">longitude</string>
+    <string name="electric_car_charging_station_finder">Moteur de recherche de voiture électrique</string>
+    <string name="input_here">Entrez ici:</string>
+    <string name="find">Recherche</string>
+    <string name="s1"><![CDATA[Entrez une latitude et une longitude, obtenez votre liste emplacement]]></string>
+    <string name="s2">Bienvenue dans la recherche de stations de recharge de voitures électriques</string>
+    <string name="s3">Il ni y a pas de station pour ce lieu</string>
+    <string name="s4">Liste des stations pour cet endroit</string>
+    <string name="s5">Ce sont des informations sur notre membre de le équipe</string>
+    <string name="s6">veux-tu y aller?</string>
+    <string name="s7">Oui</string>
+    <string name="s8">Annuler</string>
+    <string name="s9">Vous entrerez dans la activité de recherche de station de recharge de voiture électrique créée par Mingjiong</string>
+    <string name="s10">Êtes-vous sûr que vous allez entrer?</string>
+    <string name="s12">Nous traitons</string>
+    <string name="s11">Oui</string>
+    <string name="s13">Annuler</string>
+    <string name="what_is_your_new_message">Ceci est la version 5.23. \ n Auteur: Mingjiong Liao \ n Comment la utiliser? \ n Entrez simplement la latitude et la longitude de votre choix et obtenez votre liste de localisations. si vous voulez connaître exactement le emplacement, cliquez sur icône Google Map pour obtenir les détails. voi la!</string>
+</resources>

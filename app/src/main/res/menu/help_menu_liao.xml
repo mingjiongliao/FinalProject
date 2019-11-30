@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:title="Liao" android:id="@+id/id5" android:icon="@drawable/help" app:showAsAction="always"/>
+    <item android:title="Favorite" android:id="@+id/id6" android:icon="@drawable/save" app:showAsAction="always"/>
+</menu>
