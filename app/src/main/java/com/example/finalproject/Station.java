@@ -46,6 +46,19 @@ public class Station {
     public void setPhone(String phone){
         this.phone = phone;
     }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongtitude() {
+        return longtitude;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
     @NonNull
     @Override
     public String toString() {
