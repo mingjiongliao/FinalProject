@@ -63,7 +63,7 @@ public class FavoriteDBhelper extends SQLiteOpenHelper {
     public int deleteEntry(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        String where = "MessageID=?";
+        String where = "_id=?";
         int numberOFEntriesDeleted = db.delete(TABLE_NAME, where, new String[]{Integer.toString(id)});
         return numberOFEntriesDeleted;
     }
