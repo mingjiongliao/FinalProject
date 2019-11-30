@@ -143,7 +143,7 @@ public class News_Activity_Main extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.currencymenu, menu);
+        inflater.inflate(R.menu.yemenu, menu);
 //        inflater.inflate(R.menu.example_menu, menu);
 
 
@@ -203,7 +203,7 @@ public class News_Activity_Main extends AppCompatActivity {
                 startActivity(goToPage2);
                 break;
             case R.id.item4:
-                Intent goToNews = new Intent(this, News_Activity_Main.class);
+                Intent goToNews = new Intent(this, ForCurrency_qing.class);
                 startActivity(goToNews);
                 break;
         }
