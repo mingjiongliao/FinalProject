@@ -6,6 +6,9 @@ public class Station {
     //Android Studio hint: to create getter and setter, put mouse on variable and click "alt+insert"
     protected String title;
     protected long id;
+    protected double latitude;
+    protected double longtitude;
+    protected String phone;
 
     /**Constructor:*/
     public Station(String n, long i)
@@ -32,6 +35,17 @@ public class Station {
         return id;
     }
 
+    public void setLatitude(double lat){
+        latitude = lat;
+    }
+
+    public void setLongtitude(double lon){
+        longtitude = lon;
+    }
+
+    public void setPhone(String phone){
+        this.phone = phone;
+    }
     @NonNull
     @Override
     public String toString() {
