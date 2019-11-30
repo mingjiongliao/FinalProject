@@ -11,11 +11,9 @@
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="This is your favorite list:
-
-
-" />
+            android:layout_height="60dp"
+            android:textColorHighlight="@color/design_default_color_on_primary"
+            android:text="This is your favorite list:" />
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -118,6 +118,7 @@ public class GotoFavorite extends AppCompatActivity {
             {
                 long id = data.getLongExtra("db_id", 0);
                 deleteStationId((int)id);
+
             }
         }
     }
