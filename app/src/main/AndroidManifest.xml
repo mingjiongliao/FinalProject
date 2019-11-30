@@ -15,6 +15,7 @@
         <activity android:name=".ViewStation" />
         <activity android:name=".ListResult" />
         <activity android:name=".googlemap" />
+        <activity android:name=".Empty_favorite_fragment" />
         <activity android:name=".EcarStationResult" />
         <activity android:name=".ElectricCarChargingStationFinder" />
         <activity android:name=".StudentInfo" />
