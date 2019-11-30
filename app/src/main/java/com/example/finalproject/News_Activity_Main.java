@@ -143,7 +143,7 @@ public class News_Activity_Main extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menuqing, menu);
+        inflater.inflate(R.menu.currencymenu, menu);
 //        inflater.inflate(R.menu.example_menu, menu);
 
 
@@ -167,6 +167,11 @@ public class News_Activity_Main extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * create menu option item
+     * @param item menu item
+     * @return true or not
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -174,40 +179,32 @@ public class News_Activity_Main extends AppCompatActivity {
         {
             //what to do when the menu item is selected:
             case R.id.action_sign_out:
+                Toast.makeText(this, "You clicked on sign out", Toast.LENGTH_LONG).show();
                 Intent nextPage=new Intent(this,Instruction_qing.class);
                 startActivity(nextPage);
                 break;
             case R.id.option1:
-                Intent goToPage2 = new Intent(News_Activity_Main.this, Information.class);
-                startActivity(goToPage2);
+                Toast.makeText(this, "This is the initial message", Toast.LENGTH_LONG).show();
                 break;
             case R.id.option2:
-                String algonquin = "http://www.algonquincollege.com";
-                Intent s = new Intent(Intent.ACTION_VIEW);
-                s.setData( Uri.parse(algonquin) );
-                startActivity(s);
-//                alertExample();
-                break;
-            case R.id.item1:
-                Toast.makeText(this, "hello" , Toast.LENGTH_LONG).show();
-
-                break;
-            case R.id.item2:
+                Toast.makeText(this, "You clicked the search string", Toast.LENGTH_LONG).show();
                 helpDialog();
                 break;
+            case R.id.item1:
+                Toast.makeText(this, "go to main" , Toast.LENGTH_LONG).show();
+                finish();
+                break;
+            case R.id.item2:
+                Intent goToPage1 = new Intent(this, ElectricCarChargingStationFinder.class);
+                startActivity(goToPage1);
+                break;
             case R.id.item3:
-
-                Snackbar.make(findViewById(R.id.item3), "You would go to gmail webpage", Snackbar.LENGTH_LONG).show();
-                String gmail = "http://www.gmail.com";
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData( Uri.parse(gmail) );
-                startActivity(i);
+                Intent goToPage2 = new Intent(this, RecipeSearchActivity.class);
+                startActivity(goToPage2);
                 break;
             case R.id.item4:
-                String titwer = "https://www.facebook.com/TwitterInc/";
-                Intent t = new Intent(Intent.ACTION_VIEW);
-                t.setData( Uri.parse(titwer) );
-                startActivity(t);
+                Intent goToNews = new Intent(this, News_Activity_Main.class);
+                startActivity(goToNews);
                 break;
         }
         return true;

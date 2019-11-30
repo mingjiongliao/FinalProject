@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/item1"
+        android:title="@string/home"
+        android:icon="@drawable/main"
+        android:orderInCategory="50"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/item2"
+        android:title="@string/liao"
+        android:icon="@drawable/liao"
+        android:orderInCategory="100"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/item3"
+        android:title="@string/luo"
+        android:icon="@drawable/yuan"
+        android:orderInCategory="200"
+        app:showAsAction="always"/>
+    <item android:id="@+id/item4"
+        android:title="@string/ye"
+        android:icon="@drawable/ye"
+        android:orderInCategory="300"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/action_sign_out"
+        android:title="@string/help"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/option1"
+        android:title="@string/contact"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/option2"
+        android:title="@string/us"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/search_item"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        android:icon="@android:drawable/ic_search_category_default"
+        app:showAsAction="always|collapseActionView"
+        android:title="@string/search"/>
+</menu>

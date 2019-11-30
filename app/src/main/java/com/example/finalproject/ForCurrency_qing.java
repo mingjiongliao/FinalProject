@@ -73,6 +73,7 @@ public class ForCurrency_qing extends AppCompatActivity {
     private String amountValue=null;
     private String baseValue=null;
     private String symbols=null;
+    private ProgressDialog progressBar;
     //    private ProgressBar progressBar;
     private float rate=0.0f;
     private SharedPreferences prefs;
@@ -182,7 +183,7 @@ public class ForCurrency_qing extends AppCompatActivity {
 
         // convert data to the result
         convert.setOnClickListener(v -> {
-            ProgressDialog progressBar = new ProgressDialog(v.getContext());
+            progressBar = new ProgressDialog(v.getContext());
             progressBar.setCancelable(true);
             progressBar.setMessage("File downloading ...");
             progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -387,7 +388,7 @@ public class ForCurrency_qing extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menuqing, menu);
+        inflater.inflate(R.menu.currencymenu, menu);
 //        inflater.inflate(R.menu.example_menu, menu);
 
 
@@ -439,15 +440,17 @@ public class ForCurrency_qing extends AppCompatActivity {
                 finish();
                 break;
             case R.id.item2:
-                alertExample();
+                Intent goToPage1 = new Intent(this, ElectricCarChargingStationFinder.class);
+                startActivity(goToPage1);
                 break;
             case R.id.item3:
-                Snackbar.make(findViewById(R.id.toolbar), "Go Back?", Snackbar.LENGTH_LONG).setAction("Yes",new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        finish();
-                    }
-                }).show();
+                Intent goToPage2 = new Intent(this, RecipeSearchActivity.class);
+                startActivity(goToPage2);
+                break;
+            case R.id.item4:
+                Intent goToNews = new Intent(this, News_Activity_Main.class);
+                startActivity(goToNews);
+                break;
         }
         return true;
     }
@@ -556,6 +559,7 @@ public class ForCurrency_qing extends AppCompatActivity {
             double value=Double.parseDouble(amountValue);
             result.setText(value+" "+baseValue+" = "+df.format(rate*value)+" "+symbols);
             Log.d("result for convert", "onPostExecute: "+result.getText().toString());
+            progressBar.dismiss();
         }
 
         /**
