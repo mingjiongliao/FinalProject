@@ -30,34 +30,35 @@ public class FavoriteFragment extends Fragment {
         // Inflate the layout for this fragment
         View result =  inflater.inflate(R.layout.favorite_fragment, container, false);
 
-        //show the message
+        //show the title
         TextView favorite_fragment_title = (TextView)result.findViewById(R.id.favorite_fragment_title);
-        favorite_fragment_title.setText("Title: "+dataFromActivity.getString("item"));
+        favorite_fragment_title.setText("Title: "+dataFromActivity.getString("title"));
 
-        //show the id:
-        TextView idView = (TextView)result.findViewById(R.id.idText);
-        idView.setText("Listview ID=" + id);
+        //show the latitude/longtitude/phone:
+        TextView  favorite_fragment_latitude = (TextView)result.findViewById(R.id.favorite_fragment_latitude);
+        favorite_fragment_latitude.setText("Latitude: " + dataFromActivity.getDouble("latitude"));
 
-        TextView position = (TextView)result.findViewById(R.id.position);
-        position.setText("DB id = "+db_id);
+        TextView favorite_fragment_longtitude = (TextView)result.findViewById(R.id.favorite_fragment_longtitude);
+        favorite_fragment_longtitude.setText("Longtitude: "+ dataFromActivity.getDouble("longtitude"));
+
+        TextView favorite_fragment_phone = (TextView)result.findViewById(R.id.favorite_fragment_phone);
+        favorite_fragment_phone.setText("Contact number: "+ dataFromActivity.getDouble("phone"));
 
         // get the delete button, and add a click listener:
-        Button deleteButton = (Button)result.findViewById(R.id.deleteButton);
+        Button deleteButton = (Button)result.findViewById(R.id.favorite_fragment_deleteButton);
         deleteButton.setOnClickListener( clk -> {
 
 
             if(isTablet) { //both the list and details are on the screen:
-                ChatRoomActivity parent = (ChatRoomActivity)getActivity();
-                parent.deleteMessageId((int)db_id); //this deletes the item and updates the list
-
-
+                GotoFavorite parent = (GotoFavorite) getActivity();
+                parent.deleteStationId((int)db_id); //this deletes the item and updates the list
                 //now remove the fragment since you deleted it from the database:
                 // this is the object to be removed, so remove(this):
                 parent.getSupportFragmentManager().beginTransaction().remove(this).commit();
             }
             //for Phone:
             else {
-                EmptyActivity parent = (EmptyActivity) getActivity();
+                Empty_favorite_fragment parent = (Empty_favorite_fragment) getActivity();
                 Intent backToFragmentExample = new Intent();
                 backToFragmentExample.putExtra("db_id", dataFromActivity.getLong("db_id"));
 
