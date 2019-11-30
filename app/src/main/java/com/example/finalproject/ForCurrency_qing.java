@@ -73,8 +73,8 @@ public class ForCurrency_qing extends AppCompatActivity {
     private String amountValue=null;
     private String baseValue=null;
     private String symbols=null;
-    private ProgressDialog progressBar;
-    //    private ProgressBar progressBar;
+//    private ProgressDialog progressBar;
+    private ProgressBar progressBar;
     private float rate=0.0f;
     private SharedPreferences prefs;
     SQLiteDatabase db;
@@ -105,7 +105,9 @@ public class ForCurrency_qing extends AppCompatActivity {
         Button insert = (Button)findViewById(R.id.insert);
         ListView theList = (ListView)findViewById(R.id.the_list);
         boolean isTablet = findViewById(R.id.fragmentLocation) != null;
-//        progressBar=(ProgressBar)findViewById(R.id.progressBar);
+        progressBar=(ProgressBar)findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.INVISIBLE );
+
         prefs = getSharedPreferences("FileName", MODE_PRIVATE);
         amountValue = prefs.getString("Amount", "");
         if(!amountValue.isEmpty()){
@@ -183,13 +185,14 @@ public class ForCurrency_qing extends AppCompatActivity {
 
         // convert data to the result
         convert.setOnClickListener(v -> {
-            progressBar = new ProgressDialog(v.getContext());
-            progressBar.setCancelable(true);
-            progressBar.setMessage("File downloading ...");
-            progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            progressBar.setProgress(0);
-            progressBar.setMax(100);
-            progressBar.show();
+            progressBar.setVisibility(View.VISIBLE );
+//            progressBar = new ProgressDialog(v.getContext());
+//            progressBar.setCancelable(true);
+//            progressBar.setMessage("File downloading ...");
+//            progressBar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+//            progressBar.setProgress(0);
+//            progressBar.setMax(100);
+//            progressBar.show();
 
 
             if(amount.getText().toString()==null){
@@ -231,7 +234,7 @@ public class ForCurrency_qing extends AppCompatActivity {
 
 
                 Toast.makeText(this, "Convert seccessfully!", Toast.LENGTH_LONG).show();
-                progressBar.cancel();
+//                progressBar.cancel();
 //                }catch(Exception e){
 //                    Toast.makeText(this, "Please enter number!", Toast.LENGTH_LONG).show();
 //                }
@@ -424,7 +427,7 @@ public class ForCurrency_qing extends AppCompatActivity {
         {
             //what to do when the menu item is selected:
             case R.id.action_sign_out:
-                Toast.makeText(this, "You clicked on sign out", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Version 2.0 by Qing Wang", Toast.LENGTH_LONG).show();
                 Intent nextPage=new Intent(this,Instruction_qing.class);
                 startActivity(nextPage);
                 break;
@@ -559,7 +562,8 @@ public class ForCurrency_qing extends AppCompatActivity {
             double value=Double.parseDouble(amountValue);
             result.setText(value+" "+baseValue+" = "+df.format(rate*value)+" "+symbols);
             Log.d("result for convert", "onPostExecute: "+result.getText().toString());
-            progressBar.dismiss();
+//            progressBar.dismiss();
+            progressBar.setVisibility(View.INVISIBLE );
         }
 
         /**

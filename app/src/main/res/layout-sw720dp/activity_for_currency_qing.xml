@@ -69,12 +69,11 @@
                 android:hint="@string/result"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
-            <!--        <ProgressBar-->
-            <!--            android:id="@+id/progressBar"-->
-            <!--            style="?android:attr/progressBarStyle"-->
-            <!--            android:layout_width="wrap_content"-->
-            <!--            android:layout_height="wrap_content"-->
-            <!--            />-->
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -113,6 +112,6 @@
         android:id="@+id/fragmentLocation"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_toRightOf="@+id/layout"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/layout" />
 </RelativeLayout>
