@@ -80,7 +80,10 @@ public class MainActivity_luo extends AppCompatActivity {
             Intent goToPage2 = new Intent(MainActivity_luo.this, ForCurrency_qing.class);
             startActivity(goToPage2);
         });
-
+        liao.setOnClickListener(v -> {
+            Intent goToPage1 = new Intent(MainActivity_luo.this, ElectricCarChargingStationFinder.class);
+            startActivity(goToPage1);
+        });
     }
 
     /**

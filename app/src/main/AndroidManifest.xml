@@ -16,6 +16,14 @@
         <activity android:name=".ViewMessage_qing" />
         <activity android:name=".Instruction_qing" />
         <activity android:name=".ForCurrency_qing" />
+        <activity android:name=".ElectricCarChargingStationFinder" />
+        <activity android:name=".Empty_favorite_fragment" />
+        <activity android:name=".GotoFavorite" />
+        <activity android:name=".ViewStation" />
+        <activity android:name=".googlemap" />
+        <activity android:name=".EcarStationResult" />
+        <activity android:name=".ListResult" />
+
         <activity android:name=".MainActivity_luo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
