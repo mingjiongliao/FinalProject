@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <ListView
+        android:id="@+id/favoriteListview"
+        android:stackFromBottom="true"
+        android:transcriptMode="alwaysScroll"
+        android:dividerHeight="0dp"
+        android:divider="@android:color/transparent"
+        android:layout_width="300dp"
+        android:layout_height="match_parent">
+
+
+    </ListView>
+    <FrameLayout
+        android:id="@+id/favorite_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/favoriteListview"
+        android:layout_alignParentRight="true"
+        >
+
+    </FrameLayout>
+</RelativeLayout>
