@@ -1,47 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/item1"
-        android:title="@string/home"
+    <item
+        android:id="@+id/item1"
         android:icon="@drawable/main"
         android:orderInCategory="50"
-        app:showAsAction="always"/>
+        android:title="@string/home"
+        app:showAsAction="always" />
 
-    <item android:id="@+id/item2"
-        android:title="@string/dollar"
-        android:icon="@drawable/currency"
+    <item
+        android:id="@+id/item2"
+        android:icon="@drawable/qing"
         android:orderInCategory="100"
-        app:showAsAction="always"/>
+        android:title="@string/dollar"
+        app:showAsAction="always" />
 
-    <item android:id="@+id/item3"
-        android:title="@string/email"
-        android:icon="@drawable/email"
+    <item
+        android:id="@+id/item3"
+        android:icon="@drawable/ye"
         android:orderInCategory="200"
-        app:showAsAction="always"/>
-    <item android:id="@+id/favoriteRecipe"
-        android:title="@string/twiter"
+        android:title="@string/email"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/item4"
+        android:icon="@drawable/liao"
+        android:orderInCategory="300"
+        android:title="@string/liao"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/favoriteRecipe"
         android:icon="@drawable/helpdialog"
         android:orderInCategory="300"
-        app:showAsAction="always"/>
+        android:title="@string/twiter"
+        app:showAsAction="always" />
     <item
-    android:id="@+id/help"
-    android:title="@string/help"
+        android:id="@+id/help"
         android:icon="@drawable/toast"
         android:orderInCategory="400"
-    app:showAsAction="always"/>
+        android:title="@string/help"
+        app:showAsAction="always" />
     <item
         android:id="@+id/option1"
         android:title="@string/contact"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/option2"
         android:title="@string/search"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
-    <item android:id="@+id/search_item"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"
+    <item
+        android:id="@+id/search_item"
         android:icon="@android:drawable/ic_search_category_default"
-        app:showAsAction="always|collapseActionView"
-        android:title="@string/search"/>
+        android:title="@string/search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
 </menu>

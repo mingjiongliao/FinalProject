@@ -24,6 +24,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -219,6 +220,21 @@ public class RecipeSearchActivity extends AppCompatActivity {
             case R.id.favoriteRecipe:
                 favorite_ind=1;
                 viewFavoriteData();
+                break;
+            case R.id.item1:
+                finish();
+                break;
+            case R.id.item2:
+                Intent goToPage1 = new Intent(this, ForCurrency_qing.class);
+                startActivity(goToPage1);
+                break;
+            case R.id.item3:
+                Intent goToPage2 = new Intent(this, News_Activity_Main.class);
+                startActivity(goToPage2);
+                break;
+            case R.id.item4:
+                Intent goToNews = new Intent(this, ElectricCarChargingStationFinder.class);
+                startActivity(goToNews);
                 break;
         }
         return true;
