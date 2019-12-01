@@ -25,6 +25,11 @@
     <string name="country_prompt">Choose currency</string>
     <string name="country_transfer">Choose currency you want to transfer</string>
     <string name="update">update</string>
+    <string name="Deletefavoriterecipe">Delete</string>
+    <string name="SaveToFavorite">SaveToFavorite</string>
+
+
+
     <string name="home">home</string>
     <string name="delete">delete</string>
     <string name="dollar">dollar</string>

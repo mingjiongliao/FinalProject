@@ -1,5 +1,13 @@
+/**
+ * File name: RecipeSearchActivity.java
+ * Author: Chunyuan Luo, ID# 040926918
+ * Course: 19F_CST2335_010_020 Mobile Graphic interface Prog
+ * Assignment: Final Project
+ * Date: 2019-11-16
+ * Professor: Adewole Adewumi
+ * Purpose:  android activity applications design
+ */
 package com.example.finalproject;
-
 
 import android.app.Activity;
 import android.content.Intent;
@@ -22,15 +30,22 @@ import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.net.URL;
+
+import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
+import static java.lang.Thread.sleep;
+
+/**
+ * An activity to get recipes that user want to search
+ * @author chunyuan luo
+ */
 public class RecipeDetailFragment extends Fragment {
 
     private boolean isTablet;
     private Bundle dataFromActivity;
     //private String recipe_id;
     private int id;
-
     private String publisher;
     private String f2f_url;
     private String title;
@@ -41,14 +56,23 @@ public class RecipeDetailFragment extends Fragment {
     private String publisher_url;
     private int favorite_ind;
 
+    /**
+     * Set isTablet to true of false based on imput parameter
+     * @param tablet
+     */
     public void setTablet(boolean tablet) { isTablet = tablet; }
 
 
+    /**
+     * Inflate the main Fragment screen, display information passed in from parant and register click event for all the button listeners
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
 
         dataFromActivity = getArguments();
         //recipe_id = dataFromActivity.getString("Recipe_id" );
@@ -62,11 +86,6 @@ public class RecipeDetailFragment extends Fragment {
         social_rank = dataFromActivity.getString("Social_rank" );
         publisher_url = dataFromActivity.getString("Publisher_url" );
         favorite_ind = dataFromActivity.getInt("favorite_ind" );
-
-
-
-
-
 
 
 
@@ -146,6 +165,13 @@ public class RecipeDetailFragment extends Fragment {
         addButton.setOnClickListener( clk -> {
 
 
+            try {
+                Snackbar.make(addButton, "Save Favorite Item sucessfully!", Snackbar.LENGTH_LONG).show();
+                Thread.sleep(100);
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             if(isTablet) { //both the list and details are on the screen:
                 RecipeSearchActivity parent = (RecipeSearchActivity)getActivity();
                 parent.saveFavorite(publisher, f2f_url, title, source_url, recipe_id, image_url, social_rank,publisher_url ); //this deletes the item and updates the list
@@ -164,7 +190,9 @@ public class RecipeDetailFragment extends Fragment {
                 backToFragmentExample.putExtra("button_action", "ADD");
                 backToFragmentExample.putExtra("id", id);
 
-                parent.setResult(Activity.RESULT_OK, backToFragmentExample); //send data back to FragmentExample in onActivityResult()
+
+                //Snackbar.make(addButton, "Save Favorite Item sucessfully!", Snackbar.LENGTH_LONG).show();
+                parent.setResult(Activity.RESULT_OK, backToFragmentExample); //send data back to FragmentExamplein onActivityResult（）
                 parent.finish(); //go back
             }
 

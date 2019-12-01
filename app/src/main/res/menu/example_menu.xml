@@ -38,7 +38,7 @@
         android:icon="@drawable/toast"
         android:orderInCategory="400"
         android:title="@string/help"
-        app:showAsAction="always" />
+        app:showAsAction="never" />
     <item
         android:id="@+id/option1"
         android:title="@string/contact"

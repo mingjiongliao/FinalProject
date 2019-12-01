@@ -1,3 +1,12 @@
+/**
+ * File name: RecipeSearchActivity.java
+ * Author: Chunyuan Luo, ID# 040926918
+ * Course: 19F_CST2335_010_020 Mobile Graphic interface Prog
+ * Assignment: Final Project
+ * Date: 2019-11-16
+ * Professor: Adewole Adewumi
+ * Purpose:  android activity applications design
+ */
 package com.example.finalproject;
 
 import android.content.ContentValues;
@@ -10,6 +19,10 @@ import android.util.Log;
 
 import java.util.Arrays;
 
+/**
+ * An database class to handle all request to database
+ * @author chunyuan luo
+ */
 public class RecipeDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "MessagesDB";
@@ -42,22 +55,48 @@ public class RecipeDatabaseHelper extends SQLiteOpenHelper {
             COL_social_rank+" TEXT, "+
             COL_publisher_url+" TEXT);";
 
+    /**
+     * constructor of RecipeDatabaseHelper class
+     * @param context
+     */
     public RecipeDatabaseHelper(Context context) {
         super(context, DB_NAME, null, 2);
     }
 
+    /**
+     * Create table
+     * @param db
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE);
     }
 
+    /**
+     * handle upgrade if it happens
+     * @param db
+     * @param oldVersion
+     * @param newVersion
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + DB_TABLE);
         onCreate(db);
     }
-    //insert data
-    //public boolean insertData(String message, boolean isSend)
+
+    /**
+     * insert a item into database based on input parameters as column input
+     * @param publisher
+     * @param f2f_url
+     * @param title
+     * @param source_url
+     * @param recipe_id
+     * @param image_url
+     * @param social_rank
+     * @param publisher_url
+     * @return result if the insert is sucessfull or not, /if result = -1 data doesn't insert
+     */
+
     public long insertData(String publisher, String f2f_url, String title, String source_url, String recipe_id, String image_url, String social_rank, String publisher_url)
     {
         SQLiteDatabase db = this.getWritableDatabase();//open a database as write only
@@ -79,6 +118,10 @@ public class RecipeDatabaseHelper extends SQLiteOpenHelper {
         return result ; //if result = -1 data doesn't insert
     }
 
+    /**
+     * print all the data on the logcat window
+     * @return
+     */
     //view data
     public Cursor viewAllData(){
         SQLiteDatabase db = this.getReadableDatabase();
@@ -135,6 +178,12 @@ public class RecipeDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 */
+
+    /**
+     * Delete a entry from database based on input parameter of recipe_id
+     * @param Recipe_id
+     * @return how many records been deleted
+     */
     // method to delete a Record
     public int deleteEntry(String Recipe_id)
     {

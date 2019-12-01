@@ -75,7 +75,7 @@ public class GotoFavorite extends AppCompatActivity {
             if (isTablet){
                 FavoriteFragment fFragment = new FavoriteFragment(); //add a DetailFragment
                 fFragment.setArguments( dataToPass ); //pass it a bundle for information
-                fFragment.setTablet(true);  //tell the fragment if it's running on a tablet or not
+                fFragment.setTablet(true);  //tell the recipe_fragment if it's running on a tablet or not
                 getSupportFragmentManager()
                         .beginTransaction()
                         .add(R.id.empty_favorite_fragmentXML, fFragment) //Add the fragment in FrameLayout

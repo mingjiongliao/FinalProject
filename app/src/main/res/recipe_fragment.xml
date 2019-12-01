@@ -64,14 +64,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="@string/SaveToFavorite"
+        android:text="SaveToFavorite"
         android:id="@+id/saveButton"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="@string/Deletefavoriterecipe"
+        android:text="Delete"
         android:layout_toRightOf="@+id/saveButton"
         android:layout_toEndOf="@+id/saveButton"
         android:id="@+id/deleteButton"/>

@@ -62,7 +62,7 @@ public class MainActivity_luo extends AppCompatActivity {
             startActivity(goToNews);
         });
         recipe.setOnClickListener(v -> {
-            AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+           /* AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
 
             //This is the builder pattern, just call many functions on the same object:
             AlertDialog dialog1 = builder1.setTitle("You will get into recipe activity that is created by Chunyuan Luo")
@@ -74,13 +74,22 @@ public class MainActivity_luo extends AppCompatActivity {
 
                     )
                     //If you click the "Cancel" button:
-                    .setNegativeButton("Cancel", (d,w) -> {  /* nothing */})
-                    .create();
+          //          .setNegativeButton("Cancel", (d,w) -> {  /* nothing */});
+        //            .create();
 
             //then show the dialog
-            dialog1.show();
+      //      dialog1.show();
+     //       */
+
+        recipe.setOnClickListener(v -> {
+            Intent goToPage2 = new Intent(MainActivity_luo.this, RecipeSearchActivity.class);
+            startActivity(goToPage2);
+
 
         });
+
+
+
         qing.setOnClickListener(v -> {
             Intent goToPage2 = new Intent(MainActivity_luo.this, ForCurrency_qing.class);
             startActivity(goToPage2);

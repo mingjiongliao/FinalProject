@@ -24,10 +24,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -76,7 +79,9 @@ public class RecipeSearchActivity extends AppCompatActivity {
     ArrayList<DataModel_recipe> arrayOfDataModelLuos = new ArrayList<DataModel_recipe>();//define an ArrayList
     ArrayList<DataModel_recipe> arrayOfDataModelFavorite = new ArrayList<DataModel_recipe>();
 
-    int favorite_ind = 0;
+    private int favorite_ind = 0;
+
+    private ProgressBar progressBar;
 
     /**
      * main entrance that load activity layout
@@ -87,7 +92,10 @@ public class RecipeSearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recipe_activity_main);
         search = (EditText)findViewById(R.id.insertchoice);
+
         thisApp = this;
+
+
 
         //define a file in order to save information to, so that later the information can be fetched and used by another
         //parameter1: file name,
@@ -116,6 +124,11 @@ public class RecipeSearchActivity extends AppCompatActivity {
          */
        // db = new DatabaseHelper(this);
         boolean isTable = findViewById(R.id.fragmentLocation) != null;
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+        progressBar.setMax(10);
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.setProgress(0);
 
         db = new RecipeDatabaseHelper(this);
         //viewData();
@@ -133,7 +146,7 @@ public class RecipeSearchActivity extends AppCompatActivity {
             dataToPass.putInt("id", position);
             dataToPass.putInt("favorite_ind", favorite_ind);
 
-
+            Toast.makeText(RecipeSearchActivity.this,arrayOfDataModelLuos.get(position).getTitle()+"selected",Toast.LENGTH_SHORT).show();
 
 
 
@@ -141,12 +154,12 @@ public class RecipeSearchActivity extends AppCompatActivity {
             if (isTable){
                 RecipeDetailFragment dFragment = new RecipeDetailFragment(); //add a DetailFragment
                 dFragment.setArguments( dataToPass ); //pass it a bundle for information
-                dFragment.setTablet(true);  //tell the fragment if it's running on a tablet or not
+                dFragment.setTablet(true);  //tell the recipe_fragment if it's running on a tablet or not
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .add(R.id.fragmentLocation, dFragment) //Add the fragment in FrameLayout
+                        .add(R.id.fragmentLocation, dFragment) //Add the recipe_fragment in FrameLayout
                         .addToBackStack("AnyName") //make the back button undo the transaction
-                        .commit(); //actually load the fragment.
+                        .commit(); //actually load the recipe_fragment.
             }else {
                 Intent RecipeEmptyActivity = new Intent(RecipeSearchActivity.this, RecipeEmptyActivity.class);
                 RecipeEmptyActivity.putExtras(dataToPass);
@@ -170,19 +183,29 @@ public class RecipeSearchActivity extends AppCompatActivity {
             //String age="22";
 
             //input_text2.setText(prefs.getString("email", ""));
-
+            progressBar.setVisibility(View.VISIBLE);
             String baseURL = "http://www.food2fork.com/api/search?key=fdfc2f97466caa0f5b142bc3b913c366&q=";//construct the new forme of url
+
             String searchText=search.getText().toString();//get search content
+
             SharedPreferences.Editor editor=prefs.edit();
+
             editor.putString("searchText", searchText);
             editor.commit();
+
             String realURL = baseURL + Uri.encode(searchText);//construct the real url
             realURL = "http://torunski.ca/FinalProjectChickenBreast.json";
             Log.d("newURL is:", realURL);
 
             this.runURL(realURL);
+            Snackbar.make(searchButton, "Search sucessfully!", Snackbar.LENGTH_LONG).show();
+            //progressBar.setVisibility(View.INVISIBLE);
         });}
 
+    /**
+     * gets the data from internet URL
+     * @param encodedURL
+     */
         private void runURL(String encodedURL)
         {
             MyNetworkURL URL = new MyNetworkURL();//define
@@ -256,7 +279,7 @@ public class RecipeSearchActivity extends AppCompatActivity {
      * @param
      * */
     //                                      Type1, Type2   Type3
-        private class MyNetworkURL extends AsyncTask<String, String, String> {
+        private class MyNetworkURL extends AsyncTask<String, Integer, String> {
             String responseType;
 
 
@@ -271,6 +294,15 @@ public class RecipeSearchActivity extends AppCompatActivity {
                 String result;
 
                 Log.d("newURL0 is:", strings[0]);
+                Integer count = 1;
+                for (; count <= 5; count++) {
+                    try {
+                        Thread.sleep(100);
+                        publishProgress(count);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
                 //result=getJSON(strings[0]);
                 try {       // Connect to the server: use URL
 
@@ -310,7 +342,7 @@ public class RecipeSearchActivity extends AppCompatActivity {
                 } catch (IOException ioe) {
                     result = "IO Exception. Is the Wifi connected?";
                 }
-
+                publishProgress(100);
                 return result;
             }
 
@@ -321,7 +353,8 @@ public class RecipeSearchActivity extends AppCompatActivity {
         @Override                   //Type 3
             protected void onPostExecute(String result) {
                 super.onPostExecute(result);
-
+            //progressBar.setVisibility(View.VISIBLE);
+            //progressBar.setProgress(20);
             //arrayOfDataModelLuos =new ArrayList<>();
             arrayOfDataModelLuos.clear();
 
@@ -363,6 +396,8 @@ public class RecipeSearchActivity extends AppCompatActivity {
                 }
 
             favorite_ind=0;
+            progressBar.setProgress(100);
+            progressBar.setVisibility(View.INVISIBLE);
                 //adapter.setItemList(arrayOfDataModelLuos);//add response data to adapter    arrayList----> adapter ------->listView
                 //adapter.notifyDataSetChanged();//notify listview that data is changed and display it
             //ListAdapter_recipe adt = new ListAdapter_recipe(arrayOfDataModelLuos, getApplicationContext());
@@ -377,8 +412,10 @@ public class RecipeSearchActivity extends AppCompatActivity {
          * @param values
          */
         @Override                       //Type 2
-            protected void onProgressUpdate(String... values) {
+            //protected void onProgressUpdate(String... values) {
+        protected void onProgressUpdate(Integer... values) {
                 super.onProgressUpdate(values);
+                progressBar.setProgress(values[0]);
             }
 
         /**
@@ -430,7 +467,10 @@ public class RecipeSearchActivity extends AppCompatActivity {
 
         }
 
-    //This function only gets called on the phone. The tablet never goes to a new activity
+    /**
+     * This function only gets called on the phone when back from another activity. The tablet never goes to a new activity
+     */
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode,resultCode,data);
@@ -463,6 +503,10 @@ public class RecipeSearchActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Delete a favorite from favorite view list and database
+     * @param position
+     */
     public void deleteMessageId(int position)
     {
         //String recipe_id = arrayOfDataModelLuos.get(position).getRecipe_id();
@@ -488,6 +532,9 @@ public class RecipeSearchActivity extends AppCompatActivity {
         //viewData();
     }
 
+    /**
+     * View all the data from database, obsolete
+     */
     private void viewData(){
 
         Cursor cursor = db.viewAllData();             //get all data from table and assign the resultset to Curso
@@ -516,6 +563,9 @@ public class RecipeSearchActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * list Favorite on the main activity
+     */
     private void viewFavoriteData(){
         //ArrayList<DataModel_recipe> arrayOfDataModelFavorite = new ArrayList<DataModel_recipe>();//define an ArrayList
         arrayOfDataModelFavorite.clear();
@@ -552,6 +602,17 @@ public class RecipeSearchActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+    /**
+     * insert a favorte recipe as a item in the database
+     * @param publisher
+     * @param f2f_url
+     * @param title
+     * @param source_url
+     * @param recipe_id
+     * @param image_url
+     * @param social_rank
+     * @param publisher_url
+     */
     public void saveFavorite(String publisher, String f2f_url,String title,String source_url,String recipe_id,
                               String image_url,String social_rank,String publisher_url ){
         db.insertData(publisher, f2f_url, title, source_url, recipe_id, image_url, social_rank,publisher_url );

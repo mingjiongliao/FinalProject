@@ -6,6 +6,8 @@
     <string name="search_name">输入你的选择</string>
     <string name="search_buttom">搜索菜谱</string>
     <string name="recipe_title">菜谱名</string>
+    <string name="Deletefavoriterecipe">删除</string>
+    <string name="SaveToFavorite">存入喜好单</string>
 
 
     <string name="buttontostudentinformation">点击获取学生信息</string>

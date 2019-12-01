@@ -282,12 +282,12 @@ public class ForCurrency_qing extends AppCompatActivity {
             if(isTablet){
                 DetailFragmentQing dFragment = new DetailFragmentQing(); //add a DetailFragment
                 dFragment.setArguments( dataToPass ); //pass it a bundle for information
-                dFragment.setTablet(true);  //tell the fragment if it's running on a tablet or not
+                dFragment.setTablet(true);  //tell the recipe_fragment if it's running on a tablet or not
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fragmentLocation, dFragment) //Add the fragment in FrameLayout
+                        .replace(R.id.fragmentLocation, dFragment) //Add the recipe_fragment in FrameLayout
                         .addToBackStack("Back") //make the back button undo the transaction
-                        .commit(); //actually load the fragment.
+                        .commit(); //actually load the recipe_fragment.
 
             }else{
                 //When you click on a row, open selected contact on a new page (ViewContact)
