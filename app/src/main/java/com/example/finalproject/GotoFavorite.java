@@ -73,7 +73,7 @@ public class GotoFavorite extends AppCompatActivity {
             dataToPass.putDouble("longtitude", stationList.get(position).getLongtitude());
             dataToPass.putString("phone", stationList.get(position).getPhone());
 
-            if (true){
+            if (isTablet){
                 FavoriteFragment fFragment = new FavoriteFragment(); //add a DetailFragment
                 fFragment.setArguments( dataToPass ); //pass it a bundle for information
                 fFragment.setTablet(true);  //tell the fragment if it's running on a tablet or not

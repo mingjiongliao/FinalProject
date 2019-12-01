@@ -46,10 +46,12 @@ public class ListResult extends AppCompatActivity {
     private String apiLine;
     private String resultObj;
     private LocationQuery networkThread;
+    private boolean isTablet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_result);
+        isTablet = findViewById(R.id.favoriteFragment) != null;
         /**
          * retrieve data from the old intent(activity)
          */
@@ -162,6 +164,7 @@ public class ListResult extends AppCompatActivity {
                     new Address("Barhaven", 56, 15.99,"819-321-2345"),
                     new Address("Kanata", 42, 14.90,"613-234-4452"),
             };*/
+
             TextView txtList = findViewById(R.id.txtList);
             try {
                 JSONArray jObject = new JSONArray(s);
@@ -185,6 +188,7 @@ public class ListResult extends AppCompatActivity {
                     ArrayAdapter<Address> adapter = new ArrayAdapter<Address>(getBaseContext(),
                             android.R.layout.simple_expandable_list_item_1, listAddress);
                     jsonList.setAdapter(adapter);
+
                     jsonList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -199,9 +203,21 @@ public class ListResult extends AppCompatActivity {
                             dataToPass.putString("phone", listAddress.get(position).getPhone());
                             dataToPass.putDouble("latitude", listAddress.get(position).getlatitude());
                             dataToPass.putDouble("longitude", listAddress.get(position).getLongitude());
-                            Intent listDetail = new Intent(ListResult.this, EcarStationResult.class);
-                            listDetail.putExtras(dataToPass); //send data to next activity
-                            startActivityForResult(listDetail, 250);
+
+                            if(isTablet){
+                                ResultFragment rFragment = new ResultFragment(); //add a DetailFragment
+                                rFragment.setArguments( dataToPass ); //pass it a bundle for information
+                                rFragment.setTablet(true);  //tell the fragment if it's running on a tablet or not
+                                getSupportFragmentManager()
+                                        .beginTransaction()
+                                        .add(R.id.resultFragment, rFragment) //Add the fragment in FrameLayout
+                                        .addToBackStack("AnyName") //make the back button undo the transaction
+                                        .commit(); //actually load the fragment.
+                            }else {
+                                Intent listDetail = new Intent(ListResult.this, EcarStationResult.class);
+                                listDetail.putExtras(dataToPass); //send data to next activity
+                                startActivityForResult(listDetail, 250);
+                            }
                         }
                     });
                 }
