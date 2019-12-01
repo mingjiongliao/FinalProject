@@ -1,5 +1,6 @@
 package com.example.finalproject;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -25,13 +26,13 @@ public class GotoFavorite extends AppCompatActivity {
     ListView theList;
     FavoriteDBhelper dbOpener;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goto_favorite);
         //get a database:
         dbOpener = new FavoriteDBhelper(this);
         theList = (ListView)findViewById(R.id.favoriteListview);
-        boolean isTablet = findViewById(R.id.empty_favorite_fragmentXML) != null;
+        boolean isTablet = findViewById(R.id.favoriteFragment) != null;
         //query all the results from the database:
         viewData();
         /*String[] columns = {FavoriteDBhelper.COL_ID, FavoriteDBhelper.COL_TITLE};
@@ -72,13 +73,13 @@ public class GotoFavorite extends AppCompatActivity {
             dataToPass.putDouble("longtitude", stationList.get(position).getLongtitude());
             dataToPass.putString("phone", stationList.get(position).getPhone());
 
-            if (isTablet){
+            if (true){
                 FavoriteFragment fFragment = new FavoriteFragment(); //add a DetailFragment
                 fFragment.setArguments( dataToPass ); //pass it a bundle for information
                 fFragment.setTablet(true);  //tell the fragment if it's running on a tablet or not
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .add(R.id.empty_favorite_fragmentXML, fFragment) //Add the fragment in FrameLayout
+                        .add(R.id.favoriteFragment, fFragment) //Add the fragment in FrameLayout
                         .addToBackStack("AnyName") //make the back button undo the transaction
                         .commit(); //actually load the fragment.
             }else {
