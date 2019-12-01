@@ -57,7 +57,7 @@
                 android:layout_alignParentLeft="true" />
 
             <Button
-                android:id="@+id/news_main_searchButton"
+                android:id="@+id/news_searchnewsbutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -65,15 +65,15 @@
                 android:text="Search" />
 
             <Button
-                android:id="@+id/news_main_gotofavorites"
+                android:id="@+id/news_favorites"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/news_main_searchButton"
+                android:layout_below="@+id/news_searchnewsbutton"
                 android:text="Go to favorite" />
 
             <ProgressBar
-                android:id="@+id/news_main_progressbar"
-                android:layout_below="@id/news_main_gotofavorites"
+                android:id="@+id/news_progress_bar"
+                android:layout_below="@id/news_favorites"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

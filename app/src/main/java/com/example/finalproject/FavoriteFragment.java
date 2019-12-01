@@ -41,7 +41,7 @@ public class FavoriteFragment extends Fragment {
         favorite_fragment_longtitude.setText("Longtitude: "+ dataFromActivity.getDouble("longtitude"));
 
         TextView favorite_fragment_phone = (TextView)result.findViewById(R.id.favorite_fragment_phone);
-        favorite_fragment_phone.setText("Contact number: "+ dataFromActivity.getDouble("phone"));
+        favorite_fragment_phone.setText("Contact number: "+ dataFromActivity.getString("phone"));
 
         // get the delete button, and add a click listener:
         Button deleteButton = (Button)result.findViewById(R.id.favorite_fragment_deleteButton);
