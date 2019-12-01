@@ -46,6 +46,9 @@ public class EcarStationResult extends AppCompatActivity {
                     SQLiteDatabase db = dbOpener.getWritableDatabase();
                     ContentValues newRowValues = new ContentValues();
                     newRowValues.put(FavoriteDBhelper.COL_TITLE, title);
+                    newRowValues.put(FavoriteDBhelper.COL_LATITUDE, latitude);
+                    newRowValues.put(FavoriteDBhelper.COL_LONGTITUDE, longitude);
+                    newRowValues.put(FavoriteDBhelper.COL_PHONE, phone);
                     //insert in the database:
                     long newId = db.insert(FavoriteDBhelper.TABLE_NAME, null, newRowValues);
                     Toast.makeText(this, title+" is save to your favoriate", Toast.LENGTH_SHORT).show();
