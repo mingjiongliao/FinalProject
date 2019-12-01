@@ -20,7 +20,7 @@ public class Empty_favorite_fragment extends AppCompatActivity {
         fFragment.setTablet(false); //tell the Fragment that it's on a phone.
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.empty_favorite_fragmentXML, fFragment)
+                .add(R.id.favoriteFragment, fFragment)
                 .addToBackStack("AnyName")
                 .commit();
     }
