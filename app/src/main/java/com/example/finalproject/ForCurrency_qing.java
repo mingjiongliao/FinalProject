@@ -433,6 +433,8 @@ public class ForCurrency_qing extends AppCompatActivity {
                 break;
             case R.id.option1:
                 Toast.makeText(this, "This is the initial message", Toast.LENGTH_LONG).show();
+                Intent info=new Intent(this,Information.class);
+                startActivity(info);
                 break;
             case R.id.option2:
                 Toast.makeText(this, "You clicked the search string", Toast.LENGTH_LONG).show();
@@ -440,7 +442,8 @@ public class ForCurrency_qing extends AppCompatActivity {
                 break;
             case R.id.item1:
                 Toast.makeText(this, message , Toast.LENGTH_LONG).show();
-                finish();
+                Intent mainPage=new Intent(this,MainActivity_luo.class);
+                startActivity(mainPage);
                 break;
             case R.id.item2:
                 Intent goToPage1 = new Intent(this, ElectricCarChargingStationFinder.class);

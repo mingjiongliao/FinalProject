@@ -192,7 +192,8 @@ public class News_Activity_Main extends AppCompatActivity {
                 break;
             case R.id.item1:
                 Toast.makeText(this, "go to main" , Toast.LENGTH_LONG).show();
-                finish();
+                Intent mainPage=new Intent(this,MainActivity_luo.class);
+                startActivity(mainPage);
                 break;
             case R.id.item2:
                 Intent goToPage1 = new Intent(this, ElectricCarChargingStationFinder.class);

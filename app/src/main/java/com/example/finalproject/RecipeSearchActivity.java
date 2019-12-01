@@ -222,7 +222,8 @@ public class RecipeSearchActivity extends AppCompatActivity {
                 viewFavoriteData();
                 break;
             case R.id.item1:
-                finish();
+                Intent mainPage=new Intent(this,MainActivity_luo.class);
+                startActivity(mainPage);
                 break;
             case R.id.item2:
                 Intent goToPage1 = new Intent(this, ForCurrency_qing.class);
