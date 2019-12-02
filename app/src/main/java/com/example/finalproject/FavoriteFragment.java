@@ -58,7 +58,7 @@ public class FavoriteFragment extends Fragment {
             //for Phone:
             else {
                 Empty_favorite_fragment parent = (Empty_favorite_fragment) getActivity();
-                Intent backToFragmentExample = new Intent();
+                Intent backToFragmentExample = new Intent(); //new intent to go back
                 backToFragmentExample.putExtra("db_id", dataFromActivity.getLong("db_id"));
 
                 parent.setResult(Activity.RESULT_OK, backToFragmentExample); //send data back to FragmentExample in onActivityResult()

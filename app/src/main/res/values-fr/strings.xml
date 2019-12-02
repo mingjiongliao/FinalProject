@@ -33,5 +33,27 @@
     <string name="s12">Nous traitons</string>
     <string name="s11">Oui</string>
     <string name="s13">Annuler</string>
+    <string name="home">Accueil</string>
+    <string name="help">Aide</string>
+    <string name="finder">Moteur de recherche de voiture électrique</string>
+    <string name="engine">Moteur de recherche de recettes</string>
     <string name="what_is_your_new_message">Ceci est la version 5.23. \ n Auteur: Mingjiong Liao \ n Comment la utiliser? \ n Entrez simplement la latitude et la longitude de votre choix et obtenez votre liste de localisations. si vous voulez connaître exactement le emplacement, cliquez sur icône Google Map pour obtenir les détails. voi la!</string>
+    <string name="buttontostudentinformation">Cliquez pour obtenir des informations sur les étudiants</string>
+    <string name="Name">Nom:</string>
+    <string name="news_Name">Name:</string>
+    <string name="news_menu_help">help</string>
+    <string name="news_menu_news">News</string>
+    <string name="news_go_favorites">Aller aux favoris</string>
+    <string name="firstline">welcome to news search</string>
+    <string name="search_news">Type search title</string>
+    <string name="searchnewsbutton">Search</string>
+    <string name="news_title">News Title</string>
+    <string name="news_goback">goback</string>
+    <string name="news_help">2019 finalProject-NewsApi</string>
+    <string name="news_search1">Type tile to start search</string>
+    <string name="news_search2">Select item from the list to view content</string>
+    <string name="news_search3">choose to view saved articles</string>
+    <string name="news_detail">News Detail</string>
+    <string name="news_saveTo_favorite">Save to favorite</string>
+    <string name="news_go_to_web">Open news webpage</string>
 </resources>

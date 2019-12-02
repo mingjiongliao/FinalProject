@@ -36,8 +36,9 @@ public class StationAdapter extends BaseAdapter{
         View view = old;
 
         if (view == null){
+            //inflate the layout into this adapter
             view = inflater.inflate(R.layout.activity_view_station, null);
-
+            // return this view
             TextView messageText = (TextView)view.findViewById(R.id.station_title);
             messageText.setText(Stations.get(position).getTitle());
         }
