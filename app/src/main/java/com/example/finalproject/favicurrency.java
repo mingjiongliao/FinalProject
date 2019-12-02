@@ -16,6 +16,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/**
+ * this activity implement favicurrency in toolbar which will display whole history
+ */
 public class favicurrency extends AppCompatActivity {
     ArrayList<CountryItem> objects = new ArrayList<>( );
     SQLiteDatabase db;
@@ -57,6 +60,11 @@ public class favicurrency extends AppCompatActivity {
         theList.setAdapter(myAdapter);
 
     }
+
+    /**
+     * adapter class which display all list view
+     *
+     */
     private class MyOwnAdapter extends BaseAdapter {
 
         public int getCount() {  return objects.size();  } //This function tells how many objects to show

@@ -17,14 +17,12 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
 /**
- * An activity to get recipes that user want to search
- * @author chunyuan luo
+ * View message detail
  */
 
 public class ViewMessage_qing extends AppCompatActivity {
     /**
-     * An activity to get recipes that user want to search
-     * @author chunyuan luo
+     * view message detail
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {

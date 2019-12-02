@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+/**
+ * just show information about us
+ */
 public class Information extends AppCompatActivity {
 
     @Override

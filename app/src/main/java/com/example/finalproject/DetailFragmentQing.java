@@ -18,6 +18,9 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+/**
+ * fragment class which implement different impact between ipad and phone
+ */
 
 public class DetailFragmentQing extends Fragment {
 

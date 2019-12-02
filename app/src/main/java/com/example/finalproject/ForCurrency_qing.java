@@ -62,6 +62,9 @@ import static org.xmlpull.v1.XmlPullParser.END_TAG;
 import static org.xmlpull.v1.XmlPullParser.START_TAG;
 import static org.xmlpull.v1.XmlPullParser.TEXT;
 
+/**
+ * currency class that can convert money and save to history
+ */
 public class ForCurrency_qing extends AppCompatActivity {
 
     ArrayList<CountryItem> objects = new ArrayList<>( );

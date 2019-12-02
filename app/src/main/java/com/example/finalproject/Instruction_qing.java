@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+/**
+ * instruction for currency
+ */
 public class Instruction_qing extends AppCompatActivity {
 
     @Override

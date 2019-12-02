@@ -20,6 +20,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DecimalFormat;
 
+/**
+ * rate activity which will show all rate about 1 EUR
+ */
 public class Rate extends AppCompatActivity {
     private  TextView itema;
     private  TextView itemb;
