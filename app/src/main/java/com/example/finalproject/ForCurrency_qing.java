@@ -14,6 +14,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -475,11 +476,14 @@ public class ForCurrency_qing extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("The Message")
-                .setPositiveButton("Positive", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Currency page", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // What to do on Accept
                         Log.d("aaaaaaa","hhhhhhhh");
-                        message=et.getText().toString();
+                        String gmail = "http://www.currency-conversion.info/";
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        i.setData( Uri.parse(gmail) );
+                        startActivity(i);
 
                     }
                 })
