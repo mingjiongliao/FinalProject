@@ -25,42 +25,42 @@ public class Station {
     /**Chaining constructor: */
     public Station(String n) { this(n, 0);}
 
-
+//getter
     public String getTitle() {
         return title;
     }
-
-
+    //getter
     public long getId() {
         return id;
     }
-
+//setter
     public void setLatitude(double lat){
         latitude = lat;
     }
-
+    //setter
     public void setLongtitude(double lon){
         longtitude = lon;
     }
-
+    //setter
     public void setPhone(String phone){
         this.phone = phone;
     }
-
+    //setter
     public double getLatitude() {
         return latitude;
     }
-
+    //setter
     public double getLongtitude() {
         return longtitude;
     }
-
+    //setter
     public String getPhone() {
         return phone;
     }
 
     @NonNull
     @Override
+    //content fo the class object
     public String toString() {
         return "Station:" + title;
     }

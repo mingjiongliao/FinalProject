@@ -159,24 +159,18 @@ public class ListResult extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
 
-            /*Address[] listAddress = {
-                    new Address("Baseline", 34, 21.50,null),
-                    new Address("Barhaven", 56, 15.99,"819-321-2345"),
-                    new Address("Kanata", 42, 14.90,"613-234-4452"),
-            };*/
-
             TextView txtList = findViewById(R.id.txtList);
             try {
                 JSONArray jObject = new JSONArray(s);
                 int Length = jObject.length();
                 if (Length==0){
-
+// if no item in the list, display the message
                     txtList.setText(R.string.s3);
                 }else{
                     txtList.setText(R.string.s4);
                     ArrayList<Address> listAddress = new ArrayList<Address>();
                     for (int i=0; i < jObject.length(); i++)
-                    {
+                    {//populate the listview
                         JSONObject anObject = jObject.getJSONObject(i);
                         String title = anObject.getJSONObject("AddressInfo").getString("Title");
                         String phone = anObject.getJSONObject("AddressInfo").getString("ContactTelephone1");
@@ -185,25 +179,22 @@ public class ListResult extends AppCompatActivity {
                         listAddress.add(new Address(title,latitude,longitude,phone));
                     }
                     ListView jsonList = findViewById(R.id.listResult);
+                    //use arrayadapter instead of set up an adapter class
                     ArrayAdapter<Address> adapter = new ArrayAdapter<Address>(getBaseContext(),
                             android.R.layout.simple_expandable_list_item_1, listAddress);
                     jsonList.setAdapter(adapter);
-
+                    //set the listview click event
                     jsonList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position,
                                                 long id) {
-                     /*          String item = "Title: " + listAddress.get(position).getTitle()+"\n"
-                                +"Phone: " + listAddress.get(position).getPhone()+"\n"
-                                + "Latitude: " + listAddress.get(position).getlatitude()+"\n"
-                                + "Longtitude: " + listAddress.get(position).getLongitude()+"\n";*/
-
+                            // use bundle to pass the data
                             Bundle dataToPass = new Bundle();
                             dataToPass.putString("title", listAddress.get(position).getTitle());
                             dataToPass.putString("phone", listAddress.get(position).getPhone());
                             dataToPass.putDouble("latitude", listAddress.get(position).getlatitude());
                             dataToPass.putDouble("longitude", listAddress.get(position).getLongitude());
-
+                            // on a tablet
                             if(isTablet){
                                 ResultFragment rFragment = new ResultFragment(); //add a DetailFragment
                                 rFragment.setArguments( dataToPass ); //pass it a bundle for information
@@ -213,7 +204,7 @@ public class ListResult extends AppCompatActivity {
                                         .add(R.id.resultFragment, rFragment) //Add the fragment in FrameLayout
                                         .addToBackStack("AnyName") //make the back button undo the transaction
                                         .commit(); //actually load the fragment.
-                            }else {
+                            }else {//on a phone
                                 Intent listDetail = new Intent(ListResult.this, EcarStationResult.class);
                                 listDetail.putExtras(dataToPass); //send data to next activity
                                 startActivityForResult(listDetail, 250);
