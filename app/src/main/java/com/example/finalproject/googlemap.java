@@ -19,12 +19,13 @@ public class googlemap extends AppCompatActivity {
 
 /**
  * use the code from google android docs, pass the data from input
+ * https://developers.google.com/maps/documentation/urls/android-intents
  */
         String geo = "geo:" + latitude + "," + longitude;
         Uri gmmIntentUri = Uri.parse(geo);
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
         startActivity(mapIntent);
-        Toast.makeText(this, "Location "+ latitude + "," + longitude, Toast.LENGTH_SHORT).show();
+
     }
 }
