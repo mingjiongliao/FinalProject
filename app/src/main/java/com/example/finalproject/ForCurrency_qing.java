@@ -439,6 +439,11 @@ public class ForCurrency_qing extends AppCompatActivity {
                 break;
             case R.id.option2:
                 Toast.makeText(this, "You clicked the search string", Toast.LENGTH_LONG).show();
+//                alertExample();
+                Intent ratePage = new Intent(this, Rate.class);
+                startActivity(ratePage);
+                break;
+            case R.id.option3:
                 alertExample();
                 break;
             case R.id.item1:
@@ -457,6 +462,7 @@ public class ForCurrency_qing extends AppCompatActivity {
             case R.id.item4:
                 Intent goToNews = new Intent(this, News_Activity_Main.class);
                 startActivity(goToNews);
+
                 break;
             case R.id.item5:
                 Intent favcurrency=new Intent(this,favicurrency.class);
@@ -479,6 +485,8 @@ public class ForCurrency_qing extends AppCompatActivity {
                 .setPositiveButton("Currency page", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // What to do on Accept
+
+
                         Log.d("aaaaaaa","hhhhhhhh");
                         String gmail = "http://www.currency-conversion.info/";
                         Intent i = new Intent(Intent.ACTION_VIEW);
@@ -490,6 +498,7 @@ public class ForCurrency_qing extends AppCompatActivity {
                 .setNegativeButton("Negative", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // What to do on Cancel
+
                     }
                 }).setView(middle);
 

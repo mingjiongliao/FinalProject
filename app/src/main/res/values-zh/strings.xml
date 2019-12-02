@@ -82,6 +82,6 @@
     <string name="news_detail">新聞内容</string>
     <string name="news_saveTo_favorite">保留到收藏</string>
     <string name="news_go_to_web">打開新聞網頁</string>
-
+    <string name="dialog">对话框</string>
 </resources>
 

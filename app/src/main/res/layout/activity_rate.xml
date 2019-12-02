@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/itema"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1 EUR:" />
+
+    <TextView
+        android:id="@+id/itemb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1 EUR:" />
+
+    <TextView
+        android:id="@+id/itemc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1 EUR:" />
+
+    <TextView
+        android:id="@+id/itemd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1 EUR:" />
+
+    <TextView
+        android:id="@+id/iteme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1 EUR:" />
+
+    <TextView
+        android:id="@+id/itemf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1 EUR:" />
+
+    <TextView
+        android:id="@+id/itemg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1 EUR:" />
+
+    <TextView
+        android:id="@+id/itemh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1 EUR:" />
+
+    <TextView
+        android:id="@+id/itemj"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1 EUR:" />
+
+    <TextView
+        android:id="@+id/itemk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1 EUR:" />
+
+    <TextView
+        android:id="@+id/iteml"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1 EUR:" />
+
+
+</LinearLayout>

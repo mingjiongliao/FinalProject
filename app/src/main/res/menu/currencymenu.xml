@@ -41,6 +41,10 @@
         android:id="@+id/option2"
         android:title="@string/search"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/option3"
+        android:title="@string/dialog"
+        app:showAsAction="never"/>
 
     <item android:id="@+id/search_item"
         app:actionViewClass="androidx.appcompat.widget.SearchView"

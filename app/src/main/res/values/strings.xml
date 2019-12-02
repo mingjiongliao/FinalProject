@@ -42,6 +42,7 @@
     <string name="search">search</string>
     <string name="version">version: 2.0</string>
     <string name="us">us</string>
+    <string name="dialog">dialog</string>
     <string-array name="spinner1">
         <item>CAD</item>
         <item>USD</item>
