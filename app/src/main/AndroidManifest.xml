@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Information"></activity>
+        <activity android:name=".favicurrency"></activity>
+        <activity android:name=".Information" />
         <activity android:name=".ViewMessage_qing" />
         <activity android:name=".Instruction_qing" />
         <activity android:name=".ForCurrency_qing" />
@@ -32,8 +33,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-<!--        <activity android:name=".menuToolbar_recipe" />-->
+        </activity> <!-- <activity android:name=".menuToolbar_recipe" /> -->
         <activity android:name=".RecipeEmptyActivity" />
         <activity android:name=".RecipeSearchActivity">
             <intent-filter>

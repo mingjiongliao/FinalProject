@@ -457,6 +457,9 @@ public class ForCurrency_qing extends AppCompatActivity {
                 Intent goToNews = new Intent(this, News_Activity_Main.class);
                 startActivity(goToNews);
                 break;
+            case R.id.item5:
+                Intent favcurrency=new Intent(this,favicurrency.class);
+                startActivity(favcurrency);
         }
         return true;
     }

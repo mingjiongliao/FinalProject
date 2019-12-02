@@ -23,6 +23,11 @@
         android:icon="@drawable/ye"
         android:orderInCategory="300"
         app:showAsAction="always"/>
+    <item android:id="@+id/item5"
+        android:title="@string/favcurrency"
+        android:icon="@drawable/basketball"
+        android:orderInCategory="300"
+        app:showAsAction="always"/>
     <item
         android:id="@+id/action_sign_out"
         android:title="@string/help"

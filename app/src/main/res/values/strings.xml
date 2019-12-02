@@ -27,9 +27,7 @@
     <string name="update">update</string>
     <string name="Deletefavoriterecipe">Delete</string>
     <string name="SaveToFavorite">SaveToFavorite</string>
-
-
-
+    <string name="favcurrency">favcurrency</string>
     <string name="home">home</string>
     <string name="delete">delete</string>
     <string name="dollar">dollar</string>
@@ -59,7 +57,6 @@
         in spinner, enter amount in editText and choose second currency,  and then click button "convert", which will calulate the
         result from api. If you want to save the result, click the "save to history" button, which will store to database and when the
         user open it secondly, it will show again!</string>
-
 
 
     <string name="newsapi">News Api.org headlines:</string>
